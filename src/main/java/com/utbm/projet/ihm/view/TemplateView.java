@@ -52,6 +52,15 @@ public class TemplateView extends GenericView {
     }
 
     /**
+     * Call the register() method of the controller class.
+     *
+     * @throws IOException
+     */
+    public void onRegister() throws IOException {
+        templateController.register();
+    }
+
+    /**
      * Call the signOut() method of the controller class.
      *
      * @throws java.io.IOException
@@ -67,6 +76,15 @@ public class TemplateView extends GenericView {
      */
     public void onSignIn() throws IOException {
         templateController.signIn();
+    }
+
+    /**
+     * Call the signUp() method of the controller class.
+     *
+     * @throws IOException
+     */
+    public void onSignUp() throws IOException {
+        templateController.signUp();
     }
 
 }

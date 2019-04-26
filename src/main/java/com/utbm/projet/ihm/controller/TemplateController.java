@@ -60,6 +60,27 @@ public class TemplateController extends GenericController {
         }
     }
 
+    public void register() {
+        FacesMessage message = null;
+
+        String username = templateModel.getUser().getUsername();
+        String password = templateModel.getUser().getPassword();
+
+        try {
+            User user = loginService.register(username, password);
+
+            templateModel.setLogged(true);
+            templateModel.getUser().setAdmin(user.isAdmin());
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inscription réussite", "");
+        } catch (Exception e) {
+            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Erreur d'inscription", e.getCause().getMessage());
+        } finally {
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            PrimeFaces.current().ajax().addCallbackParam("loggedIn", templateModel.isLogged());
+        }
+
+    }
+
     /**
      * Disconnects the user.
      *
@@ -75,7 +96,15 @@ public class TemplateController extends GenericController {
      * @throws java.io.IOException
      */
     public void signIn() throws IOException {
-        PrimeFaces.current().executeScript("PF('dlg').show();");
+        PrimeFaces.current().executeScript("PF('dlgLogin').show();");
     }
 
+    /**
+     * Displays the sign up dialog.
+     *
+     * @throws IOException
+     */
+    public void signUp() throws IOException {
+        PrimeFaces.current().executeScript("PF('dlgRegister').show();");
+    }
 }

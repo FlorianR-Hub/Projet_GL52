@@ -7,14 +7,18 @@
     <h:outputStylesheet library="css" name="header.css" />
 
     <h:form id="headerForm" prependId="false">
-        <h:panelGrid columns="3" styleClass="header" columnClasses="five-percent">
+        <h:panelGrid columns="4" styleClass="header" columnClasses="five-percent" >
             <p:commandLink onclick="PF('sidebar').show()" styleClass="commandLinkMenu">
                 <h:graphicImage value="/resources/img/burger-bars.png" width="25"/>
             </p:commandLink>
             <h:outputText value="Projet GL52" styleClass="title"/>
 
-            <p:commandLink value="Déconnexion" action="#{templateView.onSignOut()}" rendered="#{templateModel.logged}" update="headerForm menuForm #{pageForm}" styleClass="button" />
-            <p:commandLink value="S'identifier" action="#{templateView.onSignIn()}" rendered="#{not templateModel.logged}" update="headerForm menuForm #{pageForm}" styleClass="button" />
+            <p:commandLink value="Déconnexion" action="#{templateView.onSignOut()}" rendered="#{templateModel.logged}" update="headerForm menuForm #{pageForm}" styleClass="signOut" />
+            <h:panelGrid columns="2" styleClass="signInUp">
+                <p:commandLink value="Se connecter" action="#{templateView.onSignIn()}" rendered="#{not templateModel.logged}" update="headerForm menuForm #{pageForm}" styleClass="signIn" />
+                <p:commandButton value="S'inscrire" action="#{templateView.onSignUp()}" rendered="#{not templateModel.logged}" update="headerForm" styleClass="signUp" />
+            </h:panelGrid>
+
         </h:panelGrid>
     </h:form>
 

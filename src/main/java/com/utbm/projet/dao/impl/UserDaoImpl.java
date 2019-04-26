@@ -24,4 +24,18 @@ public class UserDaoImpl implements UserDao {
         return userRepo.getByUsernameAndPassword(username, password);
     }
 
+    @Override
+    public User register(String username, String password) {
+        User newUser = new User();
+        newUser.setUsername(username);
+        newUser.setPassword(password);
+        newUser.setAdmin(false);
+
+        if (userRepo.getByUsername(username) != null) {
+            throw new IllegalArgumentException("l'utilisateur " + username + " existe déjà");
+        }
+
+        return userRepo.save(newUser);
+    }
+
 }

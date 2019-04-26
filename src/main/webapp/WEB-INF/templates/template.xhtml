@@ -8,9 +8,18 @@
     <script type="text/javascript">
         function handleLoginRequest(xhr, status, args) {
             if (args.validationFailed || !args.loggedIn) {
-                PF('dlg').jq.effect("shake", {times: 5}, 100);
+                PF('dlgLogin').jq.effect("shake", {times: 5}, 100);
             } else {
-                PF('dlg').hide();
+                PF('dlgLogin').hide();
+                $('#loginLink').fadeOut();
+            }
+        }
+
+        function handleRegisterRequest(xhr, status, args) {
+            if (args.validationFailed || !args.loggedIn) {
+                PF('dlgRegister').jq.effect("shake", {times: 5}, 100);
+            } else {
+                PF('dlgRegister').hide();
                 $('#loginLink').fadeOut();
             }
         }
@@ -31,18 +40,38 @@
         <h:form>
             <p:growl id="growl" sticky="false" showDetail="true" life="2000" />
 
-            <p:dialog header="Se connecter" widgetVar="dlg" resizable="false" draggable="false" modal="true" appendTo="@(view)" showEffect="fade" hideEffect="fade">
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputLabel for="username" value="Identifiant :" styleClass="outputLabel"/>
-                    <p:inputText id="username" value="#{templateModel.user.username}" required="true" label="username" requiredMessage="Empty Username"/>
+            <p:dialog header="Se connecter" widgetVar="dlgLogin" resizable="false" draggable="false" modal="true" appendTo="@(view)" showEffect="fade" hideEffect="fade">
+                <p:panelGrid columns="2" styleClass="panelGrid">
+                    <h:outputLabel for="usernameLogin" value="Identifiant :"/>
+                    <p:inputText id="usernameLogin" value="#{templateModel.user.username}" required="true" label="username" requiredMessage="Nom d'utilisateur non renseigné"/>
 
-                    <h:outputLabel for="password" value="Mot de passe :" styleClass="outputLabel"/>
-                    <p:password id="password" value="#{templateModel.user.password}" required="true" label="password" requiredMessage="Empty Password"/>
+                    <h:outputLabel for="passwordLogin" value="Mot de passe :"/>
+                    <p:password id="passwordLogin" value="#{templateModel.user.password}" required="true" label="password" requiredMessage="Mot de passe non renseigné"/>
 
                     <f:facet name="footer">
                         <p:commandButton value="Connexion" update="growl menuForm headerForm #{pageForm}" action="#{templateView.onLogin()}" oncomplete="handleLoginRequest(xhr, status, args)" styleClass="commandButton"/>
                     </f:facet>
-                </h:panelGrid>
+                </p:panelGrid>
+            </p:dialog>
+
+
+        </h:form>
+
+        <h:form>
+            <p:growl id="growl" sticky="false" showDetail="true" life="2000" />
+
+            <p:dialog header="S'inscrire" widgetVar="dlgRegister" resizable="false" draggable="false" modal="true" appendTo="@(view)" showEffect="fade" hideEffect="fade">
+                <p:panelGrid columns="2" styleClass="panelGrid">
+                    <h:outputLabel for="usernameRegister" value="Identifiant :"/>
+                    <p:inputText id="usernameRegister" value="#{templateModel.user.username}" required="true" label="username" requiredMessage="Nom d'utilisateur non renseigné"/>
+
+                    <h:outputLabel for="passwordRegister" value="Mot de passe :"/>
+                    <p:password id="passwordRegister" value="#{templateModel.user.password}" required="true" label="password" requiredMessage="Mot de passe non renseigné"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="S'inscrire" update="growl menuForm headerForm #{pageForm}" action="#{templateView.onRegister()}" oncomplete="handleRegisterRequest(xhr, status, args)" styleClass="commandButton"/>
+                    </f:facet>
+                </p:panelGrid>
             </p:dialog>
         </h:form>
 

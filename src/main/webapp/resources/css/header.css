@@ -4,11 +4,28 @@
     background-color: #30383c;
 }
 
-.button {
+.signOut {
     float: right;
     margin-right: 15px;
     font-size: 1.2em !important;
     color: white !important;
+}
+
+.signInUp {
+    float: right;
+}
+
+.signIn {
+    margin-right: 20px;
+    font-size: 1.2em !important;
+    color: white !important;
+}
+
+.signUp {
+    float: right;
+    margin-right: 15px;
+    font-size: 1.2em !important;
+    color: black !important;
 }
 
 .title {
@@ -38,4 +55,8 @@
 
 .ui-layout-unit {
     padding: 0;
+}
+
+.sixty-percent {
+    width: 85%;
 }

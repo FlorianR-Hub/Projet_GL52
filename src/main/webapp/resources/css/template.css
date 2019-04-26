@@ -4,8 +4,9 @@ p {
     font-size: 1.2em;
 }
 
-.outputLabel {
-    margin-right: 10px;
+.panelGrid.ui-panelgrid>*>tr,
+.panelGrid.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
 }
 
 .commandButton {

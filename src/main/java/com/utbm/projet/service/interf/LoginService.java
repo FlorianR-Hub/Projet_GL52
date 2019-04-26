@@ -23,4 +23,13 @@ public interface LoginService {
      */
     public User login(String username, String password);
 
+    /**
+     * Registers and returns a new user for the specified username and password.
+     *
+     * @param username the specified username.
+     * @param password the specified password.
+     * @return
+     */
+    public User register(String username, String password);
+
 }

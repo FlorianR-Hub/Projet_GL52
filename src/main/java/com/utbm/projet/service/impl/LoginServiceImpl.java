@@ -30,4 +30,9 @@ public class LoginServiceImpl implements LoginService {
         return user;
     }
 
+    @Override
+    public User register(String username, String password) {
+        return userDao.register(username, password);
+    }
+
 }
