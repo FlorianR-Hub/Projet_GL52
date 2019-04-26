@@ -14,7 +14,7 @@
             <h:outputText value="Projet GL52" styleClass="title"/>
 
             <p:commandLink value="Déconnexion" action="#{templateView.onSignOut()}" rendered="#{templateModel.logged}" update="headerForm menuForm #{pageForm}" styleClass="button" />
-            <p:commandLink value="S'identifier" action="#{templateView.onSignIn()}" rendered="#{not templateModel.logged}" update="headerForm" styleClass="button" />
+            <p:commandLink value="S'identifier" action="#{templateView.onSignIn()}" rendered="#{not templateModel.logged}" update="headerForm menuForm #{pageForm}" styleClass="button" />
         </h:panelGrid>
     </h:form>
 

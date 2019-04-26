@@ -1,3 +1,9 @@
+p {
+    margin-left: 20px;
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
 .outputLabel {
     margin-right: 10px;
 }

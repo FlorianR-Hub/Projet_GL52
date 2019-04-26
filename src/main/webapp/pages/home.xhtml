@@ -11,7 +11,11 @@
         <h:outputStylesheet library="css" name="home.css" />
 
         <h:form id="homeForm">
-            <p:panelGrid styleClass="panelGrid">
+            <p:panelGrid rendered="#{not templateModel.logged}">
+                <p> Identifiez-vous pour voir le contenu de la page. </p>
+            </p:panelGrid>
+
+            <p:panelGrid rendered="#{templateModel.logged}">
 
             </p:panelGrid>
         </h:form>
