@@ -71,7 +71,7 @@ public class TemplateController extends GenericController {
 
             templateModel.setLogged(true);
             templateModel.getUser().setAdmin(user.isAdmin());
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inscription réussite", "");
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inscription réussie", "");
         } catch (Exception e) {
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Erreur d'inscription", e.getCause().getMessage());
         } finally {
