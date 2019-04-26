@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <script type="text/javascript">
+        function handleLoginRequest(xhr, status, args) {
+            if (args.validationFailed || !args.loggedIn) {
+                PF('dlg').jq.effect("shake", {times: 5}, 100);
+            } else {
+                PF('dlg').hide();
+                $('#loginLink').fadeOut();
+            }
+        }
+    </script>
+
+    <f:event type="preRenderView" listener="#{templateView.initView()}" />
+    <h:outputStylesheet library="css" name="template.css" />
+
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Projet GL52</title>
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <p:growl id="growl" sticky="false" showDetail="true" life="2000" />
+
+            <p:dialog header="Se connecter" widgetVar="dlg" resizable="false" draggable="false" modal="true" appendTo="@(view)" showEffect="fade" hideEffect="fade">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="username" value="Identifiant :" styleClass="outputLabel"/>
+                    <p:inputText id="username" value="#{templateModel.user.username}" required="true" label="username" requiredMessage="Empty Username"/>
+
+                    <h:outputLabel for="password" value="Mot de passe :" styleClass="outputLabel"/>
+                    <p:password id="password" value="#{templateModel.user.password}" required="true" label="password" requiredMessage="Empty Password"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Connexion" update="growl menuForm headerForm #{pageForm}" action="#{templateView.onLogin()}" oncomplete="handleLoginRequest(xhr, status, args)" styleClass="commandButton"/>
+                    </f:facet>
+                </h:panelGrid>
+            </p:dialog>
+        </h:form>
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" styleClass="layoutNoBorder" minSize="40" resizable="true" closable="false" collapsible="true" gutter="0" >
+                <ui:include src="header.xhtml"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" styleClass="layoutMenu" collapsible="true" gutter="0">
+                <ui:include src="menu.xhtml"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" styleClass="layoutNoBorder" gutter="0">
+                <ui:insert name="content"/>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
+

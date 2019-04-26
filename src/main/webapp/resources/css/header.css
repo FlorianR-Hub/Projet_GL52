@@ -1,0 +1,41 @@
+.header {
+    width: 100%;
+    height: 60px !important;
+    background-color: #30383c;
+}
+
+.button {
+    float: right;
+    margin-right: 15px;
+    font-size: 1.2em !important;
+    color: white !important;
+}
+
+.title {
+    margin-left: 20px;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: white;
+}
+
+@media (min-width: 992px) {
+    .commandLinkMenu {
+        display: none;
+    }
+
+    .five-percent {
+        width: 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .five-percent {
+        width: 3%;
+        padding-left: 20px;
+        text-align: center;
+    }
+}
+
+.ui-layout-unit {
+    padding: 0;
+}

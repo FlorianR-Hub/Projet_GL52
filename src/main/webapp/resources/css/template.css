@@ -1,0 +1,23 @@
+.outputLabel {
+    margin-right: 10px;
+}
+
+.commandButton {
+    margin-top: 10px;
+}
+
+@media (min-width: 992px) {
+    .layoutMenu {
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 991px) {
+    .layoutMenu {
+        display: none !important;
+    }
+}
+
+.layoutNoBorder {
+    border: none;
+}

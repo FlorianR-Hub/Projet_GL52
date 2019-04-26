@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS gl52.user_auth;
+CREATE TABLE gl52.user_auth (
+  `USERNAME` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `PASSWORD` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `ADMIN` tinyint(4) NOT NULL,
+  PRIMARY KEY (`USERNAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DELETE FROM gl52.user_auth WHERE USERNAME = 'admin';
+INSERT INTO gl52.user_auth (USERNAME, PASSWORD, ADMIN) VALUES ('admin', 'admin', 1);
+COMMIT;

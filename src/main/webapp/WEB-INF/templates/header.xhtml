@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:outputStylesheet library="css" name="header.css" />
+
+    <h:form id="headerForm" prependId="false">
+        <h:panelGrid columns="3" styleClass="header" columnClasses="five-percent">
+            <p:commandLink onclick="PF('sidebar').show()" styleClass="commandLinkMenu">
+                <h:graphicImage value="/resources/img/burger-bars.png" width="25"/>
+            </p:commandLink>
+            <h:outputText value="Projet GL52" styleClass="title"/>
+
+            <p:commandLink value="Déconnexion" action="#{templateView.onSignOut()}" rendered="#{templateModel.logged}" update="headerForm menuForm #{pageForm}" styleClass="button" />
+            <p:commandLink value="S'identifier" action="#{templateView.onSignIn()}" rendered="#{not templateModel.logged}" update="headerForm" styleClass="button" />
+        </h:panelGrid>
+    </h:form>
+
+</ui:composition>
+
