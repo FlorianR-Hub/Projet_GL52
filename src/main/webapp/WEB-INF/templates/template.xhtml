@@ -75,17 +75,17 @@
             </p:dialog>
         </h:form>
 
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" styleClass="layoutNoBorder" minSize="40" resizable="true" closable="false" collapsible="true" gutter="0" >
-                <ui:include src="header.xhtml"/>
-            </p:layoutUnit>
-
-            <p:layoutUnit position="west" styleClass="layoutMenu" collapsible="true" gutter="0">
-                <ui:include src="menu.xhtml"/>
-            </p:layoutUnit>
-
+        <p:layout class="mainLayout">
             <p:layoutUnit position="center" styleClass="layoutNoBorder" gutter="0">
-                <ui:insert name="content"/>
+                <ui:include src="header.xhtml"/>
+
+                <p:layoutUnit position="west" styleClass="layoutMenu" gutter="0">
+                    <ui:include src="menu.xhtml"/>
+                </p:layoutUnit>
+
+                <div class="contentDiv">
+                    <ui:insert name="content"/>
+                </div>
             </p:layoutUnit>
         </p:layout>
     </h:body>

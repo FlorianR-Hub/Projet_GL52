@@ -51,9 +51,10 @@
     }
 
     .sideBarMenu {
-        top: 63px;
+        top: 60px;
         left: 250px !important;
         box-shadow: none;
+        border-right: 1px solid #e2e2e2 !important;
     }
 }
 
@@ -61,4 +62,5 @@
     padding: 0;
     box-shadow: none;
     width: 250px;
+    border: none;
 }

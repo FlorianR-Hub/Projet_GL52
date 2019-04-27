@@ -53,8 +53,8 @@
     }
 }
 
-.ui-layout-unit {
-    padding: 0;
+.ui-layout-unit, .ui-layout-unit-content {
+    padding: 0 !important;
 }
 
 .sixty-percent {
