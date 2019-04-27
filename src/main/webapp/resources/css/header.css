@@ -43,6 +43,12 @@
     .five-percent {
         width: 0;
     }
+
+    #headerForm {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
 }
 
 @media (max-width: 991px) {
