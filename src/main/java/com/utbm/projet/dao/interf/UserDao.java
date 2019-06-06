@@ -7,15 +7,15 @@
  */
 package com.utbm.projet.dao.interf;
 
-import com.utbm.projet.dao.data.User;
+import com.utbm.projet.dao.data.UserAuth;
 
 /**
  * DAO interface for USER_AUTH table.
  */
 public interface UserDao {
 
-    public User login(String username, String password);
+    public UserAuth login(String username, String password);
 
-    public User register(String username, String password);
+    public UserAuth register(String username, String password);
 
 }

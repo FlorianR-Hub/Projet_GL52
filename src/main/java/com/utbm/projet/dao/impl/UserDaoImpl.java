@@ -7,9 +7,10 @@
  */
 package com.utbm.projet.dao.impl;
 
-import com.utbm.projet.dao.data.User;
+import com.utbm.projet.dao.data.UserAuth;
 import com.utbm.projet.dao.interf.UserDao;
 import com.utbm.projet.dao.repo.UserRepo;
+import com.utbm.projet.util.AccountTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,16 +21,16 @@ public class UserDaoImpl implements UserDao {
     private UserRepo userRepo;
 
     @Override
-    public User login(String username, String password) {
+    public UserAuth login(String username, String password) {
         return userRepo.getByUsernameAndPassword(username, password);
     }
 
     @Override
-    public User register(String username, String password) {
-        User newUser = new User();
+    public UserAuth register(String username, String password) {
+        UserAuth newUser = new UserAuth();
         newUser.setUsername(username);
         newUser.setPassword(password);
-        newUser.setAdmin(false);
+        newUser.setAccountType(AccountTypes.UTILISATEUR.getId());
 
         if (userRepo.getByUsername(username) != null) {
             throw new IllegalArgumentException("l'utilisateur " + username + " existe déjà");

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER_AUTH")
-public class User implements Serializable {
+public class UserAuth implements Serializable {
 
     @Id
     @Column(name = "USERNAME")
@@ -24,25 +24,25 @@ public class User implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "ADMIN")
-    private boolean admin;
+    @Column(name = "ACCOUNT_TYPE")
+    private int accountType; // 0 : utilisateur / 1 : nutritionniste / 2 : administrateur
 
-    public User(String username, String password, boolean admin) {
+    public UserAuth(String username, String password, int accountType) {
         this.username = username;
         this.password = password;
-        this.admin = admin;
+        this.accountType = accountType;
     }
 
-    public User() {
+    public UserAuth() {
 
     }
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
+    public int getAccountType() {
+        return accountType;
     }
 
-    public boolean isAdmin() {
-        return admin;
+    public void setAccountType(int accountType) {
+        this.accountType = accountType;
     }
 
     public String getUsername() {
@@ -63,7 +63,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "username=" + username + ", password=" + password + ", admin=" + admin + '}';
+        return "User{" + "username=" + username + ", password=" + password + ", accountType=" + accountType + '}';
     }
 
 }

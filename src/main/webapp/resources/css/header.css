@@ -1,7 +1,7 @@
 .header {
     width: 100%;
-    height: 60px !important;
     background-color: #30383c;
+    height: 60px;
 }
 
 .signOut {
@@ -40,22 +40,70 @@
         display: none;
     }
 
-    .five-percent {
-        width: 0;
-    }
-
     #headerForm {
         position: sticky;
         top: 0;
         z-index: 1000;
     }
+
+    .menuBar {
+        background-color: transparent;
+        border: none;
+        display: table-cell;
+        vertical-align: middle;
+        height: 60px;
+    }
+
+    .menuBarItem span {
+        color: white;
+        font-size: 1.3em;
+    }
+
+    .ui-menuitem {
+        border-radius: 0;
+    }
+
+    .subMenu ul {
+        background-color: #30383c;
+        border: none;
+        border-radius: 0;
+        box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+    }
+
+    .ui-icon-triangle-1-s {
+        display: none !important;
+    }
+
+    .activeMB span {
+        font-weight: 600;
+    }
+
+    .one-hundred-fifty-pixels {
+        width: 150px;
+    }
+
+    li.ui-menuitem > a.ui-menuitem-link {
+        margin-right: 8px;
+    }
+
+    .menuBar li.ui-menuitem-active, .subMenu li.ui-menuitem-active {
+        background-color: darkslategray !important;
+    }
+
+    li.ui-menuitem > a.ui-menuitem-link:hover {
+        background: none;
+    }
 }
 
 @media (max-width: 991px) {
-    .five-percent {
+    .three-percent {
         width: 3%;
         padding-left: 20px;
         text-align: center;
+    }
+
+    .menuBar {
+        display: none;
     }
 }
 
@@ -66,3 +114,4 @@
 .sixty-percent {
     width: 85%;
 }
+

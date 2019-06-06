@@ -7,7 +7,7 @@
  */
 package com.utbm.projet.service.impl;
 
-import com.utbm.projet.dao.data.User;
+import com.utbm.projet.dao.data.UserAuth;
 import com.utbm.projet.dao.interf.UserDao;
 import com.utbm.projet.service.interf.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,8 @@ public class LoginServiceImpl implements LoginService {
     private UserDao userDao;
 
     @Override
-    public User login(String username, String password) {
-        User user = userDao.login(username, password);
+    public UserAuth login(String username, String password) {
+        UserAuth user = userDao.login(username, password);
 
         if (user == null) {
             throw new IllegalArgumentException("Informations de connexion invalides");
@@ -31,7 +31,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public User register(String username, String password) {
+    public UserAuth register(String username, String password) {
         return userDao.register(username, password);
     }
 

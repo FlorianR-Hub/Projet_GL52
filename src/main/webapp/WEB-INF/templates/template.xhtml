@@ -53,8 +53,6 @@
                     </f:facet>
                 </p:panelGrid>
             </p:dialog>
-
-
         </h:form>
 
         <h:form>
@@ -76,16 +74,14 @@
         </h:form>
 
         <p:layout class="mainLayout">
-            <p:layoutUnit position="center" styleClass="layoutNoBorder" gutter="0">
+            <p:layoutUnit position="center" styleClass="layoutNoBorder" gutter="0" >
                 <ui:include src="header.xhtml"/>
 
-                <p:layoutUnit position="west" styleClass="layoutMenu" gutter="0">
+                <p:layoutUnit position="west" gutter="0">
                     <ui:include src="menu.xhtml"/>
                 </p:layoutUnit>
 
-                <div class="contentDiv">
-                    <ui:insert name="content"/>
-                </div>
+                <ui:insert name="content"/>
             </p:layoutUnit>
         </p:layout>
     </h:body>

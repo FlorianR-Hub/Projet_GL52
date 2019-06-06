@@ -7,7 +7,7 @@
  */
 package com.utbm.projet.ihm.model;
 
-import com.utbm.projet.dao.data.User;
+import com.utbm.projet.dao.data.UserAuth;
 import javax.annotation.ManagedBean;
 import org.springframework.context.annotation.Scope;
 
@@ -18,15 +18,15 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class TemplateModel {
 
-    private User user;
+    private UserAuth user;
 
     private boolean logged = false;
 
-    public User getUser() {
+    public UserAuth getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserAuth user) {
         this.user = user;
     }
 

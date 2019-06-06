@@ -7,7 +7,7 @@
  */
 package com.utbm.projet.ihm.controller;
 
-import com.utbm.projet.dao.data.User;
+import com.utbm.projet.dao.data.UserAuth;
 import com.utbm.projet.ihm.model.TemplateModel;
 import com.utbm.projet.service.interf.LoginService;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class TemplateController extends GenericController {
 
     @Override
     public void initModel() {
-        templateModel.setUser(new User());
+        templateModel.setUser(new UserAuth());
     }
 
     /**
@@ -46,10 +46,10 @@ public class TemplateController extends GenericController {
         String password = templateModel.getUser().getPassword();
 
         try {
-            User user = loginService.login(username, password);
+            UserAuth user = loginService.login(username, password);
 
             templateModel.setLogged(true);
-            templateModel.getUser().setAdmin(user.isAdmin());
+            templateModel.getUser().setAccountType(user.getAccountType());
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue", username);
         } catch (Exception e) {
             templateModel.setLogged(false);
@@ -67,10 +67,10 @@ public class TemplateController extends GenericController {
         String password = templateModel.getUser().getPassword();
 
         try {
-            User user = loginService.register(username, password);
+            UserAuth user = loginService.register(username, password);
 
             templateModel.setLogged(true);
-            templateModel.getUser().setAdmin(user.isAdmin());
+            templateModel.getUser().setAccountType(user.getAccountType());
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inscription réussie", "");
         } catch (Exception e) {
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Erreur d'inscription", e.getCause().getMessage());
@@ -78,7 +78,6 @@ public class TemplateController extends GenericController {
             FacesContext.getCurrentInstance().addMessage(null, message);
             PrimeFaces.current().ajax().addCallbackParam("loggedIn", templateModel.isLogged());
         }
-
     }
 
     /**

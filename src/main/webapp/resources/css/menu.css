@@ -4,28 +4,21 @@
     padding: 0;
 }
 
+.menu li {
+    width: 100% !important;
+    border-radius: 0;
+}
+
 .userText {
+    color: white;
     font-weight: 600;
     font-size: 1.5em;
 }
 
 .menuItem {
-    font-size: 1.1em;
-}
-
-@media (max-width: 991px) {
-    .userPanel {
-        background-color: #30383c;
-    }
-
-    .userText {
-        color: white;
-    }
-
-    .menuItem {
-        font-size: 1.2em;
-        margin-bottom: 5px;
-    }
+    font-size: 1.2em;
+    margin-bottom: 2px;
+    margin-top: 2px;
 }
 
 .userPanel {
@@ -33,29 +26,16 @@
     border-radius: 0 !important;
     text-align: center;
     padding: 0 !important;
-    margin-bottom: 10px;
+    background-color: #30383c;
 }
 
-.active {
-    background: #a0a0a0 !important;
+.activeSM {
+    background: #f0f0f0 !important;
     color: black !important;
 }
 
 .ui-sidebar-close {
     visibility: hidden;
-}
-
-@media (min-width: 992px) {
-    .ui-sidebar-mask {
-        visibility: hidden;
-    }
-
-    .sideBarMenu {
-        top: 60px;
-        left: 250px !important;
-        box-shadow: none;
-        border-right: 1px solid #e2e2e2 !important;
-    }
 }
 
 .sideBarMenu {

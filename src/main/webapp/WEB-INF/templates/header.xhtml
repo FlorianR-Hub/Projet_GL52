@@ -7,18 +7,27 @@
     <h:outputStylesheet library="css" name="header.css" />
 
     <h:form id="headerForm" prependId="false">
-        <h:panelGrid columns="4" styleClass="header" columnClasses="five-percent" >
+        <h:panelGrid columns="5" styleClass="header" columnClasses="three-percent, one-hundred-fifty-pixels" >
             <p:commandLink onclick="PF('sidebar').show()" styleClass="commandLinkMenu">
                 <h:graphicImage value="/resources/img/burger-bars.png" width="25"/>
             </p:commandLink>
             <h:outputText value="Projet GL52" styleClass="title"/>
 
-            <p:commandLink value="Déconnexion" action="#{templateView.onSignOut()}" rendered="#{templateModel.logged}" update="headerForm menuForm #{pageForm}" styleClass="signOut" />
-            <h:panelGrid columns="2" styleClass="signInUp">
-                <p:commandLink value="Se connecter" action="#{templateView.onSignIn()}" rendered="#{not templateModel.logged}" update="headerForm menuForm #{pageForm}" styleClass="signIn" />
-                <p:commandButton value="S'inscrire" action="#{templateView.onSignUp()}" rendered="#{not templateModel.logged}" update="headerForm" styleClass="signUp" />
-            </h:panelGrid>
+            <p:menubar styleClass="menuBar">
+                <p:menuitem value="Accueil" url="/pages/home.xhtml" styleClass="menuBarItem #{view.viewId.contains('home') ? 'activeMB' : ''}" disabled="#{not templateModel.logged}"/>
 
+                <p:submenu label="Mon compte" styleClass="menuBarItem subMenu">
+                    <p:menuitem value="Profil" url="/pages/profile.xhtml" styleClass="menuBarItem #{view.viewId.contains('profile') ? 'activeMB' : ''}" disabled="#{not templateModel.logged}"/>
+                    <p:menuitem value="Favoris" url="/pages/favorites.xhtml" styleClass="menuBarItem #{view.viewId.contains('favorites') ? 'activeMB' : ''}" disabled="#{not templateModel.logged}"/>
+                    <p:menuitem value="Gestion des recettes" url="/pages/recipeManagement.xhtml" styleClass="menuBarItem #{view.viewId.contains('recipeManagement') ? 'activeMB' : ''}" disabled="#{not templateModel.logged}" rendered="#{templateView.isAdminOrNutritionist()}"/>
+                </p:submenu>
+            </p:menubar>
+
+            <p:commandLink value="Déconnexion" action="#{templateView.onSignOut()}" rendered="#{templateModel.logged}" update="headerForm menuForm #{pageForm}" styleClass="signOut" />
+            <h:panelGrid columns="3" styleClass="signInUp">
+                <p:commandLink value="Se connecter" action="#{templateView.onSignIn()}" rendered="#{not templateModel.logged}" update="headerForm menuForm #{pageForm}" styleClass="signIn" />
+                <p:commandButton value="S'inscrire" action="#{templateView.onSignUp()}" rendered="#{not templateModel.logged}" update="headerForm menuForm" styleClass="signUp" />
+            </h:panelGrid>
         </h:panelGrid>
     </h:form>
 

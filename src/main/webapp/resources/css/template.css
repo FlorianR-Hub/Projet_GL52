@@ -13,25 +13,10 @@ p {
     margin-top: 10px;
 }
 
-@media (min-width: 992px) {
-    .layoutMenu {
-        min-width: 250px;
-    }
-
-    .contentDiv {
-        padding-left: 250px;
-    }
-}
-
-@media (max-width: 991px) {
-    .layoutMenu {
-        display: none !important;
-    }
-}
-
 .mainLayout {
     width: 100%;
-    height: 100%
+    height: 100%;
+    border: none;
 }
 
 .layoutNoBorder {

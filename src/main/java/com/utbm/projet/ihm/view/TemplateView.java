@@ -41,7 +41,6 @@ public class TemplateView extends GenericView {
             templateController.initModel();
             PrimeFaces.current().executeScript("PF('dlg').show();");
         }
-
     }
 
     /**
@@ -87,4 +86,7 @@ public class TemplateView extends GenericView {
         templateController.signUp();
     }
 
+    public boolean isAdminOrNutritionist() {
+        return templateModel.getUser().getAccountType() != 0;
+    }
 }
