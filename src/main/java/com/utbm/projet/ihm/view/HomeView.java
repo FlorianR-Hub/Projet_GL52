@@ -1,3 +1,5 @@
+package com.utbm.projet.ihm.view;
+
 /*
  * Projet GL52
  *
@@ -5,8 +7,6 @@
  *
  * UTBM P2019
  */
-package com.utbm.projet.ihm.view;
-
 import com.utbm.projet.ihm.controller.HomeController;
 import com.utbm.projet.ihm.model.HomeModel;
 import javax.annotation.ManagedBean;
@@ -36,6 +36,14 @@ public class HomeView extends GenericView {
         }
 
         homeController.initModel();
+    }
+
+    public void fakeLink() {
+        System.out.println("com.utbm.projet.ihm.view.HomeView.fakeLink()");
+    }
+
+    public void addToFavorite() {
+        homeController.addToFavorite();
     }
 
 }

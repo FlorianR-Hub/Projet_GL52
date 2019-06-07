@@ -4,11 +4,13 @@
                 template="/WEB-INF/templates/template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:b="http://bootsfaces.net/ui">
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:param name="pageForm" value="homeForm"/>
 
     <ui:define name="content">
+        <f:event type="preRenderView" listener="#{homeView.initView()}"/>
         <h:outputStylesheet library="css" name="home.css" />
 
         <h:form id="homeForm">
@@ -17,8 +19,35 @@
             </p:panelGrid>
 
             <p:panelGrid rendered="#{templateModel.logged}">
+                <div class="ui-g">
+                    <p:repeat value="#{homeModel.recettes}" var="rec">
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+                            <p:panelGrid columns="2" layout="grid" styleClass="recipe-card">
+                                <f:facet name="header">
+                                    <h:graphicImage value="/resources/img/cookies.jpg" styleClass="recipe-img" />
+                                </f:facet>
+
+                                <p:link outcome="recipe" value="#{rec.nomRecette}" styleClass="recipe-link">
+                                    <f:param name="num" value="#{rec.numRecette}" />
+                                </p:link>
+
+                                <p:commandLink ajax="true" update="@(homeForm:heart_#{rec.numRecette})" action="#{homeView.addToFavorite}">
+                                    <i id="heart_#{rec.numRecette}" class="fa fa-fw fa-heart #{homeModel.heartClass}"></i>
+                                </p:commandLink>
+
+                                <h:outputText value="Durée : 1h00" />
+                                <h:outputText value="Difficulté : moyenne " class="difficulty"/>
+                            </p:panelGrid>
+                        </div>
+                    </p:repeat>
+                </div>
+            </p:panelGrid>
+
+            <p:panelGrid>
+
 
             </p:panelGrid>
+
         </h:form>
 
     </ui:define>
