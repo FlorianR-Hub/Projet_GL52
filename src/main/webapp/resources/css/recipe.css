@@ -1,0 +1,129 @@
+@media (min-width: 992px) {
+    #recipeForm {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+}
+
+.card {
+    background-color: white !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+.panelGrid.ui-panelgrid>*>tr,
+.panelGrid.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}
+
+.panelGridInfos {
+    margin-top: 20px;
+}
+
+.panelGridInfos td {
+    vertical-align: top;
+    padding: 0;
+}
+
+.panelGridGuide {
+    width: 100%;
+}
+
+.ingredientsPanel .ui-panel-titlebar {
+    background-color: #e3a72e;
+}
+
+.stepPanel {
+    margin-bottom: 20px
+}
+
+.stepPanel .ui-panel-titlebar {
+    background-color: #3c8dbc;
+}
+
+.guidePanel {
+    margin-top: 20px;
+}
+
+.guidePanel .ui-panel-titlebar {
+    background-color: #e63e5f;
+}
+
+.ui-panel-titlebar, .ui-panel {
+    border-radius: 0 !important;
+}
+
+.ui-panel-title {
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 1.5em !important;
+}
+
+.margin-panel {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.margin-panel td {
+    padding: .75em;
+}
+
+.ingredientsDataList div {
+    border: none;
+}
+
+ul {
+    padding-left: 0;
+}
+
+li {
+    list-style-type: none;
+    padding: .625rem;
+    border-bottom: 1px solid #ccc;
+}
+
+h1 {
+    margin-bottom: 20px !important;
+    padding: 10px;
+    background-color: #3c8dbc;
+    color: white;
+}
+
+h3 {
+    margin-top: 0;
+    font-weight: 600 !important;
+    color: #3c8dbc;
+}
+
+h4 {
+    color: #3c8dbc;
+    font-weight: 600;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.center {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.big-font-size {
+    font-size: 1.8em;
+}
+
+.recipeImage {
+    width: 100%;
+}
+
+#recipeForm p {
+    margin-left: 0;
+    text-align: justify;
+}
+
+@media (max-width: 991px) {
+    h1 {
+        text-align: center;
+    }
+}

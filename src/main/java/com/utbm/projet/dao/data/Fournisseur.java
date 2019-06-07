@@ -16,37 +16,38 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
+ * @author flori
  */
 @Entity
 @Table(name = "fournisseur")
+@NamedQueries({
+    @NamedQuery(name = "Fournisseur.findAll", query = "SELECT f FROM Fournisseur f")})
 public class Fournisseur implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "NUM_FOURNISSEUR")
     private Long numFournisseur;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "NOM_FOURNISSEUR")
     private String nomFournisseur;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
     @Column(name = "ADRESSE_FOURNISSEUR")
     private String adresseFournisseur;
-
     @JoinTable(name = "fournir", joinColumns = {
         @JoinColumn(name = "NUM_FOURNISSEUR", referencedColumnName = "NUM_FOURNISSEUR")}, inverseJoinColumns = {
         @JoinColumn(name = "NUM_INGREDIENT", referencedColumnName = "NUM_INGREDIENT")})

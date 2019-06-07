@@ -16,89 +16,80 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
+ * @author flori
  */
 @Entity
 @Table(name = "utilisateur")
+@NamedQueries({
+    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur u")})
 public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "NUM_UTILISATEUR")
     private Long numUtilisateur;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "PRENOM_UTILISATEUR")
     private String prenomUtilisateur;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "NOM_UTILISATEUR")
     private String nomUtilisateur;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "COURRIEL_UTILISATEUR")
     private String courrielUtilisateur;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "MDP_UTILISATEUR")
     private String mdpUtilisateur;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 150)
     @Column(name = "ADRESSE_UTILISATEUR")
     private String adresseUtilisateur;
-
     @Basic(optional = false)
     @NotNull
     @Column(name = "AGE")
     private int age;
-
     @Basic(optional = false)
     @NotNull
     @Column(name = "POIDS")
     private int poids;
-
     @Basic(optional = false)
     @NotNull
     @Column(name = "TAILLE")
     private int taille;
-
     @Basic(optional = false)
     @NotNull
     @Column(name = "IMC")
     private int imc;
-
     @Size(max = 60)
     @Column(name = "ALLERGIES")
     private String allergies;
-
     @Size(max = 60)
     @Column(name = "CARENCES")
     private String carences;
-
     @ManyToMany(mappedBy = "utilisateurList")
     private List<Recette> recetteList;
-
     @JoinColumn(name = "NUM_NUTRITIONNISTE", referencedColumnName = "NUM_NUTRITIONNISTE")
     @ManyToOne
-    private Nutritionniste nutritionniste;
+    private Nutritionniste numNutritionniste;
 
     public Utilisateur() {
     }
@@ -224,12 +215,12 @@ public class Utilisateur implements Serializable {
         this.recetteList = recetteList;
     }
 
-    public Nutritionniste getNutritionniste() {
-        return nutritionniste;
+    public Nutritionniste getNumNutritionniste() {
+        return numNutritionniste;
     }
 
-    public void setNutritionniste(Nutritionniste nutritionniste) {
-        this.nutritionniste = nutritionniste;
+    public void setNumNutritionniste(Nutritionniste numNutritionniste) {
+        this.numNutritionniste = numNutritionniste;
     }
 
     @Override

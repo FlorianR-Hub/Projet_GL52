@@ -14,34 +14,36 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
+ * @author flori
  */
 @Entity
 @Table(name = "etape")
+@NamedQueries({
+    @NamedQuery(name = "Etape.findAll", query = "SELECT e FROM Etape e")})
 public class Etape implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "NUM_ETAPE")
     private Integer numEtape;
-
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 300)
+    @Size(min = 1, max = 1000)
     @Column(name = "INSTRUCTION_ETAPE")
     private String instructionEtape;
-
     @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE")
     @ManyToOne(optional = false)
-    private Recette recette;
+    private Recette numRecette;
 
     public Etape() {
     }
@@ -71,12 +73,12 @@ public class Etape implements Serializable {
         this.instructionEtape = instructionEtape;
     }
 
-    public Recette getRecette() {
-        return recette;
+    public Recette getNumRecette() {
+        return numRecette;
     }
 
-    public void setRecette(Recette recette) {
-        this.recette = recette;
+    public void setNumRecette(Recette numRecette) {
+        this.numRecette = numRecette;
     }
 
     @Override

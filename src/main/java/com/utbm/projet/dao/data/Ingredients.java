@@ -10,45 +10,43 @@ package com.utbm.projet.dao.data;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
+ * @author flori
  */
 @Entity
 @Table(name = "ingredients")
+@NamedQueries({
+    @NamedQuery(name = "Ingredients.findAll", query = "SELECT i FROM Ingredients i")})
 public class Ingredients implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "NUM_INGREDIENT")
     private Long numIngredient;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "NOM_INGREDIENT")
     private String nomIngredient;
-
     @ManyToMany(mappedBy = "ingredientsList")
     private List<Fournisseur> fournisseurList;
-
-    @JoinTable(name = "contenir", joinColumns = {
-        @JoinColumn(name = "NUM_INGREDIENT", referencedColumnName = "NUM_INGREDIENT")}, inverseJoinColumns = {
-        @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE")})
-    @ManyToMany
-    private List<Recette> recetteList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredients")
+    private List<Contenir> contenirList;
 
     public Ingredients() {
     }
@@ -86,12 +84,12 @@ public class Ingredients implements Serializable {
         this.fournisseurList = fournisseurList;
     }
 
-    public List<Recette> getRecetteList() {
-        return recetteList;
+    public List<Contenir> getContenirList() {
+        return contenirList;
     }
 
-    public void setRecetteList(List<Recette> recetteList) {
-        this.recetteList = recetteList;
+    public void setContenirList(List<Contenir> contenirList) {
+        this.contenirList = contenirList;
     }
 
     @Override

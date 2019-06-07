@@ -14,6 +14,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -21,43 +23,40 @@ import javax.validation.constraints.Size;
 
 /**
  *
+ * @author flori
  */
 @Entity
 @Table(name = "administrateur")
+@NamedQueries({
+    @NamedQuery(name = "Administrateur.findAll", query = "SELECT a FROM Administrateur a")})
 public class Administrateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "NUM_ADMIN")
     private Integer numAdmin;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "PRENOM_ADMIN")
     private String prenomAdmin;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "NOM_ADMIN")
     private String nomAdmin;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "COURRIEL_ADMIN")
     private String courrielAdmin;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "MDP_ADMIN")
     private String mdpAdmin;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "administrateur")
     private List<Gerer> gererList;
 

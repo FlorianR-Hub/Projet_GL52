@@ -16,7 +16,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -24,51 +27,64 @@ import javax.validation.constraints.Size;
 
 /**
  *
+ * @author flori
  */
 @Entity
 @Table(name = "recette")
+@NamedQueries({
+    @NamedQuery(name = "Recette.findAll", query = "SELECT r FROM Recette r")})
 public class Recette implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "NUM_RECETTE")
     private Long numRecette;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "NOM_RECETTE")
     private String nomRecette;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
     @Column(name = "TYPE_RECETTE")
     private String typeRecette;
-
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 150)
+    @Size(min = 1, max = 10)
+    @Column(name = "DIFFICULTE_RECETTE")
+    private String difficulteRecette;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 1000)
     @Column(name = "DESC_RECETTE")
     private String descRecette;
-
-    @ManyToMany(mappedBy = "recetteList")
-    private List<Ingredients> ingredientsList;
-
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "TEMPS_PREPARATION_RECETTE")
+    private int tempsPreparationRecette;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "NB_PERSONNES_RECETTE")
+    private int nbPersonnesRecette;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Column(name = "IMAGE_RECETTE")
+    private byte[] imageRecette;
     @JoinTable(name = "preferer", joinColumns = {
         @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE")}, inverseJoinColumns = {
         @JoinColumn(name = "NUM_UTILISATEUR", referencedColumnName = "NUM_UTILISATEUR")})
     @ManyToMany
     private List<Utilisateur> utilisateurList;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recette")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "numRecette")
     private List<Etape> etapeList;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recette")
     private List<Gerer> gererList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recette")
+    private List<Contenir> contenirList;
 
     public Recette() {
     }
@@ -77,11 +93,15 @@ public class Recette implements Serializable {
         this.numRecette = numRecette;
     }
 
-    public Recette(Long numRecette, String nomRecette, String typeRecette, String descRecette) {
+    public Recette(Long numRecette, String nomRecette, String typeRecette, String difficulteRecette, String descRecette, int tempsPreparationRecette, int nbPersonnesRecette, byte[] imageRecette) {
         this.numRecette = numRecette;
         this.nomRecette = nomRecette;
         this.typeRecette = typeRecette;
+        this.difficulteRecette = difficulteRecette;
         this.descRecette = descRecette;
+        this.tempsPreparationRecette = tempsPreparationRecette;
+        this.nbPersonnesRecette = nbPersonnesRecette;
+        this.imageRecette = imageRecette;
     }
 
     public Long getNumRecette() {
@@ -108,6 +128,14 @@ public class Recette implements Serializable {
         this.typeRecette = typeRecette;
     }
 
+    public String getDifficulteRecette() {
+        return difficulteRecette;
+    }
+
+    public void setDifficulteRecette(String difficulteRecette) {
+        this.difficulteRecette = difficulteRecette;
+    }
+
     public String getDescRecette() {
         return descRecette;
     }
@@ -116,12 +144,28 @@ public class Recette implements Serializable {
         this.descRecette = descRecette;
     }
 
-    public List<Ingredients> getIngredientsList() {
-        return ingredientsList;
+    public int getTempsPreparationRecette() {
+        return tempsPreparationRecette;
     }
 
-    public void setIngredientsList(List<Ingredients> ingredientsList) {
-        this.ingredientsList = ingredientsList;
+    public void setTempsPreparationRecette(int tempsPreparationRecette) {
+        this.tempsPreparationRecette = tempsPreparationRecette;
+    }
+
+    public int getNbPersonnesRecette() {
+        return nbPersonnesRecette;
+    }
+
+    public void setNbPersonnesRecette(int nbPersonnesRecette) {
+        this.nbPersonnesRecette = nbPersonnesRecette;
+    }
+
+    public byte[] getImageRecette() {
+        return imageRecette;
+    }
+
+    public void setImageRecette(byte[] imageRecette) {
+        this.imageRecette = imageRecette;
     }
 
     public List<Utilisateur> getUtilisateurList() {
@@ -146,6 +190,14 @@ public class Recette implements Serializable {
 
     public void setGererList(List<Gerer> gererList) {
         this.gererList = gererList;
+    }
+
+    public List<Contenir> getContenirList() {
+        return contenirList;
+    }
+
+    public void setContenirList(List<Contenir> contenirList) {
+        this.contenirList = contenirList;
     }
 
     @Override

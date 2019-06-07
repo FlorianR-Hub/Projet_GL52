@@ -14,6 +14,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -21,52 +23,47 @@ import javax.validation.constraints.Size;
 
 /**
  *
+ * @author flori
  */
 @Entity
 @Table(name = "nutritionniste")
+@NamedQueries({
+    @NamedQuery(name = "Nutritionniste.findAll", query = "SELECT n FROM Nutritionniste n")})
 public class Nutritionniste implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "NUM_NUTRITIONNISTE")
     private Long numNutritionniste;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "PRENOM_NUTRITIONNISTE")
     private String prenomNutritionniste;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "NOM_NUTRITIONNISTE")
     private String nomNutritionniste;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "COURRIEL_NUTRITIONNISTE")
     private String courrielNutritionniste;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "MDP_NUTRITIONNISTE")
     private String mdpNutritionniste;
-
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 300)
     @Column(name = "DESCRIPTION_NUTRITIONNISTE")
     private String descriptionNutritionniste;
-
-    @OneToMany(mappedBy = "nutritionniste")
+    @OneToMany(mappedBy = "numNutritionniste")
     private List<Utilisateur> utilisateurList;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "nutritionniste")
     private List<Gerer> gererList;
 
@@ -77,12 +74,12 @@ public class Nutritionniste implements Serializable {
         this.numNutritionniste = numNutritionniste;
     }
 
-    public Nutritionniste(Long numNutritionniste, String prenomNutritionniste, String nomNutritionniste, String courrielNutritionniste, String mdtpNutritionniste, String descriptionNutritionniste) {
+    public Nutritionniste(Long numNutritionniste, String prenomNutritionniste, String nomNutritionniste, String courrielNutritionniste, String mdpNutritionniste, String descriptionNutritionniste) {
         this.numNutritionniste = numNutritionniste;
         this.prenomNutritionniste = prenomNutritionniste;
         this.nomNutritionniste = nomNutritionniste;
         this.courrielNutritionniste = courrielNutritionniste;
-        this.mdpNutritionniste = mdtpNutritionniste;
+        this.mdpNutritionniste = mdpNutritionniste;
         this.descriptionNutritionniste = descriptionNutritionniste;
     }
 

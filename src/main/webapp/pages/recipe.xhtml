@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:param name="pageForm" value="recipeForm"/>
+
+    <ui:define name="content">
+        <f:event type="preRenderView" listener="#{recipeView.initView()}" />
+        <h:outputStylesheet library="css" name="recipe.css" />
+
+        <h:form id="recipeForm">
+            <p:panelGrid rendered="#{not templateModel.logged}">
+                <p> Identifiez-vous pour voir le contenu de la page. </p>
+            </p:panelGrid>
+
+            <p:panelGrid rendered="#{templateModel.logged}" styleClass="panelGrid">
+                <h1 class="margin-panel">
+                    #{recipeModel.recipe.nomRecette}
+                </h1>
+
+                <h:panelGrid columns="2" styleClass="panelGrid margin-panel card" columnClasses="ui-g-12 ui-md-5, ui-g-12 ui-md-7">
+                    <p:graphicImage value="#{recipeModel.recipeImage}" styleClass="recipeImage"/>
+                    <h:panelGrid columns="1" styleClass="panelGrid">
+                        <h3>Description</h3>
+                        <p>
+                            #{recipeModel.recipe.descRecette}
+                        </p>
+                    </h:panelGrid>
+
+                </h:panelGrid>
+
+                <p:panel header="Guide de préparation : #{recipeModel.recipe.nomRecette}" styleClass="guidePanel margin-panel card">
+                    <p:panelGrid columns="4" styleClass="panelGrid panelGridGuide" columnClasses="ui-g-6 ui-md-3, ui-g-6 ui-md-3, ui-g-6 ui-md-3, ui-g-6 ui-md-3">
+                        <p:panelGrid columns="1" styleClass="panelGrid center">
+                            <h:outputText value="Personnes" />
+                            <h:outputText value="#{recipeModel.recipe.nbPersonnesRecette}" styleClass="bold big-font-size"/>
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="1" styleClass="panelGrid center">
+                            <h:outputText value="Temps" />
+                            <h:outputText value="#{recipeModel.recipe.tempsPreparationRecette} min" styleClass="bold big-font-size"/>
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="1" styleClass="panelGrid center">
+                            <h:outputText value="Difficulté" />
+                            <h:outputText value="#{recipeModel.recipe.difficulteRecette}" styleClass="bold big-font-size"/>
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="1" styleClass="panelGrid center">
+                            <h:outputText value="Type" />
+                            <h:outputText value="#{recipeModel.recipe.typeRecette}" styleClass="bold big-font-size"/>
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </p:panel>
+
+                <h:panelGrid columns="2" styleClass="panelGrid panelGridInfos" columnClasses="ui-g-12 ui-md-4, ui-g-12 ui-md-8">
+                    <p:panel header="Ingrédients" styleClass="ingredientsPanel margin-panel card">
+                        <p:dataList value="#{recipeModel.recipe.contenirList}" var="ingredientInfos" styleClass="ingredientsDataList">
+                            <p>
+                                #{recipeView.getIngredientStr(ingredientInfos)}
+                            </p>
+                        </p:dataList>
+                    </p:panel>
+
+                    <p:panel header="Préparation" styleClass="stepPanel margin-panel card">
+                        <p:repeat value="#{recipeModel.recipe.etapeList}" var="step">
+                            <h:panelGrid>
+                                <h4>Étape #{step.numEtape}</h4>
+                                <p>
+                                    #{step.instructionEtape}
+                                </p>
+                            </h:panelGrid>
+                        </p:repeat>
+                    </p:panel>
+                </h:panelGrid>
+            </p:panelGrid>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

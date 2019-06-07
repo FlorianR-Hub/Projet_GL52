@@ -18,36 +18,23 @@ import javax.validation.constraints.NotNull;
  * @author flori
  */
 @Embeddable
-public class GererPK implements Serializable {
+public class ContenirPK implements Serializable {
 
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "NUM_ADMIN")
-    private int numAdmin;
     @Basic(optional = false)
     @NotNull
     @Column(name = "NUM_RECETTE")
     private long numRecette;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "NUM_NUTRITIONNISTE")
-    private long numNutritionniste;
+    @Column(name = "NUM_INGREDIENT")
+    private long numIngredient;
 
-    public GererPK() {
+    public ContenirPK() {
     }
 
-    public GererPK(int numAdmin, long numRecette, long numNutritionniste) {
-        this.numAdmin = numAdmin;
+    public ContenirPK(long numRecette, long numIngredient) {
         this.numRecette = numRecette;
-        this.numNutritionniste = numNutritionniste;
-    }
-
-    public int getNumAdmin() {
-        return numAdmin;
-    }
-
-    public void setNumAdmin(int numAdmin) {
-        this.numAdmin = numAdmin;
+        this.numIngredient = numIngredient;
     }
 
     public long getNumRecette() {
@@ -58,37 +45,33 @@ public class GererPK implements Serializable {
         this.numRecette = numRecette;
     }
 
-    public long getNumNutritionniste() {
-        return numNutritionniste;
+    public long getNumIngredient() {
+        return numIngredient;
     }
 
-    public void setNumNutritionniste(long numNutritionniste) {
-        this.numNutritionniste = numNutritionniste;
+    public void setNumIngredient(long numIngredient) {
+        this.numIngredient = numIngredient;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) numAdmin;
         hash += (int) numRecette;
-        hash += (int) numNutritionniste;
+        hash += (int) numIngredient;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof GererPK)) {
+        if (!(object instanceof ContenirPK)) {
             return false;
         }
-        GererPK other = (GererPK) object;
-        if (this.numAdmin != other.numAdmin) {
-            return false;
-        }
+        ContenirPK other = (ContenirPK) object;
         if (this.numRecette != other.numRecette) {
             return false;
         }
-        if (this.numNutritionniste != other.numNutritionniste) {
+        if (this.numIngredient != other.numIngredient) {
             return false;
         }
         return true;
@@ -96,7 +79,7 @@ public class GererPK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.utbm.projet.dao.data.GererPK[ numAdmin=" + numAdmin + ", numRecette=" + numRecette + ", numNutritionniste=" + numNutritionniste + " ]";
+        return "com.utbm.projet.dao.data.ContenirPK[ numRecette=" + numRecette + ", numIngredient=" + numIngredient + " ]";
     }
 
 }
