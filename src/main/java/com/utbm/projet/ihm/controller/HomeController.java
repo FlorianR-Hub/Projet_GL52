@@ -10,14 +10,8 @@ package com.utbm.projet.ihm.controller;
 import com.utbm.projet.dao.data.Recette;
 import com.utbm.projet.dao.interf.RecipeDao;
 import com.utbm.projet.ihm.model.HomeModel;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.ManagedBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -40,7 +34,7 @@ public class HomeController extends GenericController {
         homeModel.setHeartClass("heart");
         homeModel.setRecettes(list());
 
-        Recette r = new Recette(1L, "Cookie", "Dessert", "Facile", "Cookie Desc", 10, 0, new byte[1]);
+        /*Recette r = new Recette(1L, "Cookie", "Dessert", "Facile", "Cookie Desc", 10, 0, new byte[1]);
         File file = new File("/Users/neid/heart.svg");
         byte[] picInBytes = new byte[(int) file.length()];
 
@@ -58,7 +52,7 @@ public class HomeController extends GenericController {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
 
     public List<Recette> list() {

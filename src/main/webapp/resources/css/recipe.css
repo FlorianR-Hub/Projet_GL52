@@ -34,7 +34,7 @@
 }
 
 .stepPanel {
-    margin-bottom: 20px
+    margin-bottom: 20px;
 }
 
 .stepPanel .ui-panel-titlebar {
@@ -125,5 +125,9 @@ h4 {
 @media (max-width: 991px) {
     h1 {
         text-align: center;
+    }
+
+    .stepPanel {
+        margin-top: 20px;
     }
 }

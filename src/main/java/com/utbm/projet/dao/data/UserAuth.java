@@ -8,24 +8,47 @@
 package com.utbm.projet.dao.data;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+/**
+ *
+ */
 @Entity
-@Table(name = "USER_AUTH")
+@Table(name = "user_auth")
 public class UserAuth implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "USERNAME")
     private String username;
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "PASSWORD")
     private String password;
 
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "ACCOUNT_TYPE")
     private int accountType; // 0 : utilisateur / 1 : nutritionniste / 2 : administrateur
+
+    public UserAuth() {
+    }
+
+    public UserAuth(String username) {
+        this.username = username;
+    }
 
     public UserAuth(String username, String password, int accountType) {
         this.username = username;
@@ -33,8 +56,20 @@ public class UserAuth implements Serializable {
         this.accountType = accountType;
     }
 
-    public UserAuth() {
+    public String getUsername() {
+        return username;
+    }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getAccountType() {
@@ -45,25 +80,29 @@ public class UserAuth implements Serializable {
         this.accountType = accountType;
     }
 
-    public String getUsername() {
-        return username;
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (username != null ? username.hashCode() : 0);
+        return hash;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof UserAuth)) {
+            return false;
+        }
+        UserAuth other = (UserAuth) object;
+        if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "User{" + "username=" + username + ", password=" + password + ", accountType=" + accountType + '}';
+        return "com.utbm.projet.dao.data.UserAuth[ username=" + username + " ]";
     }
 
 }
