@@ -51,12 +51,19 @@ public class ProfileController extends GenericController {
             profileModel.setAge(user.getAge());
             profileModel.setWeight(user.getPoids());
             profileModel.setHeight(user.getTaille());
-            profileModel.setAllergies(Arrays.asList(user.getAllergies().split(";")));
-            profileModel.setDeficiencies(Arrays.asList(user.getCarences().split(";")));
+
+            if (user.getAllergies() != null) {
+                profileModel.setAllergies(Arrays.asList(user.getAllergies().split(";")));
+            }
+
+            if (user.getCarences() != null) {
+                profileModel.setDeficiencies(Arrays.asList(user.getCarences().split(";")));
+            }
         }
     }
 
     public void updateUser() {
+
         Long userId = templateModel.getUser().getId();
         Utilisateur user = userDao.getByUserAuthId(userId);
 
