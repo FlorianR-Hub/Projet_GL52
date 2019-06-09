@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:param name="pageForm" value="recipeManagementForm"/>
+
+    <ui:define name="content">
+        <h:outputStylesheet library="css" name="recipeManagement.css" />
+
+        <h:form id="recipeManagementForm">
+            <p:panelGrid rendered="#{not templateModel.logged}">
+                <p> Identifiez-vous pour voir le contenu de la page. </p>
+            </p:panelGrid>
+
+            <p:panelGrid rendered="#{templateModel.logged}">
+
+            </p:panelGrid>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

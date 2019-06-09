@@ -16,7 +16,7 @@
                 <p:submenu label="Mon compte" styleClass="menuItem">
                     <p:menuitem value="Profil" url="/pages/profile.xhtml" styleClass="menuItem #{view.viewId.contains('profile') ? 'activeSM' : ''}" disabled="#{not templateModel.logged}"/>
                     <p:menuitem value="Favoris" url="/pages/favorites.xhtml" styleClass="menuItem #{view.viewId.contains('favorites') ? 'activeSM' : ''}" disabled="#{not templateModel.logged}"/>
-                    <p:menuitem value="Gestion des recettes" url="/pages/recipeManagement.xhtml" styleClass="menuBarItem #{view.viewId.contains('recipeManagement') ? 'activeMB' : ''}" disabled="#{not templateModel.logged}" rendered="#{templateView.isAdminOrNutritionist()}"/>
+                    <p:menuitem value="Gestion des recettes" url="/pages/recipeManagement.xhtml" styleClass="menuBarItem #{view.viewId.contains('recipeManagement') ? 'activeSM' : ''}" disabled="#{not templateModel.logged}" rendered="#{templateView.isAdminOrNutritionist()}"/>
                 </p:submenu>
             </p:menu>
         </p:sidebar>

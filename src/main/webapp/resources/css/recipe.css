@@ -72,30 +72,30 @@
     border: none;
 }
 
-ul {
+#recipeForm ul {
     padding-left: 0;
 }
 
-li {
+#recipeForm li {
     list-style-type: none;
     padding: .625rem;
     border-bottom: 1px solid #ccc;
 }
 
-h1 {
+#recipeForm h1 {
     margin-bottom: 20px !important;
     padding: 10px;
     background-color: #3c8dbc;
     color: white;
 }
 
-h3 {
+#recipeForm h3 {
     margin-top: 0;
     font-weight: 600 !important;
     color: #3c8dbc;
 }
 
-h4 {
+#recipeForm h4 {
     color: #3c8dbc;
     font-weight: 600;
 }
@@ -123,7 +123,7 @@ h4 {
 }
 
 @media (max-width: 991px) {
-    h1 {
+    #recipeForm h1 {
         text-align: center;
     }
 
