@@ -57,7 +57,7 @@ public class Utilisateur implements Serializable {
     private String courrielUtilisateur;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 150)
+    @Size(max = 150)
     @Column(name = "ADRESSE_UTILISATEUR")
     private String adresseUtilisateur;
     @Basic(optional = false)

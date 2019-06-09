@@ -63,7 +63,6 @@ public class ProfileController extends GenericController {
     }
 
     public void updateUser() {
-
         Long userId = templateModel.getUser().getId();
         Utilisateur user = userDao.getByUserAuthId(userId);
 
@@ -78,24 +77,31 @@ public class ProfileController extends GenericController {
         user.setTaille(profileModel.getHeight());
 
         List<String> allergiesList = profileModel.getAllergies();
-        String allergies = "";
+        String allergies = null;
 
-        for (int i = 0; i < allergiesList.size(); i++) {
-            allergies += allergiesList.get(i);
+        if (allergiesList != null && !allergiesList.isEmpty()) {
+            allergies = "";
+            for (int i = 0; i < allergiesList.size(); i++) {
+                allergies += allergiesList.get(i);
 
-            if (i < allergiesList.size() - 1) {
-                allergies += ";";
+                if (i < allergiesList.size() - 1) {
+                    allergies += ";";
+                }
             }
         }
         user.setAllergies(allergies);
 
         List<String> deficienciesList = profileModel.getDeficiencies();
-        String deficiencies = "";
-        for (int i = 0; i < deficienciesList.size(); i++) {
-            deficiencies += deficienciesList.get(i);
+        String deficiencies = null;
 
-            if (i < deficienciesList.size() - 1) {
-                deficiencies += ";";
+        if (deficienciesList != null && !deficienciesList.isEmpty()) {
+            deficiencies = "";
+            for (int i = 0; i < deficienciesList.size(); i++) {
+                deficiencies += deficienciesList.get(i);
+
+                if (i < deficienciesList.size() - 1) {
+                    deficiencies += ";";
+                }
             }
         }
         user.setCarences(deficiencies);
