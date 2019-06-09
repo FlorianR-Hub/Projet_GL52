@@ -1,0 +1,75 @@
+@media (min-width: 992px) {
+    #profileForm {
+        width: 50%;
+        margin: 25px auto;
+    }
+
+    div.ui-growl {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    .profilePanel {
+        border: none;
+    }
+
+    div.ui-growl {
+        width: 100%;
+        left: 0 !important;
+    }
+
+    .desktopMessage {
+        display: none;
+    }
+}
+
+.card {
+    background-color: white !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2) !important;
+    width: 100%;
+    text-align: center;
+}
+
+.panelGrid.ui-panelgrid>*>tr,
+.panelGrid.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}
+
+.panelGrid {
+    text-align: left;
+}
+
+.bold {
+    font-weight: 600 !important;
+}
+
+.margin {
+    margin: 20px 0 !important;
+}
+
+.margin-top {
+    margin-top: 10px;
+}
+
+.chip-width > .ui-chips-container {
+    width: 200px;
+}
+
+h1 {
+    margin-bottom: 20px !important;
+    padding: 10px;
+    background-color: #3c8dbc;
+    color: white;
+}
+
+h3 {
+    text-align: left;
+    margin-top: 20px;
+    font-weight: 600 !important;
+    color: #3c8dbc;
+}
+
+.margin-panel td {
+    padding: 0 1em;
+}

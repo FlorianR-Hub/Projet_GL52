@@ -42,11 +42,11 @@
 
             <p:dialog header="Se connecter" widgetVar="dlgLogin" resizable="false" draggable="false" modal="true" appendTo="@(view)" showEffect="fade" hideEffect="fade">
                 <p:panelGrid columns="2" styleClass="panelGrid">
-                    <h:outputLabel for="usernameLogin" value="Identifiant :"/>
-                    <p:inputText id="usernameLogin" value="#{templateModel.user.username}" required="true" label="username" requiredMessage="Nom d'utilisateur non renseigné"/>
+                    <h:outputLabel for="pseudoLogin" value="Identifiant :"/>
+                    <p:inputText id="pseudoLogin" value="#{templateModel.user.pseudo}" required="true" label="pseudo" requiredMessage="Nom d'utilisateur non renseigné"/>
 
                     <h:outputLabel for="passwordLogin" value="Mot de passe :"/>
-                    <p:password id="passwordLogin" value="#{templateModel.user.password}" required="true" label="password" requiredMessage="Mot de passe non renseigné"/>
+                    <p:password id="passwordLogin" value="#{templateModel.user.mdp}" required="true" label="password" requiredMessage="Mot de passe non renseigné"/>
 
                     <f:facet name="footer">
                         <p:commandButton value="Connexion" update="growl menuForm headerForm #{pageForm}" action="#{templateView.onLogin()}" oncomplete="handleLoginRequest(xhr, status, args)" styleClass="commandButton"/>
@@ -60,11 +60,11 @@
 
             <p:dialog header="S'inscrire" widgetVar="dlgRegister" resizable="false" draggable="false" modal="true" appendTo="@(view)" showEffect="fade" hideEffect="fade">
                 <p:panelGrid columns="2" styleClass="panelGrid">
-                    <h:outputLabel for="usernameRegister" value="Identifiant :"/>
-                    <p:inputText id="usernameRegister" value="#{templateModel.user.username}" required="true" label="username" requiredMessage="Nom d'utilisateur non renseigné"/>
+                    <h:outputLabel for="pseudoRegister" value="Identifiant :"/>
+                    <p:inputText id="pseudoRegister" value="#{templateModel.user.pseudo}" required="true" label="pseudo" requiredMessage="Nom d'utilisateur non renseigné"/>
 
                     <h:outputLabel for="passwordRegister" value="Mot de passe :"/>
-                    <p:password id="passwordRegister" value="#{templateModel.user.password}" required="true" label="password" requiredMessage="Mot de passe non renseigné"/>
+                    <p:password id="passwordRegister" value="#{templateModel.user.mdp}" required="true" label="password" requiredMessage="Mot de passe non renseigné"/>
 
                     <f:facet name="footer">
                         <p:commandButton value="S'inscrire" update="growl menuForm headerForm #{pageForm}" action="#{templateView.onRegister()}" oncomplete="handleRegisterRequest(xhr, status, args)" styleClass="commandButton"/>

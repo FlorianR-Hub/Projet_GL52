@@ -42,15 +42,17 @@ public class TemplateController extends GenericController {
     public void login() throws IOException {
         FacesMessage message = null;
 
-        String username = templateModel.getUser().getUsername();
-        String password = templateModel.getUser().getPassword();
+        String pseudo = templateModel.getUser().getPseudo();
+        String password = templateModel.getUser().getMdp();
 
         try {
-            UserAuth user = loginService.login(username, password);
+            UserAuth user = loginService.login(pseudo, password);
 
             templateModel.setLogged(true);
+            templateModel.getUser().setId(user.getId());
             templateModel.getUser().setAccountType(user.getAccountType());
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue", username);
+
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue", pseudo);
         } catch (Exception e) {
             templateModel.setLogged(false);
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Erreur d'authentification", "Informations d'authentification invalides");
@@ -63,14 +65,16 @@ public class TemplateController extends GenericController {
     public void register() {
         FacesMessage message = null;
 
-        String username = templateModel.getUser().getUsername();
-        String password = templateModel.getUser().getPassword();
+        String pseudo = templateModel.getUser().getPseudo();
+        String password = templateModel.getUser().getMdp();
 
         try {
-            UserAuth user = loginService.register(username, password);
+            UserAuth user = loginService.register(pseudo, password);
 
             templateModel.setLogged(true);
+            templateModel.getUser().setId(user.getId());
             templateModel.getUser().setAccountType(user.getAccountType());
+
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inscription réussie", "");
         } catch (Exception e) {
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Erreur d'inscription", e.getCause().getMessage());

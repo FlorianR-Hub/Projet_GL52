@@ -12,6 +12,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -34,8 +36,8 @@ public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "NUM_UTILISATEUR")
     private Long numUtilisateur;
     @Basic(optional = false)
@@ -55,11 +57,6 @@ public class Utilisateur implements Serializable {
     private String courrielUtilisateur;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "MDP_UTILISATEUR")
-    private String mdpUtilisateur;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 150)
     @Column(name = "ADRESSE_UTILISATEUR")
     private String adresseUtilisateur;
@@ -75,10 +72,6 @@ public class Utilisateur implements Serializable {
     @NotNull
     @Column(name = "TAILLE")
     private int taille;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "IMC")
-    private int imc;
     @Size(max = 60)
     @Column(name = "ALLERGIES")
     private String allergies;
@@ -90,6 +83,9 @@ public class Utilisateur implements Serializable {
     @JoinColumn(name = "NUM_NUTRITIONNISTE", referencedColumnName = "NUM_NUTRITIONNISTE")
     @ManyToOne
     private Nutritionniste numNutritionniste;
+    @JoinColumn(name = "ID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private UserAuth id;
 
     public Utilisateur() {
     }
@@ -98,17 +94,15 @@ public class Utilisateur implements Serializable {
         this.numUtilisateur = numUtilisateur;
     }
 
-    public Utilisateur(Long numUtilisateur, String prenomUtilisateur, String nomUtilisateur, String courrielUtilisateur, String mdpUtilisateur, String adresseUtilisateur, int age, int poids, int taille, int imc) {
+    public Utilisateur(Long numUtilisateur, String prenomUtilisateur, String nomUtilisateur, String courrielUtilisateur, String adresseUtilisateur, int age, int poids, int taille) {
         this.numUtilisateur = numUtilisateur;
         this.prenomUtilisateur = prenomUtilisateur;
         this.nomUtilisateur = nomUtilisateur;
         this.courrielUtilisateur = courrielUtilisateur;
-        this.mdpUtilisateur = mdpUtilisateur;
         this.adresseUtilisateur = adresseUtilisateur;
         this.age = age;
         this.poids = poids;
         this.taille = taille;
-        this.imc = imc;
     }
 
     public Long getNumUtilisateur() {
@@ -143,14 +137,6 @@ public class Utilisateur implements Serializable {
         this.courrielUtilisateur = courrielUtilisateur;
     }
 
-    public String getMdpUtilisateur() {
-        return mdpUtilisateur;
-    }
-
-    public void setMdpUtilisateur(String mdpUtilisateur) {
-        this.mdpUtilisateur = mdpUtilisateur;
-    }
-
     public String getAdresseUtilisateur() {
         return adresseUtilisateur;
     }
@@ -183,14 +169,6 @@ public class Utilisateur implements Serializable {
         this.taille = taille;
     }
 
-    public int getImc() {
-        return imc;
-    }
-
-    public void setImc(int imc) {
-        this.imc = imc;
-    }
-
     public String getAllergies() {
         return allergies;
     }
@@ -221,6 +199,14 @@ public class Utilisateur implements Serializable {
 
     public void setNumNutritionniste(Nutritionniste numNutritionniste) {
         this.numNutritionniste = numNutritionniste;
+    }
+
+    public UserAuth getId() {
+        return id;
+    }
+
+    public void setId(UserAuth id) {
+        this.id = id;
     }
 
     @Override

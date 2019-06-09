@@ -13,7 +13,11 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -33,8 +37,8 @@ public class Nutritionniste implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "NUM_NUTRITIONNISTE")
     private Long numNutritionniste;
     @Basic(optional = false)
@@ -54,11 +58,6 @@ public class Nutritionniste implements Serializable {
     private String courrielNutritionniste;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "MDP_NUTRITIONNISTE")
-    private String mdpNutritionniste;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 300)
     @Column(name = "DESCRIPTION_NUTRITIONNISTE")
     private String descriptionNutritionniste;
@@ -66,6 +65,9 @@ public class Nutritionniste implements Serializable {
     private List<Utilisateur> utilisateurList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "nutritionniste")
     private List<Gerer> gererList;
+    @JoinColumn(name = "ID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private UserAuth id;
 
     public Nutritionniste() {
     }
@@ -74,12 +76,11 @@ public class Nutritionniste implements Serializable {
         this.numNutritionniste = numNutritionniste;
     }
 
-    public Nutritionniste(Long numNutritionniste, String prenomNutritionniste, String nomNutritionniste, String courrielNutritionniste, String mdpNutritionniste, String descriptionNutritionniste) {
+    public Nutritionniste(Long numNutritionniste, String prenomNutritionniste, String nomNutritionniste, String courrielNutritionniste, String descriptionNutritionniste) {
         this.numNutritionniste = numNutritionniste;
         this.prenomNutritionniste = prenomNutritionniste;
         this.nomNutritionniste = nomNutritionniste;
         this.courrielNutritionniste = courrielNutritionniste;
-        this.mdpNutritionniste = mdpNutritionniste;
         this.descriptionNutritionniste = descriptionNutritionniste;
     }
 
@@ -115,14 +116,6 @@ public class Nutritionniste implements Serializable {
         this.courrielNutritionniste = courrielNutritionniste;
     }
 
-    public String getMdpNutritionniste() {
-        return mdpNutritionniste;
-    }
-
-    public void setMdpNutritionniste(String mdpNutritionniste) {
-        this.mdpNutritionniste = mdpNutritionniste;
-    }
-
     public String getDescriptionNutritionniste() {
         return descriptionNutritionniste;
     }
@@ -145,6 +138,14 @@ public class Nutritionniste implements Serializable {
 
     public void setGererList(List<Gerer> gererList) {
         this.gererList = gererList;
+    }
+
+    public UserAuth getId() {
+        return id;
+    }
+
+    public void setId(UserAuth id) {
+        this.id = id;
     }
 
     @Override

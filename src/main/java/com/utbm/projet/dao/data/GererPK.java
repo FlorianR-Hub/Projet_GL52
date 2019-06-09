@@ -21,7 +21,6 @@ import javax.validation.constraints.NotNull;
 public class GererPK implements Serializable {
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "NUM_ADMIN")
     private int numAdmin;
     @Basic(optional = false)

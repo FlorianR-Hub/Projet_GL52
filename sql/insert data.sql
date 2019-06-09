@@ -1,7 +1,7 @@
 DELETE FROM gl52.user_auth;
-INSERT INTO gl52.user_auth (USERNAME, PASSWORD, ACCOUNT_TYPE) VALUES ('user', 'user', 0);
-INSERT INTO gl52.user_auth (USERNAME, PASSWORD, ACCOUNT_TYPE) VALUES ('admin', 'admin', 1);
-INSERT INTO gl52.user_auth (USERNAME, PASSWORD, ACCOUNT_TYPE) VALUES ('nutritionist', 'nutritionist', 2);
+INSERT INTO gl52.user_auth (ID, PSEUDO, MDP, ACCOUNT_TYPE) VALUES (1, 'user', 'user', 0);
+INSERT INTO gl52.user_auth (ID, PSEUDO, MDP, ACCOUNT_TYPE) VALUES (2, 'admin', 'admin', 1);
+INSERT INTO gl52.user_auth (ID, PSEUDO, MDP, ACCOUNT_TYPE) VALUES (3, 'nutritionist', 'nutritionist', 2);
 
 DELETE FROM gl52.contenir;
 DELETE FROM gl52.ingredients;

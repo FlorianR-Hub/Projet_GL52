@@ -9,7 +9,7 @@
     <h:form id="menuForm">
         <p:sidebar widgetVar="sidebar" appendTo="@(body)" styleClass="sideBarMenu">
             <p:panel styleClass="userPanel" rendered="#{templateModel.logged}">
-                <h:outputText value="#{templateModel.user.username}" styleClass="userText"/>
+                <h:outputText value="#{templateModel.user.pseudo}" styleClass="userText"/>
             </p:panel>
             <p:menu toggleable="true" styleClass="menu">
                 <p:menuitem value="Accueil" url="/pages/home.xhtml" styleClass="menuItem #{view.viewId.contains('home') ? 'activeSM' : ''}" disabled="#{not templateModel.logged}"/>

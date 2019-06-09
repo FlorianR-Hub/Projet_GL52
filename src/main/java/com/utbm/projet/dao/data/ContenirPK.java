@@ -21,7 +21,6 @@ import javax.validation.constraints.NotNull;
 public class ContenirPK implements Serializable {
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "NUM_RECETTE")
     private long numRecette;
     @Basic(optional = false)

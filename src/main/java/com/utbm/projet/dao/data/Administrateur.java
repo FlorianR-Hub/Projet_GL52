@@ -13,7 +13,11 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -33,8 +37,8 @@ public class Administrateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "NUM_ADMIN")
     private Integer numAdmin;
     @Basic(optional = false)
@@ -52,11 +56,9 @@ public class Administrateur implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "COURRIEL_ADMIN")
     private String courrielAdmin;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "MDP_ADMIN")
-    private String mdpAdmin;
+    @JoinColumn(name = "ID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private UserAuth id;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "administrateur")
     private List<Gerer> gererList;
 
@@ -67,12 +69,11 @@ public class Administrateur implements Serializable {
         this.numAdmin = numAdmin;
     }
 
-    public Administrateur(Integer numAdmin, String prenomAdmin, String nomAdmin, String courrielAdmin, String mdpAdmin) {
+    public Administrateur(Integer numAdmin, String prenomAdmin, String nomAdmin, String courrielAdmin) {
         this.numAdmin = numAdmin;
         this.prenomAdmin = prenomAdmin;
         this.nomAdmin = nomAdmin;
         this.courrielAdmin = courrielAdmin;
-        this.mdpAdmin = mdpAdmin;
     }
 
     public Integer getNumAdmin() {
@@ -107,12 +108,12 @@ public class Administrateur implements Serializable {
         this.courrielAdmin = courrielAdmin;
     }
 
-    public String getMdpAdmin() {
-        return mdpAdmin;
+    public UserAuth getId() {
+        return id;
     }
 
-    public void setMdpAdmin(String mdpAdmin) {
-        this.mdpAdmin = mdpAdmin;
+    public void setId(UserAuth id) {
+        this.id = id;
     }
 
     public List<Gerer> getGererList() {
