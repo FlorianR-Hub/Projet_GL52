@@ -34,8 +34,8 @@ public class RecipeDaoImpl implements RecipeDao {
     }
 
     @Override
-    public void insert(Recette recipe) {
-        recipeRepo.save(recipe);
+    public Recette insert(Recette recipe) {
+        return recipeRepo.save(recipe);
     }
 
 }

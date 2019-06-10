@@ -18,16 +18,16 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class TemplateModel {
 
-    private UserAuth user;
+    private UserAuth userAuth;
 
     private boolean logged = false;
 
-    public UserAuth getUser() {
-        return user;
+    public UserAuth getUserAuth() {
+        return userAuth;
     }
 
-    public void setUser(UserAuth user) {
-        this.user = user;
+    public void setUserAuth(UserAuth user) {
+        this.userAuth = user;
     }
 
     public boolean isLogged() {

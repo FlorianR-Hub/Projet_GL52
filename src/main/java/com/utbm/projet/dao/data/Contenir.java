@@ -37,7 +37,7 @@ public class Contenir implements Serializable {
     @NotNull
     @Column(name = "QUANTITE")
     private int quantite;
-    @Size(max = 5)
+    @Size(max = 20)
     @Column(name = "UNITE")
     private String unite;
     @JoinColumn(name = "NUM_INGREDIENT", referencedColumnName = "NUM_INGREDIENT", insertable = false, updatable = false)

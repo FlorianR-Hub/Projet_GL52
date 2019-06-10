@@ -27,22 +27,22 @@
                     <h3>Informations générales :</h3>
                     <p:panelGrid columns="3" styleClass="panelGrid margin">
                         <h:outputLabel for="firstname" value="Prénom :" styleClass="bold"/>
-                        <p:inputText id="firstname" value="#{profileModel.firstname}" required="true" label="Prénom"/>
+                        <p:inputText id="firstname" value="#{profileModel.user.prenomUtilisateur}" required="true" label="Prénom"/>
                         <p:message for="firstname" styleClass="desktopMessage"/>
 
                         <h:outputLabel for="lastname" value="Nom :" styleClass="bold"/>
-                        <p:inputText id="lastname" value="#{profileModel.lastname}" required="true" label="Nom"/>
+                        <p:inputText id="lastname" value="#{profileModel.user.nomUtilisateur}" required="true" label="Nom"/>
                         <p:message for="lastname" styleClass="desktopMessage"/>
 
                         <h:outputLabel for="email" value="Email :" styleClass="bold"/>
-                        <p:inputText id="email" value="#{profileModel.email}" required="true" label="Email"  validatorMessage="L'email est invalide.">
+                        <p:inputText id="email" value="#{profileModel.user.courrielUtilisateur}" required="true" label="Email"  validatorMessage="L'email est invalide.">
                             <f:validateRegex
                                 pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                         </p:inputText>
                         <p:message for="email" styleClass="desktopMessage"/>
 
                         <h:outputLabel for="address" value="Adresse :" styleClass="bold"/>
-                        <p:inputText id="address" value="#{profileModel.address}" label="Adresse"/>
+                        <p:inputText id="address" value="#{profileModel.user.adresseUtilisateur}" label="Adresse"/>
                         <p:message for="address" styleClass="desktopMessage"/>
                     </p:panelGrid>
                 </h:panelGrid>
@@ -52,21 +52,21 @@
                     <p:panelGrid columns="3" styleClass="panelGrid margin-top">
                         <h:outputLabel for="age" value="Age :" styleClass="bold"/>
                         <h:panelGrid columns="1" style="margin-bottom: 10px">
-                            <p:spinner id="age" value="#{profileModel.age}" required="true" min="2" max="120" stepFactor="1" suffix=" ans" label="Age" />
+                            <p:spinner id="age" value="#{profileModel.user.age}" required="true" min="2" max="120" stepFactor="1" suffix=" ans" label="Age" />
                             <p:slider for="age" minValue="2" maxValue="120" step="1" />
                         </h:panelGrid>
                         <p:message for="age" styleClass="desktopMessage"/>
 
                         <h:outputLabel for="weight" value="Poids :" styleClass="bold"/>
                         <h:panelGrid columns="1" style="margin-bottom: 10px">
-                            <p:spinner id="weight" value="#{profileModel.weight}" required="true" min="0" max="200" stepFactor="1" suffix=" kg" label="Poids" />
+                            <p:spinner id="weight" value="#{profileModel.user.poids}" required="true" min="0" max="200" stepFactor="1" suffix=" kg" label="Poids" />
                             <p:slider for="weight" minValue="0" maxValue="200" step="1" />
                         </h:panelGrid>
                         <p:message for="weight" styleClass="desktopMessage"/>
 
                         <h:outputLabel for="height" value="Taille :" styleClass="bold"/>
                         <h:panelGrid columns="1" style="margin-bottom: 10px">
-                            <p:spinner id="height" value="#{profileModel.height}" required="true" min="0" max="300" stepFactor="1" suffix=" cm" label="Taille" />
+                            <p:spinner id="height" value="#{profileModel.user.taille}" required="true" min="0" max="300" stepFactor="1" suffix=" cm" label="Taille" />
                             <p:slider for="height" minValue="0" maxValue="300" step="1" />
                         </h:panelGrid>
                         <p:message for="height" styleClass="desktopMessage"/>

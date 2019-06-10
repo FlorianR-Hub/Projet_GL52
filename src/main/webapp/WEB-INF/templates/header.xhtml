@@ -19,7 +19,10 @@
                 <p:submenu label="Mon compte" styleClass="menuBarItem subMenu">
                     <p:menuitem value="Profil" url="/pages/profile.xhtml" styleClass="menuBarItem #{view.viewId.contains('profile') ? 'activeMB' : ''}" disabled="#{not templateModel.logged}"/>
                     <p:menuitem value="Favoris" url="/pages/favorites.xhtml" styleClass="menuBarItem #{view.viewId.contains('favorites') ? 'activeMB' : ''}" disabled="#{not templateModel.logged}"/>
-                    <p:menuitem value="Gestion des recettes" url="/pages/recipeManagement.xhtml" styleClass="menuBarItem #{view.viewId.contains('recipeManagement') ? 'activeMB' : ''}" disabled="#{not templateModel.logged}" rendered="#{templateView.isAdminOrNutritionist()}"/>
+
+                    <p:submenu label="Gestion des recettes" styleClass="menuBarItem subMenu" rendered="#{templateView.isAdminOrNutritionist()}">
+                        <p:menuitem value="Création d'une recette" url="/pages/recipeCreation.xhtml" styleClass="menuBarItem #{view.viewId.contains('recipeCreation') ? 'activeMB' : ''}" disabled="#{not templateModel.logged}" rendered="#{templateView.isAdminOrNutritionist()}"/>
+                    </p:submenu>
                 </p:submenu>
             </p:menubar>
 

@@ -12,6 +12,7 @@ import com.utbm.projet.dao.interf.UserAuthDao;
 import com.utbm.projet.dao.interf.UserDao;
 import com.utbm.projet.ihm.model.ProfileModel;
 import com.utbm.projet.ihm.model.TemplateModel;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.ManagedBean;
@@ -39,42 +40,28 @@ public class ProfileController extends GenericController {
 
     @Override
     public void initModel() {
-        Long userId = templateModel.getUser().getId();
+        Long userId = templateModel.getUserAuth().getId();
         Utilisateur user = userDao.getByUserAuthId(userId);
 
-        if (user != null) {
-            profileModel.setFirstname(user.getPrenomUtilisateur());
-            profileModel.setLastname(user.getNomUtilisateur());
-            profileModel.setEmail(user.getCourrielUtilisateur());
-            profileModel.setAddress(user.getAdresseUtilisateur());
+        if (userId != null) {
+            user.setId(userAuthDao.getById(userId));
+        }
 
-            profileModel.setAge(user.getAge());
-            profileModel.setWeight(user.getPoids());
-            profileModel.setHeight(user.getTaille());
+        profileModel.setUser(user);
 
-            if (user.getAllergies() != null) {
-                profileModel.setAllergies(Arrays.asList(user.getAllergies().split(";")));
-            }
+        profileModel.setAllergies(new ArrayList<>());
+        if (user.getAllergies() != null) {
+            profileModel.setAllergies(Arrays.asList(user.getAllergies().split(";")));
+        }
 
-            if (user.getCarences() != null) {
-                profileModel.setDeficiencies(Arrays.asList(user.getCarences().split(";")));
-            }
+        profileModel.setDeficiencies(new ArrayList<>());
+        if (user.getCarences() != null) {
+            profileModel.setDeficiencies(Arrays.asList(user.getCarences().split(";")));
         }
     }
 
     public void updateUser() {
-        Long userId = templateModel.getUser().getId();
-        Utilisateur user = userDao.getByUserAuthId(userId);
-
-        user.setId(userAuthDao.getById(userId));
-        user.setPrenomUtilisateur(profileModel.getFirstname());
-        user.setNomUtilisateur(profileModel.getLastname());
-        user.setCourrielUtilisateur(profileModel.getEmail());
-        user.setAdresseUtilisateur(profileModel.getAddress());
-
-        user.setAge(profileModel.getAge());
-        user.setPoids(profileModel.getWeight());
-        user.setTaille(profileModel.getHeight());
+        Utilisateur user = profileModel.getUser();
 
         List<String> allergiesList = profileModel.getAllergies();
         String allergies = null;

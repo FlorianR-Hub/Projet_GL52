@@ -7,6 +7,7 @@
  */
 package com.utbm.projet.ihm.model;
 
+import com.utbm.projet.dao.data.Utilisateur;
 import java.util.List;
 import javax.annotation.ManagedBean;
 import org.springframework.context.annotation.Scope;
@@ -18,78 +19,18 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class ProfileModel {
 
-    private String firstname;
-
-    private String lastname;
-
-    private String email;
-
-    private String address;
-
-    private Integer age;
-
-    private Integer weight;
-
-    private Integer height;
+    private Utilisateur user;
 
     private List<String> allergies;
 
     private List<String> deficiencies;
 
-    public String getFirstname() {
-        return firstname;
+    public Utilisateur getUser() {
+        return user;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
+    public void setUser(Utilisateur user) {
+        this.user = user;
     }
 
     public List<String> getAllergies() {

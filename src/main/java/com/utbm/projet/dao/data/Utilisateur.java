@@ -55,8 +55,6 @@ public class Utilisateur implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "COURRIEL_UTILISATEUR")
     private String courrielUtilisateur;
-    @Basic(optional = false)
-    @NotNull
     @Size(max = 150)
     @Column(name = "ADRESSE_UTILISATEUR")
     private String adresseUtilisateur;
@@ -94,12 +92,11 @@ public class Utilisateur implements Serializable {
         this.numUtilisateur = numUtilisateur;
     }
 
-    public Utilisateur(Long numUtilisateur, String prenomUtilisateur, String nomUtilisateur, String courrielUtilisateur, String adresseUtilisateur, int age, int poids, int taille) {
+    public Utilisateur(Long numUtilisateur, String prenomUtilisateur, String nomUtilisateur, String courrielUtilisateur, int age, int poids, int taille) {
         this.numUtilisateur = numUtilisateur;
         this.prenomUtilisateur = prenomUtilisateur;
         this.nomUtilisateur = nomUtilisateur;
         this.courrielUtilisateur = courrielUtilisateur;
-        this.adresseUtilisateur = adresseUtilisateur;
         this.age = age;
         this.poids = poids;
         this.taille = taille;

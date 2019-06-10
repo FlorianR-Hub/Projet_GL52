@@ -19,12 +19,12 @@
             </p:panelGrid>
 
             <p:panelGrid rendered="#{templateModel.logged}" styleClass="panelGrid">
-                <h1 class="margin-panel">
+                <h1>
                     #{recipeModel.recipe.nomRecette}
                 </h1>
 
-                <h:panelGrid columns="2" styleClass="margin-panel card" columnClasses="ui-g-12 ui-md-5, ui-g-12 ui-md-7">
-                    <p:graphicImage value="#{recipeImage.image}" styleClass="recipeImage"/>
+                <h:panelGrid columns="2" styleClass="padding-panel card" columnClasses="ui-g-12 ui-md-5, ui-g-12 ui-md-7">
+                    <p:graphicImage id="image" value="#{recipeImage.image}" styleClass="recipeImage" cache="false"/>
                     <h:panelGrid columns="1" styleClass="panelGrid">
                         <h3>Description</h3>
                         <p>
@@ -34,7 +34,7 @@
 
                 </h:panelGrid>
 
-                <p:panel header="Guide de préparation : #{recipeModel.recipe.nomRecette}" styleClass="guidePanel margin-panel card">
+                <p:panel header="Guide de préparation : #{recipeModel.recipe.nomRecette}" styleClass="guidePanel card">
                     <p:panelGrid columns="4" styleClass="panelGrid panelGridGuide" columnClasses="ui-g-6 ui-md-3, ui-g-6 ui-md-3, ui-g-6 ui-md-3, ui-g-6 ui-md-3">
                         <p:panelGrid columns="1" styleClass="panelGrid center">
                             <h:outputText value="Personnes" />
@@ -58,8 +58,8 @@
                     </p:panelGrid>
                 </p:panel>
 
-                <h:panelGrid columns="2" styleClass="panelGrid panelGridInfos" columnClasses="ui-g-12 ui-md-4, ui-g-12 ui-md-8">
-                    <p:panel header="Ingrédients" styleClass="ingredientsPanel margin-panel card">
+                <p:panelGrid columns="2" styleClass="panelGrid panelGridInfos" columnClasses="ui-g-12 ui-md-4, ui-g-12 ui-md-8">
+                    <p:panel header="Ingrédients" styleClass="ingredientsPanel padding-panel card">
                         <p:dataList value="#{recipeModel.recipe.contenirList}" var="ingredientInfos" styleClass="ingredientsDataList">
                             <p>
                                 #{recipeView.getIngredientStr(ingredientInfos)}
@@ -67,17 +67,17 @@
                         </p:dataList>
                     </p:panel>
 
-                    <p:panel header="Préparation" styleClass="stepPanel margin-panel card">
+                    <p:panel header="Préparation" styleClass="stepPanel padding-panel card">
                         <p:repeat value="#{recipeModel.recipe.etapeList}" var="step">
                             <h:panelGrid>
-                                <h4>Étape #{step.numEtape}</h4>
+                                <h4>Étape #{step.etapePK.numEtape}</h4>
                                 <p>
                                     #{step.instructionEtape}
                                 </p>
                             </h:panelGrid>
                         </p:repeat>
                     </p:panel>
-                </h:panelGrid>
+                </p:panelGrid>
             </p:panelGrid>
         </h:form>
 

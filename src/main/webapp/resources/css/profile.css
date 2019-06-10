@@ -1,7 +1,7 @@
 @media (min-width: 992px) {
     #profileForm {
         width: 50%;
-        margin: 25px auto;
+        margin: 0 auto;
     }
 
     div.ui-growl {

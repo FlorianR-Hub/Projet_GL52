@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface UserAuthRepo extends JpaRepository<UserAuth, Long> {
 
     @Query(value = "SELECT u.accountType FROM UserAuth u WHERE u.pseudo = ?1")
-    public boolean getRole(String pseudo);
+    public int getRole(String pseudo);
 
     @Query(value = "SELECT u FROM UserAuth u WHERE u.pseudo = ?1 AND u.mdp = ?2")
     public UserAuth getByPseudoAndPassword(String pseudo, String password);

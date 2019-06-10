@@ -55,7 +55,7 @@ public class Recette implements Serializable {
     private String typeRecette;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 15)
     @Column(name = "DIFFICULTE_RECETTE")
     private String difficulteRecette;
     @Basic(optional = false)
@@ -81,7 +81,7 @@ public class Recette implements Serializable {
         @JoinColumn(name = "NUM_UTILISATEUR", referencedColumnName = "NUM_UTILISATEUR")})
     @ManyToMany
     private List<Utilisateur> utilisateurList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "numRecette")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recette")
     private List<Etape> etapeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recette")
     private List<Gerer> gererList;

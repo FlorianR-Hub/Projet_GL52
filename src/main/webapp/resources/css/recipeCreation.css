@@ -1,0 +1,42 @@
+@media (min-width: 992px) {
+    #recipeCreationForm {
+        width: 50%;
+        margin: 25px auto;
+    }
+}
+
+.panelGrid.ui-panelgrid>*>tr,
+.panelGrid.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}
+
+.panelGridNewRecipe, .panelGridButton
+{
+    width: 100%;
+}
+
+.createButton {
+    float: right;
+}
+
+.margin {
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+
+.textArea {
+    resize: none;
+}
+
+.panelGridInstructions label {
+    display: none;
+}
+
+label {
+    font-weight: 600 !important;
+}
+
+.imageRecipe {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}

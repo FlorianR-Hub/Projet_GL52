@@ -19,6 +19,6 @@ public interface RecipeDao {
 
     public Recette getByNum(Long num);
 
-    public void insert(Recette recipe);
+    public Recette insert(Recette recipe);
 
 }

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:param name="pageForm" value="recipeCreationForm"/>
+
+    <ui:define name="content">
+        <f:event type="preRenderView" listener="#{recipeCreationView.initView()}"/>
+        <h:outputStylesheet library="css" name="recipeCreation.css" />
+
+        <h:form id="recipeCreationForm" enctype="multipart/form-data">
+            <p:panelGrid rendered="#{not templateModel.logged or not templateView.isAdminOrNutritionist()}" >
+                <p> Identifiez-vous pour voir le contenu de la page. </p>
+            </p:panelGrid>
+
+            <h:panelGrid rendered="#{templateModel.logged and templateView.isAdminOrNutritionist()}" styleClass="panelGridNewRecipe">
+                <p:growl id="growl" life="1500" showDetail="true"/>
+
+                <p:wizard flowListener="#{recipeCreationView.onFlowProcess}" nextLabel="Suivant" backLabel="Précédent">
+                    <p:tab id="description" title="Description">
+                        <p:panel header="Description de la recette">
+                            <p:messages />
+                            <b:panelGrid colSpans="12">
+                                <p:outputLabel value="Photo de la recette *" />
+                                <p:fileUpload fileUploadListener="#{recipeCreationView.upload}" auto="true" styleClass="imageRecipe" label="Choisir"/>
+
+                                <b:inputText value="#{recipeCreationModel.recipe.nomRecette}" label="Nom de la recette" required="true" placeholder="Choisissez un titre pour votre recette"/>
+
+                                <b:inputTextarea value="#{recipeCreationModel.recipe.descRecette}" placeholder="Décrivez ici votre recette" styleClass="textArea" required="true" label="Description de la recette"/>
+                            </b:panelGrid>
+
+                            <p:panelGrid columns="2" styleClass="panelGrid">
+                                <p:outputLabel for="person" value="Nombre de personne(s) :" />
+                                <p:inputNumber id="person" value="#{recipeCreationModel.recipe.nbPersonnesRecette}" symbol=" pers" symbolPosition="s" required="true" minValue="1" maxValue="200" label="Nombre de personne(s)"/>
+
+                                <p:outputLabel for="time" value="Temps de préparation :" />
+                                <p:inputNumber id="time" value="#{recipeCreationModel.recipe.tempsPreparationRecette}" symbol=" min" symbolPosition="s" required="true" minValue="1" maxValue="1000" label="Temps de préparation"/>
+
+                                <p:outputLabel for="difficulty" value="Difficulté :" />
+                                <p:selectOneMenu id="difficulty" value="#{recipeCreationModel.recipe.difficulteRecette}" autoWidth="false" required="true" label="Difficulté">
+                                    <f:selectItem itemLabel="Facile" itemValue="Facile" />
+                                    <f:selectItem itemLabel="Intermédiaire" itemValue="Intermédiaire" />
+                                    <f:selectItem itemLabel="Difficile" itemValue="Difficile" />
+                                </p:selectOneMenu>
+
+                                <p:outputLabel for="type" value="Type :" />
+                                <p:selectOneMenu id="type" value="#{recipeCreationModel.recipe.typeRecette}" autoWidth="false" required="true" label="Type">
+                                    <f:selectItem itemLabel="Type 1" itemValue="Type 1" />
+                                    <f:selectItem itemLabel="Type 2" itemValue="Type 2" />
+                                    <f:selectItem itemLabel="Type 3" itemValue="Type 3" />
+                                </p:selectOneMenu>
+                            </p:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="ingredients" title="Ingrédients">
+                        <p:panel header="Détail des ingrédients">
+                            <p:messages />
+                            <p:panelGrid columns="3" styleClass="panelGrid">
+
+                                <p:panelGrid columns="1" styleClass="panelGrid">
+                                    <p:outputLabel for="ingredient" value="Ingrédients" />
+                                    <p:selectOneMenu id="ingredient" value="#{recipeCreationModel.newIngredient.nomIngredient}" required="true" editable="true" filter="true" filterMatchMode="contains">
+                                        <f:selectItems value="#{recipeCreationModel.ingredients}" />
+                                    </p:selectOneMenu>
+                                </p:panelGrid>
+
+                                <p:panelGrid columns="1" styleClass="panelGrid">
+                                    <p:outputLabel for="quantity" value="Quantité" />
+                                    <p:inputNumber id="quantity" value="#{recipeCreationModel.newIngredientInfos.quantite}" required="true" minValue="0" maxValue="10000" label="Quantité"/>
+                                </p:panelGrid>
+
+                                <p:panelGrid columns="1" styleClass="panelGrid">
+                                    <p:outputLabel for="measure" value="Mesure" />
+                                    <p:selectOneMenu id="measure" value="#{recipeCreationModel.newIngredientInfos.unite}" autoWidth="false">
+                                        <f:selectItem itemLabel="(Rien)" itemValue="" />
+                                        <f:selectItems value="#{recipeCreationModel.measures}"/>
+                                    </p:selectOneMenu>
+                                </p:panelGrid>
+
+                            </p:panelGrid>
+
+                            <p:dataTable id="ingredientsInfosDT" widgetVar="ingredientsWidget" var="ingredientInfos" value="#{recipeCreationModel.ingredientsInfos}" editable="true" editMode="cell"
+                                         rowKey="#{ingredientInfos.ingredients.numIngredient}" selectionMode="single" selection="#{recipeCreationModel.selectedIngredientInfos}" styleClass="margin" emptyMessage="Aucun ingrédient ajouté">
+
+                                <p:column headerText="Ingrédient">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputLabel value="#{ingredientInfos.ingredients.nomIngredient}" /></f:facet>
+                                        <f:facet name="input"><p:inputText value="#{ingredientInfos.ingredients.nomIngredient}" style="width:100%"/></f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Quantité">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputLabel value="#{ingredientInfos.quantite}" /></f:facet>
+                                        <f:facet name="input">
+                                            <p:inputNumber value="#{ingredientInfos.quantite}" minValue="0" maxValue="10000"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Mesure">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputLabel value="#{ingredientInfos.unite}" /></f:facet>
+                                        <f:facet name="input">
+                                            <p:selectOneMenu id="measure" value="#{ingredientInfos.unite}" autoWidth="false">
+                                                <f:selectItem itemLabel="(Rien)" itemValue="" />
+                                                <f:selectItems value="#{recipeCreationModel.measures}" />
+                                            </p:selectOneMenu>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+                            </p:dataTable>
+
+                            <p:contextMenu for="ingredientsInfosDT">
+                                <p:menuitem value="Supprimer l'ingrédient" update="ingredientsInfosDT" action="#{recipeCreationView.onDeleteIngredientInfos}"/>
+                            </p:contextMenu>
+
+                            <p:commandButton value="Ajouter" styleClass="ui-priority-primary" update="growl ingredientsInfosDT"
+                                             action="#{recipeCreationView.onAddNewIngredientInfos()}" />
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="steps" title="Etapes">
+                        <p:panel header="Étapes de préparation">
+                            <p:messages />
+                            <b:panelGrid colSpans="12" styleClass="panelGridInstructions">
+                                <h4>
+                                    Instructions de l'étape n°#{recipeCreationView.getNextStepNum()}
+                                </h4>
+                                <b:inputTextarea value="#{recipeCreationModel.newStep.instructionEtape}" label="Instructions"  placeholder="Décrivez ici les instruction d'une étape de votre recette" styleClass="textArea"/>
+                            </b:panelGrid>
+
+                            <p:dataTable id="stepsDT" widgetVar="stepsWidget" var="step" value="#{recipeCreationModel.steps}" editable="true" editMode="cell"
+                                         rowKey="#{step.etapePK.numEtape}" selectionMode="single" selection="#{recipeCreationModel.selectedStep}" styleClass="margin" emptyMessage="Aucune étape ajoutée">
+
+                                <p:column headerText="Etape n°">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputLabel value="#{step.etapePK.numEtape}" /></f:facet>
+                                        <f:facet name="input"><p:inputText value="#{step.etapePK.numEtape}" style="width:100%; height: 100px"/></f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Instructions">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputLabel value="#{step.instructionEtape}" /></f:facet>
+                                        <f:facet name="input"><p:inputText value="#{step.instructionEtape}" style="width:100%"/></f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+                            </p:dataTable>
+
+                            <p:contextMenu for="stepsDT">
+                                <p:menuitem value="Supprimer l'étape" update="stepsDT" action="#{recipeCreationView.onDeleteStep}"/>
+                            </p:contextMenu>
+
+                            <h:panelGrid columns="2" styleClass="panelGridButton">
+                                <p:commandButton value="Ajouter" styleClass="ui-priority-primary" update="growl stepsDT"
+                                                 action="#{recipeCreationView.onAddNewStep()}" />
+
+                                <p:commandButton styleClass="createButton" value="Publier la recette" action="#{recipeCreationView.onSave}" update="growl"/>
+                            </h:panelGrid>
+
+                        </p:panel>
+                    </p:tab>
+                </p:wizard>
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

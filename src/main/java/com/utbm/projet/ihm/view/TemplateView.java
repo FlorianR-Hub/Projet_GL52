@@ -87,6 +87,6 @@ public class TemplateView extends GenericView {
     }
 
     public boolean isAdminOrNutritionist() {
-        return templateModel.getUser().getAccountType() != 0;
+        return templateModel.getUserAuth().getAccountType() != 0;
     }
 }

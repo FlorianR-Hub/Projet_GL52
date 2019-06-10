@@ -70,7 +70,7 @@
         box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
     }
 
-    .ui-icon-triangle-1-s {
+    #headerForm .ui-icon-triangle-1-s, .ui-icon-triangle-1-e {
         display: none !important;
     }
 

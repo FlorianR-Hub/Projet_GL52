@@ -33,14 +33,14 @@ CREATE TABLE IF NOT EXISTS RECETTE
    NUM_RECETTE BIGINT(5) NOT NULL AUTO_INCREMENT ,
    NOM_RECETTE VARCHAR(50) NOT NULL  ,
    TYPE_RECETTE VARCHAR(30) NOT NULL  ,
-   DIFFICULTE_RECETTE VARCHAR(10) NOT NULL  ,
+   DIFFICULTE_RECETTE VARCHAR(15) NOT NULL  ,
    DESC_RECETTE VARCHAR(1000) NOT NULL  ,
    TEMPS_PREPARATION_RECETTE INTEGER(3) NOT NULL  ,
    NB_PERSONNES_RECETTE INTEGER(2) NOT NULL  ,
    IMAGE_RECETTE LONGBLOB NOT NULL  
    , PRIMARY KEY (NUM_RECETTE) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       TABLE : FOURNISSEUR
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS FOURNISSEUR
    ADRESSE_FOURNISSEUR VARCHAR(128) NOT NULL  
    , PRIMARY KEY (NUM_FOURNISSEUR) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       TABLE : ADMINISTRATEUR
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS ADMINISTRATEUR
    COURRIEL_ADMIN VARCHAR(50) NOT NULL  
    , PRIMARY KEY (NUM_ADMIN) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       TABLE : UTILISATEUR
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS UTILISATEUR
    CARENCES VARCHAR(60) NULL  
    , PRIMARY KEY (NUM_UTILISATEUR) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       TABLE : USER_AUTH
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS USER_AUTH
    ACCOUNT_TYPE SMALLINT(1) NOT NULL  
    , PRIMARY KEY (ID) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       INDEX DE LA TABLE USER_AUTH
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS INGREDIENTS
    NOM_INGREDIENT VARCHAR(40) NOT NULL  
    , PRIMARY KEY (NUM_INGREDIENT) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       TABLE : NUTRITIONNISTE
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS NUTRITIONNISTE
    DESCRIPTION_NUTRITIONNISTE VARCHAR(300) NOT NULL  
    , PRIMARY KEY (NUM_NUTRITIONNISTE) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       TABLE : ETAPE
@@ -149,12 +149,12 @@ CREATE TABLE IF NOT EXISTS NUTRITIONNISTE
 
 CREATE TABLE IF NOT EXISTS ETAPE
  (
-   NUM_ETAPE INTEGER(2) NOT NULL AUTO_INCREMENT ,
+   NUM_ETAPE INTEGER(2) NOT NULL  ,
    NUM_RECETTE BIGINT(5) NOT NULL  ,
    INSTRUCTION_ETAPE VARCHAR(1000) NOT NULL  
-   , PRIMARY KEY (NUM_ETAPE) 
+   , PRIMARY KEY (NUM_ETAPE,NUM_RECETTE) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       TABLE : QUESTIONNAIRE
@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS QUESTIONNAIRE
    ENONCE_QUESTION VARCHAR(150) NOT NULL  
    , PRIMARY KEY (NUM_QUESTION) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       TABLE : PREFERER
@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS PREFERER
    NUM_RECETTE BIGINT(5) NOT NULL  
    , PRIMARY KEY (NUM_UTILISATEUR,NUM_RECETTE) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       TABLE : GERER
@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS GERER
    NUM_NUTRITIONNISTE BIGINT(6) NOT NULL  
    , PRIMARY KEY (NUM_ADMIN,NUM_RECETTE,NUM_NUTRITIONNISTE) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       TABLE : CONTENIR
@@ -202,10 +202,10 @@ CREATE TABLE IF NOT EXISTS CONTENIR
    NUM_RECETTE BIGINT(5) NOT NULL AUTO_INCREMENT ,
    NUM_INGREDIENT BIGINT(4) NOT NULL  ,
    QUANTITE INTEGER(5) NOT NULL  ,
-   UNITE VARCHAR(5) NULL  
+   UNITE VARCHAR(20) NULL  
    , PRIMARY KEY (NUM_RECETTE,NUM_INGREDIENT) 
  ) 
- comment = "";
+;
 
 # -----------------------------------------------------------------------------
 #       TABLE : FOURNIR
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS FOURNIR
    NUM_FOURNISSEUR BIGINT(4) NOT NULL  
    , PRIMARY KEY (NUM_INGREDIENT,NUM_FOURNISSEUR) 
  ) 
- comment = "";
+;
 
 
 # -----------------------------------------------------------------------------

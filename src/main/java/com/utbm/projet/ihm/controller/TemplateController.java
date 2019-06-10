@@ -29,11 +29,14 @@ public class TemplateController extends GenericController {
     private TemplateModel templateModel;
 
     @Autowired
+    private ProfileController profileController;
+
+    @Autowired
     private LoginService loginService;
 
     @Override
     public void initModel() {
-        templateModel.setUser(new UserAuth());
+        templateModel.setUserAuth(new UserAuth());
     }
 
     /**
@@ -42,20 +45,22 @@ public class TemplateController extends GenericController {
     public void login() throws IOException {
         FacesMessage message = null;
 
-        String pseudo = templateModel.getUser().getPseudo();
-        String password = templateModel.getUser().getMdp();
+        String pseudo = templateModel.getUserAuth().getPseudo();
+        String password = templateModel.getUserAuth().getMdp();
 
         try {
             UserAuth user = loginService.login(pseudo, password);
 
             templateModel.setLogged(true);
-            templateModel.getUser().setId(user.getId());
-            templateModel.getUser().setAccountType(user.getAccountType());
+            templateModel.getUserAuth().setId(user.getId());
+            templateModel.getUserAuth().setAccountType(user.getAccountType());
+
+            profileController.initModel();
 
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue", pseudo);
         } catch (Exception e) {
             templateModel.setLogged(false);
-            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Erreur d'authentification", "Informations d'authentification invalides");
+            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur d'authentification", "Informations d'authentification invalides");
         } finally {
             FacesContext.getCurrentInstance().addMessage(null, message);
             PrimeFaces.current().ajax().addCallbackParam("loggedIn", templateModel.isLogged());
@@ -65,15 +70,15 @@ public class TemplateController extends GenericController {
     public void register() {
         FacesMessage message = null;
 
-        String pseudo = templateModel.getUser().getPseudo();
-        String password = templateModel.getUser().getMdp();
+        String pseudo = templateModel.getUserAuth().getPseudo();
+        String password = templateModel.getUserAuth().getMdp();
 
         try {
             UserAuth user = loginService.register(pseudo, password);
 
             templateModel.setLogged(true);
-            templateModel.getUser().setId(user.getId());
-            templateModel.getUser().setAccountType(user.getAccountType());
+            templateModel.getUserAuth().setId(user.getId());
+            templateModel.getUserAuth().setAccountType(user.getAccountType());
 
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inscription réussie", "");
         } catch (Exception e) {

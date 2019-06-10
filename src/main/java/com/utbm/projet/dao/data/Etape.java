@@ -10,10 +10,8 @@ package com.utbm.projet.dao.data;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -33,38 +31,39 @@ import javax.validation.constraints.Size;
 public class Etape implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "NUM_ETAPE")
-    private Integer numEtape;
+    @EmbeddedId
+    protected EtapePK etapePK;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 1000)
     @Column(name = "INSTRUCTION_ETAPE")
     private String instructionEtape;
-    @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE")
+    @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Recette numRecette;
+    private Recette recette;
 
     public Etape() {
     }
 
-    public Etape(Integer numEtape) {
-        this.numEtape = numEtape;
+    public Etape(EtapePK etapePK) {
+        this.etapePK = etapePK;
     }
 
-    public Etape(Integer numEtape, String instructionEtape) {
-        this.numEtape = numEtape;
+    public Etape(EtapePK etapePK, String instructionEtape) {
+        this.etapePK = etapePK;
         this.instructionEtape = instructionEtape;
     }
 
-    public Integer getNumEtape() {
-        return numEtape;
+    public Etape(int numEtape, long numRecette) {
+        this.etapePK = new EtapePK(numEtape, numRecette);
     }
 
-    public void setNumEtape(Integer numEtape) {
-        this.numEtape = numEtape;
+    public EtapePK getEtapePK() {
+        return etapePK;
+    }
+
+    public void setEtapePK(EtapePK etapePK) {
+        this.etapePK = etapePK;
     }
 
     public String getInstructionEtape() {
@@ -75,18 +74,18 @@ public class Etape implements Serializable {
         this.instructionEtape = instructionEtape;
     }
 
-    public Recette getNumRecette() {
-        return numRecette;
+    public Recette getRecette() {
+        return recette;
     }
 
-    public void setNumRecette(Recette numRecette) {
-        this.numRecette = numRecette;
+    public void setRecette(Recette recette) {
+        this.recette = recette;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (numEtape != null ? numEtape.hashCode() : 0);
+        hash += (etapePK != null ? etapePK.hashCode() : 0);
         return hash;
     }
 
@@ -97,7 +96,7 @@ public class Etape implements Serializable {
             return false;
         }
         Etape other = (Etape) object;
-        if ((this.numEtape == null && other.numEtape != null) || (this.numEtape != null && !this.numEtape.equals(other.numEtape))) {
+        if ((this.etapePK == null && other.etapePK != null) || (this.etapePK != null && !this.etapePK.equals(other.etapePK))) {
             return false;
         }
         return true;
@@ -105,7 +104,7 @@ public class Etape implements Serializable {
 
     @Override
     public String toString() {
-        return "com.utbm.projet.dao.data.Etape[ numEtape=" + numEtape + " ]";
+        return "com.utbm.projet.dao.data.Etape[ etapePK=" + etapePK + " ]";
     }
 
 }

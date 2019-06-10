@@ -9,6 +9,7 @@
 .card {
     background-color: white !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2) !important;
+    width: 100%;
 }
 
 .panelGrid.ui-panelgrid>*>tr,
@@ -18,11 +19,19 @@
 
 .panelGridInfos {
     margin-top: 20px;
+    width: 100%;
 }
 
 .panelGridInfos td {
     vertical-align: top;
-    padding: 0;
+}
+
+.panelGridInfos tr td:nth-child(1) {
+    padding-left: 0 !important;
+}
+
+.panelGridInfos tr td:nth-child(2) {
+    padding-right: 0 !important;
 }
 
 .panelGridGuide {
@@ -64,7 +73,7 @@
     margin-right: 10px;
 }
 
-.margin-panel td {
+.padding-panel td {
     padding: .75em;
 }
 
@@ -127,7 +136,16 @@
         text-align: center;
     }
 
+    #recipeForm {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     .ingredientsPanel {
         margin-bottom: 20px;
+    }
+
+    .panelGridInfos td {
+        padding: 0 !important;
     }
 }
