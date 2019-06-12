@@ -42,6 +42,14 @@ public class RecipeCreationModel {
 
     private List<String> measures;
 
+    private List<String> ancsName;
+
+    private List<String> ancsNameSelected;
+
+    private List<String> allergiesName;
+
+    private List<String> allergiesNameSelected;
+
     public Recette getRecipe() {
         return recipe;
     }
@@ -120,6 +128,38 @@ public class RecipeCreationModel {
 
     public void setMeasures(List<String> measures) {
         this.measures = measures;
+    }
+
+    public List<String> getAncsName() {
+        return ancsName;
+    }
+
+    public void setAncsName(List<String> ancsName) {
+        this.ancsName = ancsName;
+    }
+
+    public List<String> getAncsNameSelected() {
+        return ancsNameSelected;
+    }
+
+    public void setAncsNameSelected(List<String> ancsNameSelected) {
+        this.ancsNameSelected = ancsNameSelected;
+    }
+
+    public List<String> getAllergiesName() {
+        return allergiesName;
+    }
+
+    public void setAllergiesName(List<String> allergiesName) {
+        this.allergiesName = allergiesName;
+    }
+
+    public List<String> getAllergiesNameSelected() {
+        return allergiesNameSelected;
+    }
+
+    public void setAllergiesNameSelected(List<String> allergiesNameSelected) {
+        this.allergiesNameSelected = allergiesNameSelected;
     }
 
 }

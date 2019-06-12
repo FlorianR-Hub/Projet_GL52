@@ -62,7 +62,7 @@
                     <p:panel header="Ingrédients" styleClass="ingredientsPanel padding-panel card">
                         <p:dataList value="#{recipeModel.recipe.contenirList}" var="ingredientInfos" styleClass="ingredientsDataList">
                             <p>
-                                #{recipeView.getIngredientStr(ingredientInfos)}
+                                #{ingredientInfos.ingredients.nomIngredient} : #{ingredientInfos.quantite}#{ingredientInfos.unite}
                             </p>
                         </p:dataList>
                     </p:panel>

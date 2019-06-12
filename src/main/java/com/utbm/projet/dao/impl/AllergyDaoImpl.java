@@ -38,9 +38,4 @@ public class AllergyDaoImpl implements AllergyDao {
         return allergyRepo.getOne(num);
     }
 
-    @Override
-    public void update(Allergenes allergy) {
-        allergyRepo.save(allergy);
-    }
-
 }

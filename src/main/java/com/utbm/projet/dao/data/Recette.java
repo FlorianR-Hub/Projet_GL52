@@ -86,7 +86,7 @@ public class Recette implements Serializable {
     private byte[] imageRecette;
 
     @Column(name = "ENERGIE")
-    private Integer energie;
+    private Integer energie = 1;
 
     @ManyToMany
     @JoinTable(name = "associer", joinColumns = {

@@ -50,10 +50,35 @@
 
                                 <p:outputLabel for="type" value="Type :" />
                                 <p:selectOneMenu id="type" value="#{recipeCreationModel.recipe.typeRecette}" autoWidth="false" required="true" label="Type">
-                                    <f:selectItem itemLabel="Type 1" itemValue="Type 1" />
-                                    <f:selectItem itemLabel="Type 2" itemValue="Type 2" />
-                                    <f:selectItem itemLabel="Type 3" itemValue="Type 3" />
+                                    <f:selectItem itemLabel="Apéritif" itemValue="Apéritif" />
+                                    <f:selectItem itemLabel="Boisson" itemValue="Boisson" />
+                                    <f:selectItem itemLabel="Dessert" itemValue="Dessert" />
+                                    <f:selectItem itemLabel="Entrée" itemValue="Entrée" />
+                                    <f:selectItem itemLabel="Grillade" itemValue="Grillade" />
+                                    <f:selectItem itemLabel="Plat" itemValue="Plat" />
                                 </p:selectOneMenu>
+                            </p:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="nutrition" title="Diététique">
+                        <p:panel header="Informations diététique">
+                            <p:messages />
+                            <p:panelGrid columns="2" styleClass="panelGrid">
+                                <p:outputLabel for="energy" value="Energie :" />
+                                <p:inputNumber id="energy" value="#{recipeCreationModel.recipe.energie}" symbol=" kcal" symbolPosition="s" required="true" minValue="1" maxValue="10000" label="Energie"/>
+
+                                <p:outputLabel for="allergiesName" value="Allergènes : " styleClass="bold"/>
+                                <p:selectCheckboxMenu id="allergiesName" value="#{recipeCreationModel.allergiesNameSelected}" label="Allergènes" multiple="true"
+                                                      filter="true" filterMatchMode="contains">
+                                    <f:selectItems value="#{recipeCreationModel.allergiesName}" />
+                                </p:selectCheckboxMenu>
+
+                                <p:outputLabel for="ancsName" value="Apports nutritionnels : " styleClass="bold"/>
+                                <p:selectCheckboxMenu id="ancsName" value="#{recipeCreationModel.ancsNameSelected}" required="true" label="Apports nutritionnels" multiple="true"
+                                                      filter="true" filterMatchMode="contains">
+                                    <f:selectItems value="#{recipeCreationModel.ancsName}" />
+                                </p:selectCheckboxMenu>
                             </p:panelGrid>
                         </p:panel>
                     </p:tab>

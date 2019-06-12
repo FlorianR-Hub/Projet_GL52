@@ -7,16 +7,16 @@
  */
 package com.utbm.projet.dao.repo;
 
-import com.utbm.projet.dao.data.Allergenes;
+import com.utbm.projet.dao.data.Anc;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 /**
  *
  */
-public interface AllergyRepo extends JpaRepository<Allergenes, Integer> {
+public interface AncRepo extends JpaRepository<Anc, Integer> {
 
-    @Query(value = "SELECT a FROM Allergenes a WHERE a.nomAllergene = ?1")
-    public Allergenes getByName(String name);
+    @Query(value = "SELECT a FROM Anc a WHERE a.nomAnc = ?1")
+    public Anc getByName(String name);
 
 }

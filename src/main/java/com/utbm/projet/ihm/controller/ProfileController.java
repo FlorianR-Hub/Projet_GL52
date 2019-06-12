@@ -156,24 +156,22 @@ public class ProfileController extends GenericController {
     public void updateUser() throws Exception {
         Utilisateur user = profileModel.getUser();
 
-        List<String> allergiesName = profileModel.getAllergiesNameSelected();
+        List<String> allergiesNameSelected = profileModel.getAllergiesNameSelected();
         List<Allergenes> allergies = new ArrayList<>();
 
-        if (allergiesName != null) {
-            for (String allergyName : allergiesName) {
-                Allergenes allergy = allergyDao.getByName(allergyName);
-                allergies.add(allergy);
+        if (allergiesNameSelected != null) {
+            for (String allergyName : allergiesNameSelected) {
+                allergies.add(allergyDao.getByName(allergyName));
             }
         }
         user.setAllergenesList(allergies);
 
-        List<String> deficienciesName = profileModel.getDeficienciesNameSelected();
+        List<String> deficienciesNameSelected = profileModel.getDeficienciesNameSelected();
         List<Carences> deficiencies = new ArrayList<>();
 
-        if (deficienciesName != null) {
-            for (String deficiencyName : deficienciesName) {
-                Carences deficiency = deficiencyDao.getByName(deficiencyName);
-                deficiencies.add(deficiency);
+        if (deficienciesNameSelected != null) {
+            for (String deficiencyName : deficienciesNameSelected) {
+                deficiencies.add(deficiencyDao.getByName(deficiencyName));
             }
         }
         user.setCarencesList(deficiencies);

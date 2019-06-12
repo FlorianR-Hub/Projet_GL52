@@ -21,6 +21,4 @@ public interface AllergyDao {
 
     public Allergenes getByNum(Integer num);
 
-    public void update(Allergenes allergy);
-
 }

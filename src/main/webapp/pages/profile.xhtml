@@ -40,8 +40,7 @@
 
                         <h:outputLabel for="emailAdmin" value="Email :" styleClass="bold"/>
                         <p:inputText id="emailAdmin" value="#{profileModel.admin.courrielAdmin}" required="true" label="Email"  validatorMessage="L'email est invalide.">
-                            <f:validateRegex
-                                pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                         </p:inputText>
                         <p:message for="emailAdmin" styleClass="desktopMessage"/>
                     </p:panelGrid>
@@ -119,15 +118,15 @@
 
                     <p:panelGrid columns="3" styleClass="panelGrid">
                         <p:outputLabel for="allergiesName" value="Allergies : " styleClass="bold"/>
-                        <p:selectCheckboxMenu id="allergiesName" value="#{profileModel.allergiesNameSelected}" label="Cities" multiple="true"
-                                              filter="true" filterMatchMode="contains" panelStyle="width:250px">
+                        <p:selectCheckboxMenu id="allergiesName" value="#{profileModel.allergiesNameSelected}" label="Allergies" multiple="true"
+                                              filter="true" filterMatchMode="contains">
                             <f:selectItems value="#{profileModel.allergiesName}" />
                         </p:selectCheckboxMenu>
                         <p:message for="allergiesName" styleClass="desktopMessage"/>
 
                         <p:outputLabel for="deficienciesName" value="Carences : " styleClass="bold"/>
-                        <p:selectCheckboxMenu id="deficienciesName" value="#{profileModel.deficienciesNameSelected}" label="Cities" multiple="true"
-                                              filter="true" filterMatchMode="contains" panelStyle="width:250px">
+                        <p:selectCheckboxMenu id="deficienciesName" value="#{profileModel.deficienciesNameSelected}" label="Carences" multiple="true"
+                                              filter="true" filterMatchMode="contains">
                             <f:selectItems value="#{profileModel.deficienciesName}" />
                         </p:selectCheckboxMenu>
                         <p:message for="deficienciesName" styleClass="desktopMessage"/>

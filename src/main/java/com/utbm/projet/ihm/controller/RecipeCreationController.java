@@ -7,12 +7,16 @@
  */
 package com.utbm.projet.ihm.controller;
 
+import com.utbm.projet.dao.data.Allergenes;
+import com.utbm.projet.dao.data.Anc;
 import com.utbm.projet.dao.data.Contenir;
 import com.utbm.projet.dao.data.ContenirPK;
 import com.utbm.projet.dao.data.Etape;
 import com.utbm.projet.dao.data.EtapePK;
 import com.utbm.projet.dao.data.Ingredients;
 import com.utbm.projet.dao.data.Recette;
+import com.utbm.projet.dao.interf.AllergyDao;
+import com.utbm.projet.dao.interf.AncDao;
 import com.utbm.projet.dao.interf.IngredientDao;
 import com.utbm.projet.dao.interf.RecipeDao;
 import com.utbm.projet.ihm.model.RecipeCreationModel;
@@ -41,6 +45,12 @@ public class RecipeCreationController extends GenericController {
     @Autowired
     private IngredientDao ingredientDao;
 
+    @Autowired
+    private AllergyDao allergyDao;
+
+    @Autowired
+    private AncDao ancDao;
+
     @Override
     public void initModel() {
         recipeCreationModel.setRecipe(new Recette());
@@ -57,27 +67,67 @@ public class RecipeCreationController extends GenericController {
         recipeCreationModel.setIngredients(ingredientNames);
 
         recipeCreationModel.setMeasures(Measures.getLabels());
+
+        List<String> allergiesName = new ArrayList<>();
+        List<Allergenes> allergies = allergyDao.getAll();
+        if (allergies != null) {
+            for (Allergenes allergy : allergies) {
+                allergiesName.add(allergy.getNomAllergene());
+            }
+        }
+        recipeCreationModel.setAllergiesName(allergiesName);
+
+        List<String> ancsName = new ArrayList<>();
+        List<Anc> ancs = ancDao.getAll();
+        if (ancs != null) {
+            for (Anc anc : ancs) {
+                ancsName.add(anc.getNomAnc());
+            }
+        }
+        recipeCreationModel.setAncsName(ancsName);
     }
 
     public void saveRecipe() {
         FacesMessage message = null;
 
         try {
-            Recette recipe = recipeDao.insert(recipeCreationModel.getRecipe());
+            Recette recipe = recipeCreationModel.getRecipe();
+
+            List<String> allergiesNameSelected = recipeCreationModel.getAllergiesNameSelected();
+            List<Allergenes> allergens = new ArrayList<>();
+
+            if (allergiesNameSelected != null) {
+                for (String allergyName : allergiesNameSelected) {
+                    allergens.add(allergyDao.getByName(allergyName));
+                }
+            }
+            recipe.setAllergenesList(allergens);
+
+            List<String> ancsNameSelected = recipeCreationModel.getAncsNameSelected();
+            List<Anc> ancs = new ArrayList<>();
+
+            if (ancsNameSelected != null) {
+                for (String ancName : ancsNameSelected) {
+                    ancs.add(ancDao.getByName(ancName));
+                }
+            }
+            recipe.setAncList(ancs);
+
+            Recette recipeSaved = recipeDao.insert(recipe);
             List<Etape> steps = recipeCreationModel.getSteps();
             List<Contenir> ingredientsInfos = recipeCreationModel.getIngredientsInfos();
 
             for (Etape step : steps) {
-                step.getEtapePK().setNumRecette(recipe.getNumRecette());
+                step.getEtapePK().setNumRecette(recipeSaved.getNumRecette());
             }
 
             for (Contenir ingredientInfos : ingredientsInfos) {
-                ingredientInfos.getContenirPK().setNumRecette(recipe.getNumRecette());
+                ingredientInfos.getContenirPK().setNumRecette(recipeSaved.getNumRecette());
             }
 
-            recipe.setEtapeList(steps);
-            recipe.setContenirList(ingredientsInfos);;
-            recipeDao.insert(recipe);
+            recipeSaved.setEtapeList(steps);
+            recipeSaved.setContenirList(ingredientsInfos);;
+            recipeDao.insert(recipeSaved);
 
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succès !", "La recette a bien été ajoutée");
         } catch (Exception e) {
