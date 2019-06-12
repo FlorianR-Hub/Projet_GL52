@@ -13,8 +13,8 @@ package com.utbm.projet.util;
 public enum AccountTypes {
 
     UTILISATEUR(0),
-    NUTRITIONNISTE(1),
-    ADMINISTRATEUR(2);
+    ADMINISTRATEUR(1),
+    NUTRITIONNISTE(2);
 
     private int id;
 

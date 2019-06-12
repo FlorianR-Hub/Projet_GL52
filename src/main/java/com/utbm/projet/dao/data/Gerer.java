@@ -27,14 +27,18 @@ import javax.persistence.Table;
 public class Gerer implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @EmbeddedId
     protected GererPK gererPK;
+
     @JoinColumn(name = "NUM_ADMIN", referencedColumnName = "NUM_ADMIN", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Administrateur administrateur;
+
     @JoinColumn(name = "NUM_NUTRITIONNISTE", referencedColumnName = "NUM_NUTRITIONNISTE", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Nutritionniste nutritionniste;
+
     @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Recette recette;

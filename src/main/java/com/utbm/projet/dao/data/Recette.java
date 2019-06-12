@@ -38,55 +38,76 @@ import javax.validation.constraints.Size;
 public class Recette implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "NUM_RECETTE")
     private Long numRecette;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "NOM_RECETTE")
     private String nomRecette;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
     @Column(name = "TYPE_RECETTE")
     private String typeRecette;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
     @Column(name = "DIFFICULTE_RECETTE")
     private String difficulteRecette;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 1000)
     @Column(name = "DESC_RECETTE")
     private String descRecette;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "TEMPS_PREPARATION_RECETTE")
     private int tempsPreparationRecette;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "NB_PERSONNES_RECETTE")
     private int nbPersonnesRecette;
+
     @Basic(optional = false)
     @NotNull
     @Lob
     @Column(name = "IMAGE_RECETTE")
     private byte[] imageRecette;
-    @JoinTable(name = "preferer", joinColumns = {
-        @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE")}, inverseJoinColumns = {
-        @JoinColumn(name = "NUM_UTILISATEUR", referencedColumnName = "NUM_UTILISATEUR")})
+
+    @Column(name = "ENERGIE")
+    private Integer energie;
+
     @ManyToMany
-    private List<Utilisateur> utilisateurList;
+    @JoinTable(name = "associer", joinColumns = {
+        @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE")}, inverseJoinColumns = {
+        @JoinColumn(name = "NUM_ALLERGENE", referencedColumnName = "NUM_ALLERGENE")})
+    private List<Allergenes> allergenesList;
+
+    @ManyToMany
+    @JoinTable(name = "posseder", joinColumns = {
+        @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE")}, inverseJoinColumns = {
+        @JoinColumn(name = "NUM_ANC", referencedColumnName = "NUM_ANC")})
+    private List<Anc> ancList;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recette")
     private List<Etape> etapeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recette")
-    private List<Gerer> gererList;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recette")
     private List<Contenir> contenirList;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recette")
+    private List<Gerer> gererList;
 
     public Recette() {
     }
@@ -170,12 +191,28 @@ public class Recette implements Serializable {
         this.imageRecette = imageRecette;
     }
 
-    public List<Utilisateur> getUtilisateurList() {
-        return utilisateurList;
+    public Integer getEnergie() {
+        return energie;
     }
 
-    public void setUtilisateurList(List<Utilisateur> utilisateurList) {
-        this.utilisateurList = utilisateurList;
+    public void setEnergie(Integer energie) {
+        this.energie = energie;
+    }
+
+    public List<Allergenes> getAllergenesList() {
+        return allergenesList;
+    }
+
+    public void setAllergenesList(List<Allergenes> allergenesList) {
+        this.allergenesList = allergenesList;
+    }
+
+    public List<Anc> getAncList() {
+        return ancList;
+    }
+
+    public void setAncList(List<Anc> ancList) {
+        this.ancList = ancList;
     }
 
     public List<Etape> getEtapeList() {
@@ -186,20 +223,20 @@ public class Recette implements Serializable {
         this.etapeList = etapeList;
     }
 
-    public List<Gerer> getGererList() {
-        return gererList;
-    }
-
-    public void setGererList(List<Gerer> gererList) {
-        this.gererList = gererList;
-    }
-
     public List<Contenir> getContenirList() {
         return contenirList;
     }
 
     public void setContenirList(List<Contenir> contenirList) {
         this.contenirList = contenirList;
+    }
+
+    public List<Gerer> getGererList() {
+        return gererList;
+    }
+
+    public void setGererList(List<Gerer> gererList) {
+        this.gererList = gererList;
     }
 
     @Override

@@ -35,6 +35,6 @@ public class ProfileView extends GenericView {
     }
 
     public void onValidationSuccess() {
-        profileController.updateUser();
+        profileController.updatePerson();
     }
 }

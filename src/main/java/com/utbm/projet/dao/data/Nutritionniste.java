@@ -36,35 +36,43 @@ import javax.validation.constraints.Size;
 public class Nutritionniste implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "NUM_NUTRITIONNISTE")
     private Long numNutritionniste;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "PRENOM_NUTRITIONNISTE")
     private String prenomNutritionniste;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "NOM_NUTRITIONNISTE")
     private String nomNutritionniste;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "COURRIEL_NUTRITIONNISTE")
     private String courrielNutritionniste;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 300)
     @Column(name = "DESCRIPTION_NUTRITIONNISTE")
     private String descriptionNutritionniste;
+
     @OneToMany(mappedBy = "numNutritionniste")
     private List<Utilisateur> utilisateurList;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "nutritionniste")
     private List<Gerer> gererList;
+
     @JoinColumn(name = "ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private UserAuth id;

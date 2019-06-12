@@ -35,18 +35,22 @@ import javax.validation.constraints.Size;
 public class Ingredients implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "NUM_INGREDIENT")
     private Long numIngredient;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "NOM_INGREDIENT")
     private String nomIngredient;
+
     @ManyToMany(mappedBy = "ingredientsList")
     private List<Fournisseur> fournisseurList;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredients")
     private List<Contenir> contenirList;
 

@@ -39,8 +39,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void update(Utilisateur user) {
-        userRepo.save(user);
+    public Utilisateur update(Utilisateur user) {
+        return userRepo.save(user);
     }
 
 }

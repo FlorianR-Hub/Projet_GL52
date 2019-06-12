@@ -18,6 +18,6 @@ public interface UserDao {
 
     public Utilisateur getByUserAuthId(Long id);
 
-    public void update(Utilisateur user);
+    public Utilisateur update(Utilisateur user);
 
 }

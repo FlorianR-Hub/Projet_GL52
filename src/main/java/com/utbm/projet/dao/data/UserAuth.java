@@ -34,29 +34,36 @@ import javax.validation.constraints.Size;
 public class UserAuth implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "PSEUDO")
     private String pseudo;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "MDP")
     private String mdp;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "ACCOUNT_TYPE")
     private short accountType;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
     private List<Administrateur> administrateurList;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
     private List<Utilisateur> utilisateurList;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
     private List<Nutritionniste> nutritionnisteList;
 

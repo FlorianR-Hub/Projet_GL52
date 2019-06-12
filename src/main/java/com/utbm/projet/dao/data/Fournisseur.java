@@ -35,21 +35,25 @@ import javax.validation.constraints.Size;
 public class Fournisseur implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "NUM_FOURNISSEUR")
     private Long numFournisseur;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "NOM_FOURNISSEUR")
     private String nomFournisseur;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
     @Column(name = "ADRESSE_FOURNISSEUR")
     private String adresseFournisseur;
+
     @JoinTable(name = "fournir", joinColumns = {
         @JoinColumn(name = "NUM_FOURNISSEUR", referencedColumnName = "NUM_FOURNISSEUR")}, inverseJoinColumns = {
         @JoinColumn(name = "NUM_INGREDIENT", referencedColumnName = "NUM_INGREDIENT")})

@@ -9,6 +9,7 @@ package com.utbm.projet.ihm.view;
 
 import com.utbm.projet.ihm.controller.TemplateController;
 import com.utbm.projet.ihm.model.TemplateModel;
+import com.utbm.projet.util.AccountTypes;
 import java.io.IOException;
 import javax.annotation.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -87,6 +88,19 @@ public class TemplateView extends GenericView {
     }
 
     public boolean isAdminOrNutritionist() {
-        return templateModel.getUserAuth().getAccountType() != 0;
+        return templateModel.getUserAuth().getAccountType() != AccountTypes.UTILISATEUR.getId();
     }
+
+    public boolean isUser() {
+        return templateModel.getUserAuth().getAccountType() == AccountTypes.UTILISATEUR.getId();
+    }
+
+    public boolean isAdmin() {
+        return templateModel.getUserAuth().getAccountType() == AccountTypes.ADMINISTRATEUR.getId();
+    }
+
+    public boolean isNutritionist() {
+        return templateModel.getUserAuth().getAccountType() == AccountTypes.NUTRITIONNISTE.getId();
+    }
+
 }

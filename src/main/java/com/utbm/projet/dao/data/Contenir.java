@@ -31,18 +31,23 @@ import javax.validation.constraints.Size;
 public class Contenir implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @EmbeddedId
     protected ContenirPK contenirPK;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "QUANTITE")
     private int quantite;
+
     @Size(max = 20)
     @Column(name = "UNITE")
     private String unite;
+
     @JoinColumn(name = "NUM_INGREDIENT", referencedColumnName = "NUM_INGREDIENT", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Ingredients ingredients;
+
     @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Recette recette;

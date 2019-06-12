@@ -54,7 +54,6 @@ public class TemplateController extends GenericController {
             templateModel.setLogged(true);
             templateModel.getUserAuth().setId(user.getId());
             templateModel.getUserAuth().setAccountType(user.getAccountType());
-
             profileController.initModel();
 
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue", pseudo);

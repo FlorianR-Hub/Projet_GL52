@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -35,52 +36,72 @@ import javax.validation.constraints.Size;
 public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "NUM_UTILISATEUR")
     private Long numUtilisateur;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "PRENOM_UTILISATEUR")
     private String prenomUtilisateur;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "NOM_UTILISATEUR")
     private String nomUtilisateur;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "COURRIEL_UTILISATEUR")
     private String courrielUtilisateur;
+
     @Size(max = 150)
     @Column(name = "ADRESSE_UTILISATEUR")
     private String adresseUtilisateur;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "AGE")
     private int age;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "POIDS")
     private int poids;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "TAILLE")
     private int taille;
-    @Size(max = 60)
-    @Column(name = "ALLERGIES")
-    private String allergies;
-    @Size(max = 60)
-    @Column(name = "CARENCES")
-    private String carences;
-    @ManyToMany(mappedBy = "utilisateurList")
+
+    @ManyToMany
+    @JoinTable(name = "etre_allergique", joinColumns = {
+        @JoinColumn(name = "NUM_UTILISATEUR", referencedColumnName = "NUM_UTILISATEUR")}, inverseJoinColumns = {
+        @JoinColumn(name = "NUM_ALLERGENE", referencedColumnName = "NUM_ALLERGENE")})
+    private List<Allergenes> allergenesList;
+
+    @ManyToMany
+    @JoinTable(name = "etre_sujet", joinColumns = {
+        @JoinColumn(name = "NUM_UTILISATEUR", referencedColumnName = "NUM_UTILISATEUR")}, inverseJoinColumns = {
+        @JoinColumn(name = "NUM_CARENCE", referencedColumnName = "NUM_CARENCE")})
+    private List<Carences> carencesList;
+
+    @ManyToMany
+    @JoinTable(name = "preferer", joinColumns = {
+        @JoinColumn(name = "NUM_UTILISATEUR", referencedColumnName = "NUM_UTILISATEUR")}, inverseJoinColumns = {
+        @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE")})
     private List<Recette> recetteList;
+
     @JoinColumn(name = "NUM_NUTRITIONNISTE", referencedColumnName = "NUM_NUTRITIONNISTE")
     @ManyToOne
     private Nutritionniste numNutritionniste;
+
     @JoinColumn(name = "ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private UserAuth id;
@@ -166,20 +187,20 @@ public class Utilisateur implements Serializable {
         this.taille = taille;
     }
 
-    public String getAllergies() {
-        return allergies;
+    public List<Allergenes> getAllergenesList() {
+        return allergenesList;
     }
 
-    public void setAllergies(String allergies) {
-        this.allergies = allergies;
+    public void setAllergenesList(List<Allergenes> allergenesList) {
+        this.allergenesList = allergenesList;
     }
 
-    public String getCarences() {
-        return carences;
+    public List<Carences> getCarencesList() {
+        return carencesList;
     }
 
-    public void setCarences(String carences) {
-        this.carences = carences;
+    public void setCarencesList(List<Carences> carencesList) {
+        this.carencesList = carencesList;
     }
 
     public List<Recette> getRecetteList() {
@@ -228,7 +249,7 @@ public class Utilisateur implements Serializable {
 
     @Override
     public String toString() {
-        return "com.utbm.projet.dao.data.Utilisateur[ numUtilisateur=" + numUtilisateur + " ]";
+        return "Utilisateur{" + "numUtilisateur=" + numUtilisateur + ", prenomUtilisateur=" + prenomUtilisateur + ", nomUtilisateur=" + nomUtilisateur + ", courrielUtilisateur=" + courrielUtilisateur + ", adresseUtilisateur=" + adresseUtilisateur + ", age=" + age + ", poids=" + poids + ", taille=" + taille + ", allergenesList=" + allergenesList + ", carencesList=" + carencesList + ", recetteList=" + recetteList + ", numNutritionniste=" + numNutritionniste + ", id=" + id + '}';
     }
 
 }

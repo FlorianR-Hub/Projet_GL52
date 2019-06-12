@@ -31,13 +31,16 @@ import javax.validation.constraints.Size;
 public class Etape implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @EmbeddedId
     protected EtapePK etapePK;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 1000)
     @Column(name = "INSTRUCTION_ETAPE")
     private String instructionEtape;
+
     @JoinColumn(name = "NUM_RECETTE", referencedColumnName = "NUM_RECETTE", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Recette recette;

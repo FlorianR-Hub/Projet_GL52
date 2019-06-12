@@ -36,29 +36,35 @@ import javax.validation.constraints.Size;
 public class Administrateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "NUM_ADMIN")
     private Integer numAdmin;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "PRENOM_ADMIN")
     private String prenomAdmin;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "NOM_ADMIN")
     private String nomAdmin;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "COURRIEL_ADMIN")
     private String courrielAdmin;
+
     @JoinColumn(name = "ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private UserAuth id;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "administrateur")
     private List<Gerer> gererList;
 

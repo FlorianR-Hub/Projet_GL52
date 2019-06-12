@@ -82,7 +82,6 @@ public class RecipeCreationController extends GenericController {
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succès !", "La recette a bien été ajoutée");
         } catch (Exception e) {
             message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur !", "La recette n'a pas pu être ajoutée");
-            System.out.println(e.getCause().toString());
         } finally {
             FacesContext.getCurrentInstance().addMessage(null, message);
         }

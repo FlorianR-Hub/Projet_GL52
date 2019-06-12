@@ -24,6 +24,7 @@ public class EtapePK implements Serializable {
     @NotNull
     @Column(name = "NUM_ETAPE")
     private int numEtape;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "NUM_RECETTE")
