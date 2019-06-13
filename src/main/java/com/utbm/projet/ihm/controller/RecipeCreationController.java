@@ -88,7 +88,7 @@ public class RecipeCreationController extends GenericController {
     }
 
     public void saveRecipe() {
-        FacesMessage message = null;
+        FacesContext context = FacesContext.getCurrentInstance();
 
         try {
             Recette recipe = recipeCreationModel.getRecipe();
@@ -129,11 +129,10 @@ public class RecipeCreationController extends GenericController {
             recipeSaved.setContenirList(ingredientsInfos);;
             recipeDao.insert(recipeSaved);
 
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succès !", "La recette a bien été ajoutée");
+            context.getExternalContext().redirect("recipe.xhtml?num=" + recipeSaved.getNumRecette());
         } catch (Exception e) {
-            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur !", "La recette n'a pas pu être ajoutée");
-        } finally {
-            FacesContext.getCurrentInstance().addMessage(null, message);
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur !", "La recette n'a pas pu être ajoutée");
+            context.addMessage(null, message);
         }
     }
 

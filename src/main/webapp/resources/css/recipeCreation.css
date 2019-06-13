@@ -15,6 +15,14 @@
     width: 100%;
 }
 
+.panelGridButtons {
+    margin-top: 10px;
+}
+
+.padding-left td {
+    padding-left: 0 !important;
+}
+
 .createButton {
     float: right;
 }
@@ -26,6 +34,10 @@
 
 .textArea {
     resize: none;
+}
+
+.panelGridInstructions {
+    padding: 0 10px;
 }
 
 .panelGridInstructions label {

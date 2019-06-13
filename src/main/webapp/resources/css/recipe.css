@@ -17,12 +17,15 @@
     border: none;
 }
 
-.panelGridInfos {
-    margin-top: 20px;
+.panelGrid {
     width: 100%;
 }
 
-.panelGridInfos td {
+.panelGridInfos {
+    margin-top: 20px;
+}
+
+.panelGridInfos td{
     vertical-align: top;
 }
 
@@ -34,8 +37,15 @@
     padding-right: 0 !important;
 }
 
-.panelGridGuide {
-    width: 100%;
+.panelDietetic div {
+    border: none ;
+}
+
+.dataGridAnc {
+    border-top: 1px solid #ccc !important;
+    border-bottom: 1px solid #ccc !important;
+    padding: 10px 0;
+    margin: 10px 0 !important;
 }
 
 .ingredientsPanel .ui-panel-titlebar {
@@ -50,12 +60,20 @@
     background-color: #3c8dbc;
 }
 
-.guidePanel {
+.stepPanel h4, .stepPanel p {
+    padding-left: .75em;
+}
+
+.guidePanel, .dieteticPanel {
     margin-top: 20px;
 }
 
 .guidePanel .ui-panel-titlebar {
     background-color: #e63e5f;
+}
+
+.dieteticPanel .ui-panel-titlebar {
+    background-color: #2c9f56;
 }
 
 .ui-panel-titlebar, .ui-panel {
@@ -81,8 +99,25 @@
     border: none;
 }
 
+.dieteticOutputText {
+    color: #2c9f56;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.guideOutputText {
+    color: #e63e5f;
+    font-size: 18px;
+    font-weight: 600;
+}
+
 #recipeForm ul {
     padding-left: 0;
+    margin-bottom: 0;
+}
+
+#recipeForm ul li:nth-last-child(1) {
+    border: 0 !important;
 }
 
 #recipeForm li {
@@ -110,7 +145,7 @@
 }
 
 .bold {
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .center {
@@ -119,7 +154,7 @@
 }
 
 .big-font-size {
-    font-size: 1.8em;
+    font-size: 1.8em !important;
 }
 
 .recipeImage {

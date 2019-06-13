@@ -23,11 +23,11 @@
                 <p:growl id="growl" life="1500" showDetail="true"/>
 
                 <h1>
-                    Profil
+                    Informations personnelles
                 </h1>
 
                 <h:panelGrid styleClass="card margin-panel">
-                    <h3>Informations générales :</h3>
+                    <h3>Profil</h3>
 
                     <p:panelGrid columns="3" styleClass="panelGrid margin" rendered="#{templateView.isAdmin()}">
                         <h:outputLabel for="firstnameAdmin" value="Prénom :" styleClass="bold"/>
@@ -92,7 +92,8 @@
                 </h:panelGrid>
 
                 <h:panelGrid styleClass="card margin-panel margin" rendered="#{templateView.isUser()}">
-                    <h3>Informations de santé :</h3>
+                    <h3>Données médicales</h3>
+
                     <p:panelGrid columns="3" styleClass="panelGrid margin-top">
                         <h:outputLabel for="age" value="Age :" styleClass="bold"/>
                         <h:panelGrid columns="1" style="margin-bottom: 10px">

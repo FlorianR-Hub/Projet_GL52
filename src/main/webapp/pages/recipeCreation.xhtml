@@ -27,7 +27,7 @@
                             <p:messages />
                             <b:panelGrid colSpans="12">
                                 <p:outputLabel value="Photo de la recette *" />
-                                <p:fileUpload fileUploadListener="#{recipeCreationView.upload}" auto="true" styleClass="imageRecipe" label="Choisir"/>
+                                <p:fileUpload fileUploadListener="#{recipeCreationView.upload}" auto="true" styleClass="imageRecipe" label="Choisir" required="true" />
 
                                 <b:inputText value="#{recipeCreationModel.recipe.nomRecette}" label="Nom de la recette" required="true" placeholder="Choisissez un titre pour votre recette"/>
 
@@ -62,7 +62,7 @@
                     </p:tab>
 
                     <p:tab id="nutrition" title="Diététique">
-                        <p:panel header="Informations diététique">
+                        <p:panel header="Informations diététiques">
                             <p:messages />
                             <p:panelGrid columns="2" styleClass="panelGrid">
                                 <p:outputLabel for="energy" value="Energie :" />
@@ -88,30 +88,35 @@
                             <p:messages />
                             <p:panelGrid columns="3" styleClass="panelGrid" columnClasses="ui-g-12 ui-md-4, ui-g-6 ui-md-4, ui-g-6 ui-md-4">
 
-                                <p:panelGrid columns="1" styleClass="panelGrid">
+                                <p:panelGrid columns="1" styleClass="panelGrid padding-left">
                                     <p:outputLabel for="ingredient" value="Ingrédients" />
                                     <p:selectOneMenu id="ingredient" value="#{recipeCreationModel.newIngredient.nomIngredient}" required="true" editable="true" filter="true" filterMatchMode="contains">
                                         <f:selectItems value="#{recipeCreationModel.ingredients}" />
                                     </p:selectOneMenu>
                                 </p:panelGrid>
 
-                                <p:panelGrid columns="1" styleClass="panelGrid">
+                                <p:panelGrid columns="1" styleClass="panelGrid padding-left">
                                     <p:outputLabel for="quantity" value="Quantité" />
                                     <p:inputNumber id="quantity" value="#{recipeCreationModel.newIngredientInfos.quantite}" required="true" minValue="0" maxValue="10000" label="Quantité"/>
                                 </p:panelGrid>
 
-                                <p:panelGrid columns="1" styleClass="panelGrid">
+                                <p:panelGrid columns="1" styleClass="panelGrid padding-left">
                                     <p:outputLabel for="measure" value="Mesure" />
                                     <p:selectOneMenu id="measure" value="#{recipeCreationModel.newIngredientInfos.unite}" autoWidth="false">
                                         <f:selectItem itemLabel="(Rien)" itemValue="" />
                                         <f:selectItems value="#{recipeCreationModel.measures}"/>
                                     </p:selectOneMenu>
                                 </p:panelGrid>
+                            </p:panelGrid>
 
+                            <p:panelGrid columns="2" styleClass="panelGrid panelGridButtons">
+                                <p:commandButton value="Ajouter" styleClass="ui-priority-primary" update="growl ingredientsInfosDT"
+                                                 action="#{recipeCreationView.onAddNewIngredientInfos()}" />
+                                <p:commandButton value="Réinitialiser" type="reset"/>
                             </p:panelGrid>
 
                             <p:dataTable id="ingredientsInfosDT" widgetVar="ingredientsWidget" var="ingredientInfos" value="#{recipeCreationModel.ingredientsInfos}" editable="true" editMode="cell"
-                                         rowKey="#{ingredientInfos.ingredients.numIngredient}" selectionMode="single" selection="#{recipeCreationModel.selectedIngredientInfos}" styleClass="margin" emptyMessage="Aucun ingrédient ajouté">
+                                         styleClass="margin" emptyMessage="Aucun ingrédient ajouté">
 
                                 <p:column headerText="Ingrédient">
                                     <p:cellEditor>
@@ -140,14 +145,13 @@
                                         </f:facet>
                                     </p:cellEditor>
                                 </p:column>
+
+                                <p:column>
+                                    <p:commandLink value="Supprimer" update="ingredientsInfosDT" process="ingredientsInfosDT">
+                                        <p:collector value="#{ingredientInfos}" removeFrom="#{recipeCreationModel.ingredientsInfos}" unique="true"/>
+                                    </p:commandLink>
+                                </p:column>
                             </p:dataTable>
-
-                            <p:contextMenu for="ingredientsInfosDT">
-                                <p:menuitem value="Supprimer l'ingrédient" update="ingredientsInfosDT" action="#{recipeCreationView.onDeleteIngredientInfos}"/>
-                            </p:contextMenu>
-
-                            <p:commandButton value="Ajouter" styleClass="ui-priority-primary" update="growl ingredientsInfosDT"
-                                             action="#{recipeCreationView.onAddNewIngredientInfos()}" />
                         </p:panel>
                     </p:tab>
 
@@ -161,8 +165,14 @@
                                 <b:inputTextarea value="#{recipeCreationModel.newStep.instructionEtape}" label="Instructions"  placeholder="Décrivez ici les instruction d'une étape de votre recette" styleClass="textArea"/>
                             </b:panelGrid>
 
+                            <p:panelGrid columns="2" styleClass="panelGrid">
+                                <p:commandButton value="Ajouter" styleClass="ui-priority-primary" update="growl stepsDT"
+                                                 action="#{recipeCreationView.onAddNewStep()}" />
+                                <p:commandButton value="Réinitialiser" type="reset"/>
+                            </p:panelGrid>
+
                             <p:dataTable id="stepsDT" widgetVar="stepsWidget" var="step" value="#{recipeCreationModel.steps}" editable="true" editMode="cell"
-                                         rowKey="#{step.etapePK.numEtape}" selectionMode="single" selection="#{recipeCreationModel.selectedStep}" styleClass="margin" emptyMessage="Aucune étape ajoutée">
+                                         styleClass="margin" emptyMessage="Aucune étape ajoutée">
 
                                 <p:column headerText="Etape n°">
                                     <p:cellEditor>
@@ -177,19 +187,17 @@
                                         <f:facet name="input"><p:inputText value="#{step.instructionEtape}" style="width:100%"/></f:facet>
                                     </p:cellEditor>
                                 </p:column>
+
+                                <p:column width="80">
+                                    <p:commandLink value="Supprimer" update="stepsDT" process="stepsDT">
+                                        <p:collector value="#{step}" removeFrom="#{recipeCreationModel.steps}" unique="true"/>
+                                    </p:commandLink>
+                                </p:column>
                             </p:dataTable>
 
-                            <p:contextMenu for="stepsDT">
-                                <p:menuitem value="Supprimer l'étape" update="stepsDT" action="#{recipeCreationView.onDeleteStep}"/>
-                            </p:contextMenu>
-
-                            <h:panelGrid columns="2" styleClass="panelGridButton">
-                                <p:commandButton value="Ajouter" styleClass="ui-priority-primary" update="growl stepsDT"
-                                                 action="#{recipeCreationView.onAddNewStep()}" />
-
+                            <h:panelGrid columns="1" styleClass="panelGridButton">
                                 <p:commandButton styleClass="createButton" value="Publier la recette" action="#{recipeCreationView.onSave}" update="growl"/>
                             </h:panelGrid>
-
                         </p:panel>
                     </p:tab>
                 </p:wizard>

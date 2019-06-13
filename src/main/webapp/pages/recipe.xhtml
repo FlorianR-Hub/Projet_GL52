@@ -18,6 +18,8 @@
                 <p> Identifiez-vous pour voir le contenu de la page. </p>
             </p:panelGrid>
 
+
+
             <p:panelGrid rendered="#{templateModel.logged}" styleClass="panelGrid">
                 <h1>
                     #{recipeModel.recipe.nomRecette}
@@ -34,32 +36,53 @@
 
                 </h:panelGrid>
 
-                <p:panel header="Guide de préparation : #{recipeModel.recipe.nomRecette}" styleClass="guidePanel card">
+                <p:panel header="Informations diététiques" styleClass="dieteticPanel card panelDietetic" toggleable="true">
+                    <p:dataGrid value="#{recipeModel.recipe.allergenesList}" var="allergen" columns="3" layout="grid" styleClass="bold center" emptyMessage="Aucun">
+                        <f:facet name="header">
+                            <h:outputText value="Allergènes" styleClass="dieteticOutputText"/>
+                        </f:facet>
+                        #{allergen.nomAllergene}
+                    </p:dataGrid>
+
+                    <p:dataGrid value="#{recipeModel.recipe.ancList}" var="anc" columns="3" layout="grid" styleClass="bold center dataGridAnc" emptyMessage="Aucun">
+                        <f:facet name="header">
+                            <h:outputText value="Apports nutritionnels" styleClass="dieteticOutputText"/>
+                        </f:facet>
+                        #{anc.nomAnc}
+                    </p:dataGrid>
+
+                    <p:panelGrid columns="1" styleClass="panelGrid center">
+                        <h:outputText value="Energie" styleClass="dieteticOutputText"/>
+                        <h:outputText value="#{recipeModel.recipe.energie} kcal" styleClass="bold"/>
+                    </p:panelGrid>
+                </p:panel>
+
+                <p:panel header="Guide de préparation : #{recipeModel.recipe.nomRecette}" styleClass="guidePanel card" toggleable="true">
                     <p:panelGrid columns="4" styleClass="panelGrid panelGridGuide" columnClasses="ui-g-6 ui-md-3, ui-g-6 ui-md-3, ui-g-6 ui-md-3, ui-g-6 ui-md-3">
                         <p:panelGrid columns="1" styleClass="panelGrid center">
-                            <h:outputText value="Personnes" />
+                            <h:outputText value="Personnes" styleClass="guideOutputText"/>
                             <h:outputText value="#{recipeModel.recipe.nbPersonnesRecette}" styleClass="bold big-font-size"/>
                         </p:panelGrid>
 
                         <p:panelGrid columns="1" styleClass="panelGrid center">
-                            <h:outputText value="Temps" />
+                            <h:outputText value="Temps" styleClass="guideOutputText"/>
                             <h:outputText value="#{recipeModel.recipe.tempsPreparationRecette} min" styleClass="bold big-font-size"/>
                         </p:panelGrid>
 
                         <p:panelGrid columns="1" styleClass="panelGrid center">
-                            <h:outputText value="Difficulté" />
+                            <h:outputText value="Difficulté" styleClass="guideOutputText"/>
                             <h:outputText value="#{recipeModel.recipe.difficulteRecette}" styleClass="bold big-font-size"/>
                         </p:panelGrid>
 
                         <p:panelGrid columns="1" styleClass="panelGrid center">
-                            <h:outputText value="Type" />
+                            <h:outputText value="Type" styleClass="guideOutputText"/>
                             <h:outputText value="#{recipeModel.recipe.typeRecette}" styleClass="bold big-font-size"/>
                         </p:panelGrid>
                     </p:panelGrid>
                 </p:panel>
 
                 <p:panelGrid columns="2" styleClass="panelGrid panelGridInfos" columnClasses="ui-g-12 ui-md-4, ui-g-12 ui-md-8">
-                    <p:panel header="Ingrédients" styleClass="ingredientsPanel padding-panel card">
+                    <p:panel header="Ingrédients" styleClass="ingredientsPanel padding-panel card" toggleable="true">
                         <p:dataList value="#{recipeModel.recipe.contenirList}" var="ingredientInfos" styleClass="ingredientsDataList">
                             <p>
                                 #{ingredientInfos.ingredients.nomIngredient} : #{ingredientInfos.quantite}#{ingredientInfos.unite}
@@ -67,7 +90,7 @@
                         </p:dataList>
                     </p:panel>
 
-                    <p:panel header="Préparation" styleClass="stepPanel padding-panel card">
+                    <p:panel header="Préparation" styleClass="stepPanel padding-panel card" toggleable="true">
                         <p:repeat value="#{recipeModel.recipe.etapeList}" var="step">
                             <h:panelGrid>
                                 <h4>Étape #{step.etapePK.numEtape}</h4>
