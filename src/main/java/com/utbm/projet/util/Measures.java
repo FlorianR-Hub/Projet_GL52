@@ -43,10 +43,13 @@ public enum Measures {
     }
 
     public static String getEnumNameByLabel(String name) {
-
         for (Measures argEnum : Measures.values()) {
             if (argEnum.getLabel().equalsIgnoreCase(name)) {
-                return argEnum.name().toLowerCase();
+                String enumName = argEnum.name().toLowerCase();
+                if (argEnum.name().equals("CAFE") || argEnum.name().equals("SOUPE") || argEnum.name().equals("THE")) {
+                    enumName = "c. à " + enumName;
+                }
+                return enumName;
             }
         }
 
@@ -54,7 +57,6 @@ public enum Measures {
     }
 
     public static Measures getByEnumName(String name) {
-
         for (Measures argEnum : Measures.values()) {
             if (argEnum.name().equalsIgnoreCase(name)) {
                 return argEnum;

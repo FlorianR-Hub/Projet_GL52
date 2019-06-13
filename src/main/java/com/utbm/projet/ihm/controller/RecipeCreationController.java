@@ -122,6 +122,10 @@ public class RecipeCreationController extends GenericController {
             }
 
             for (Contenir ingredientInfos : ingredientsInfos) {
+                ingredientInfos.setUnite(Measures.getEnumNameByLabel(ingredientInfos.getUnite()));
+            }
+
+            for (Contenir ingredientInfos : ingredientsInfos) {
                 ingredientInfos.getContenirPK().setNumRecette(recipeSaved.getNumRecette());
             }
 
@@ -133,6 +137,7 @@ public class RecipeCreationController extends GenericController {
         } catch (Exception e) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur !", "La recette n'a pas pu être ajoutée");
             context.addMessage(null, message);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -167,7 +172,6 @@ public class RecipeCreationController extends GenericController {
 
         Contenir newIngredientInfos = recipeCreationModel.getNewIngredientInfos();
         newIngredientInfos.setIngredients(newIngredient);
-        newIngredientInfos.setUnite(Measures.getEnumNameByLabel(newIngredientInfos.getUnite()));
 
         ContenirPK ingredientInfosPk = new ContenirPK();
         ingredientInfosPk.setNumIngredient(newIngredient.getNumIngredient());

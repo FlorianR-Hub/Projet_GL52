@@ -1,7 +1,14 @@
+@media (min-width: 992px) {
+    #homeForm {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
 .recipe-card {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    padding: 25px;
-    margin: 5%;
+    padding: 20px;
+    margin: 1%;
 }
 
 .recipe-card:hover{
@@ -37,7 +44,7 @@
     float: right;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 991px) {
     .recipe-card {
         padding: 10px;
     }

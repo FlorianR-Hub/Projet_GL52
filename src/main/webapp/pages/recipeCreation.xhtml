@@ -66,7 +66,7 @@
                             <p:messages />
                             <p:panelGrid columns="2" styleClass="panelGrid">
                                 <p:outputLabel for="energy" value="Energie :" />
-                                <p:inputNumber id="energy" value="#{recipeCreationModel.recipe.energie}" symbol=" kcal" symbolPosition="s" required="true" minValue="1" maxValue="10000" label="Energie"/>
+                                <p:inputNumber id="energy" value="#{recipeCreationModel.recipe.energie}" symbol=" cal" symbolPosition="s" required="true" minValue="1" maxValue="20000" label="Energie"/>
 
                                 <p:outputLabel for="allergiesName" value="Allergènes : " styleClass="bold"/>
                                 <p:selectCheckboxMenu id="allergiesName" value="#{recipeCreationModel.allergiesNameSelected}" label="Allergènes" multiple="true"

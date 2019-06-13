@@ -44,7 +44,7 @@
     display: none;
 }
 
-label {
+.control-label {
     font-weight: 600 !important;
 }
 

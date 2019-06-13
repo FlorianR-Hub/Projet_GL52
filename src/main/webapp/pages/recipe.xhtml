@@ -26,7 +26,7 @@
                 </h1>
 
                 <h:panelGrid columns="2" styleClass="padding-panel card" columnClasses="ui-g-12 ui-md-5, ui-g-12 ui-md-7">
-                    <p:graphicImage id="image" value="#{recipeImage.image}" styleClass="recipeImage" cache="false"/>
+                    <p:graphicImage value="#{recipeImage.image}" styleClass="recipeImage" cache="false"/>
                     <h:panelGrid columns="1" styleClass="panelGrid">
                         <h3>Description</h3>
                         <p>
@@ -53,7 +53,7 @@
 
                     <p:panelGrid columns="1" styleClass="panelGrid center">
                         <h:outputText value="Energie" styleClass="dieteticOutputText"/>
-                        <h:outputText value="#{recipeModel.recipe.energie} kcal" styleClass="bold"/>
+                        <h:outputText value="#{recipeModel.recipe.energie} cal" styleClass="bold"/>
                     </p:panelGrid>
                 </p:panel>
 
@@ -85,7 +85,7 @@
                     <p:panel header="Ingrédients" styleClass="ingredientsPanel padding-panel card" toggleable="true">
                         <p:dataList value="#{recipeModel.recipe.contenirList}" var="ingredientInfos" styleClass="ingredientsDataList">
                             <p>
-                                #{ingredientInfos.ingredients.nomIngredient} : #{ingredientInfos.quantite}#{ingredientInfos.unite}
+                                #{ingredientInfos.ingredients.nomIngredient} : #{ingredientInfos.quantite} #{ingredientInfos.unite}
                             </p>
                         </p:dataList>
                     </p:panel>

@@ -24,7 +24,9 @@
                         <div class="ui-g-12 ui-md-6 ui-lg-4">
                             <p:panelGrid columns="2" layout="grid" styleClass="recipe-card">
                                 <f:facet name="header">
-                                    <h:graphicImage value="/resources/img/cookies.jpg" styleClass="recipe-img" />
+                                    <p:graphicImage value="#{homeImage.image}" styleClass="recipe-img" cache="false">
+                                        <f:param name="num" value="#{rec.numRecette}" />
+                                    </p:graphicImage>
                                 </f:facet>
 
                                 <p:link outcome="recipe" value="#{rec.nomRecette}" styleClass="recipe-link">
@@ -35,8 +37,8 @@
                                     <i id="heart_#{rec.numRecette}" class="fa fa-fw fa-heart #{homeModel.heartClass}"></i>
                                 </p:commandLink>
 
-                                <h:outputText value="Durée : 1h00" />
-                                <h:outputText value="Difficulté : moyenne " class="difficulty"/>
+                                <h:outputText value="Durée : #{rec.tempsPreparationRecette} min" />
+                                <h:outputText value="Difficulté : #{rec.difficulteRecette} " class="difficulty"/>
                             </p:panelGrid>
                         </div>
                     </p:repeat>
