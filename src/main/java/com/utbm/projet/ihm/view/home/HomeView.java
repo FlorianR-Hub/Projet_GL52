@@ -1,3 +1,5 @@
+package com.utbm.projet.ihm.view.home;
+
 /*
  * Projet GL52
  *
@@ -5,23 +7,26 @@
  *
  * UTBM P2019
  */
-package com.utbm.projet.ihm.view;
-
-import com.utbm.projet.ihm.controller.RecipeController;
+import com.utbm.projet.ihm.controller.HomeController;
+import com.utbm.projet.ihm.model.HomeModel;
+import com.utbm.projet.ihm.view.GenericView;
 import javax.annotation.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
 /**
- * View class of the Recipe page.
+ * View class of the Home page.
  */
 @ManagedBean
 @Scope("session")
-public class RecipeView extends GenericView {
+public class HomeView extends GenericView {
 
     @Autowired
-    private RecipeController recipeController;
+    private HomeController homeController;
+
+    @Autowired
+    private HomeModel homeModel;
 
     @Override
     public void initView() {
@@ -31,7 +36,15 @@ public class RecipeView extends GenericView {
             return;
         }
 
-        recipeController.initModel();
+        homeController.initModel();
+    }
+
+    public void fakeLink() {
+        System.out.println("com.utbm.projet.ihm.view.HomeView.fakeLink()");
+    }
+
+    public void addToFavorite() {
+        homeController.addToFavorite();
     }
 
 }

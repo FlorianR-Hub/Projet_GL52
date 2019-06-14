@@ -27,7 +27,8 @@
                             <p:messages />
                             <b:panelGrid colSpans="12">
                                 <p:outputLabel value="Photo de la recette *" />
-                                <p:fileUpload fileUploadListener="#{recipeCreationView.upload}" auto="true" styleClass="imageRecipe" label="Choisir" required="true" />
+                                <p:graphicImage id="image" value="#{recipeCreationImage.image}" styleClass="recipeImage" cache="false"/>
+                                <p:fileUpload fileUploadListener="#{recipeCreationView.upload}" auto="true" styleClass="recipeImageUpload" label="Choisir" required="true" update="image" />
 
                                 <b:inputText value="#{recipeCreationModel.recipe.nomRecette}" label="Nom de la recette" required="true" placeholder="Choisissez un titre pour votre recette"/>
 

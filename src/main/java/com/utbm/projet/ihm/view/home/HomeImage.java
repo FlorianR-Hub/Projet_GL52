@@ -5,9 +5,10 @@
  *
  * UTBM P2019
  */
-package com.utbm.projet.ihm.view;
+package com.utbm.projet.ihm.view.home;
 
-import com.utbm.projet.ihm.model.RecipeModel;
+import com.utbm.projet.dao.data.Recette;
+import com.utbm.projet.ihm.model.HomeModel;
 import java.io.ByteArrayInputStream;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.ApplicationScoped;
@@ -22,10 +23,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @ManagedBean
 @ApplicationScoped
-public class RecipeImage {
+public class HomeImage {
 
     @Autowired
-    private RecipeModel recipeModel;
+    private HomeModel homeModel;
 
     public StreamedContent getImage() {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -33,7 +34,20 @@ public class RecipeImage {
         if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
             return new DefaultStreamedContent();
         } else {
-            return new DefaultStreamedContent(new ByteArrayInputStream(recipeModel.getRecipe().getImageRecette()), "image/jpg");
+            Long num = Long.valueOf(context.getExternalContext().getRequestParameterMap().get("num"));
+
+            Recette recipe = null;
+            for (Recette rec : homeModel.getRecettes()) {
+                if (rec.getNumRecette() == num) {
+                    recipe = rec;
+                }
+            }
+
+            if (recipe != null) {
+                return new DefaultStreamedContent(new ByteArrayInputStream(recipe.getImageRecette()), "image/jpg");
+            }
+
+            return null;
         }
     }
 }

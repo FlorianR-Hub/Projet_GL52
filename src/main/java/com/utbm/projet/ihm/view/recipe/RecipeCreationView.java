@@ -5,10 +5,11 @@
  *
  * UTBM P2019
  */
-package com.utbm.projet.ihm.view;
+package com.utbm.projet.ihm.view.recipe;
 
 import com.utbm.projet.ihm.controller.RecipeCreationController;
 import com.utbm.projet.ihm.model.RecipeCreationModel;
+import com.utbm.projet.ihm.view.GenericView;
 import javax.annotation.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;

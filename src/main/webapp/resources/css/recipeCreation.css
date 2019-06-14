@@ -5,6 +5,24 @@
     }
 }
 
+.recipeImage {
+    height: 200px;
+    margin: 10px 0;
+}
+
+.recipeImageUpload {
+
+    box-shadow: none !important;
+}
+
+.recipeImageUpload div {
+    padding-left: 0;
+}
+
+.ui-fileupload-buttonbar, .ui-fileupload-content {
+    border: none;
+}
+
 .panelGrid.ui-panelgrid>*>tr,
 .panelGrid.ui-panelgrid .ui-panelgrid-cell {
     border: none;
@@ -46,9 +64,4 @@
 
 .control-label {
     font-weight: 600 !important;
-}
-
-.imageRecipe {
-    margin-top: 5px;
-    margin-bottom: 20px;
 }

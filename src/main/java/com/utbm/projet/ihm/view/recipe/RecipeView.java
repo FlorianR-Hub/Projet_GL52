@@ -1,5 +1,3 @@
-package com.utbm.projet.ihm.view;
-
 /*
  * Projet GL52
  *
@@ -7,25 +5,24 @@ package com.utbm.projet.ihm.view;
  *
  * UTBM P2019
  */
-import com.utbm.projet.ihm.controller.HomeController;
-import com.utbm.projet.ihm.model.HomeModel;
+package com.utbm.projet.ihm.view.recipe;
+
+import com.utbm.projet.ihm.controller.RecipeController;
+import com.utbm.projet.ihm.view.GenericView;
 import javax.annotation.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
 /**
- * View class of the Home page.
+ * View class of the Recipe page.
  */
 @ManagedBean
 @Scope("session")
-public class HomeView extends GenericView {
+public class RecipeView extends GenericView {
 
     @Autowired
-    private HomeController homeController;
-
-    @Autowired
-    private HomeModel homeModel;
+    private RecipeController recipeController;
 
     @Override
     public void initView() {
@@ -35,15 +32,7 @@ public class HomeView extends GenericView {
             return;
         }
 
-        homeController.initModel();
-    }
-
-    public void fakeLink() {
-        System.out.println("com.utbm.projet.ihm.view.HomeView.fakeLink()");
-    }
-
-    public void addToFavorite() {
-        homeController.addToFavorite();
+        recipeController.initModel();
     }
 
 }
