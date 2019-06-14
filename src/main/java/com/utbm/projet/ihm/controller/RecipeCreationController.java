@@ -18,8 +18,8 @@ import com.utbm.projet.dao.data.Recette;
 import com.utbm.projet.dao.interf.AllergyDao;
 import com.utbm.projet.dao.interf.AncDao;
 import com.utbm.projet.dao.interf.IngredientDao;
-import com.utbm.projet.dao.interf.RecipeDao;
 import com.utbm.projet.ihm.model.RecipeCreationModel;
+import com.utbm.projet.service.interf.RecipeService;
 import com.utbm.projet.util.Measures;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public class RecipeCreationController extends GenericController {
     private RecipeCreationModel recipeCreationModel;
 
     @Autowired
-    private RecipeDao recipeDao;
+    private RecipeService recipeService;
 
     @Autowired
     private IngredientDao ingredientDao;
@@ -113,7 +113,7 @@ public class RecipeCreationController extends GenericController {
             }
             recipe.setAncList(ancs);
 
-            Recette recipeSaved = recipeDao.insert(recipe);
+            Recette recipeSaved = recipeService.createRecipe(recipe);
             List<Etape> steps = recipeCreationModel.getSteps();
             List<Contenir> ingredientsInfos = recipeCreationModel.getIngredientsInfos();
 
@@ -131,13 +131,12 @@ public class RecipeCreationController extends GenericController {
 
             recipeSaved.setEtapeList(steps);
             recipeSaved.setContenirList(ingredientsInfos);;
-            recipeDao.insert(recipeSaved);
+            recipeService.updateRecipe(recipeSaved);
 
             context.getExternalContext().redirect("recipe.xhtml?num=" + recipeSaved.getNumRecette());
         } catch (Exception e) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur !", "La recette n'a pas pu être ajoutée");
             context.addMessage(null, message);
-            System.out.println(e.getMessage());
         }
     }
 

@@ -7,8 +7,11 @@ package com.utbm.projet.ihm.controller;
  *
  * UTBM P2019
  */
-import com.utbm.projet.dao.interf.RecipeDao;
+import com.utbm.projet.dao.data.Utilisateur;
+import com.utbm.projet.dao.interf.UserDao;
 import com.utbm.projet.ihm.model.HomeModel;
+import com.utbm.projet.ihm.model.TemplateModel;
+import com.utbm.projet.service.interf.RecipeService;
 import javax.annotation.ManagedBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -24,12 +27,21 @@ public class HomeController extends GenericController {
     private HomeModel homeModel;
 
     @Autowired
-    private RecipeDao recipeDao;
+    private TemplateModel templateModel;
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private RecipeService recipeService;
 
     @Override
     public void initModel() {
+        Long userAuthId = templateModel.getUserAuth().getId();
+        Utilisateur user = userDao.getByUserAuthId(userAuthId);
+
+        homeModel.setRecettes(recipeService.getDailyRecipes(user));
         homeModel.setHeartClass("heart");
-        homeModel.setRecettes(recipeDao.getAll());
     }
 
     public void addToFavorite() {
