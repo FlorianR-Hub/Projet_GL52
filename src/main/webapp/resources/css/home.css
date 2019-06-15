@@ -3,6 +3,18 @@
         width: 80%;
         margin: 0 auto;
     }
+
+    .recipe-card .ui-panelgrid-header {
+        overflow: hidden;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .recipe-img {
+        background-position: center center;
+        height: 250px;
+        margin: 0 -100%;
+    }
 }
 
 .recipe-card {
@@ -11,12 +23,8 @@
     margin: 1%;
 }
 
-.recipe-card:hover{
+.recipe-card:hover {
     box-shadow: 5px 5px 10px #3c8dbc;
-}
-
-.recipe-img {
-    width: 100%;
 }
 
 .recipe-link {
@@ -58,5 +66,9 @@
 
     .difficulty {
         float: left;
+    }
+
+    .recipe-img {
+        width: 100%;
     }
 }
