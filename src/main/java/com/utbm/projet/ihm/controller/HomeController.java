@@ -52,7 +52,7 @@ public class HomeController extends GenericController {
 
     public String formatTempsDePreparation(int temps) {
         if (temps < 60) {
-            return (temps < 10 ? "0" + temps : temps) + "min";
+            return (temps < 10 ? "0" + temps : temps) + " min";
         }
         int hours = temps / 60;
         int minutes = temps % 60;
@@ -91,7 +91,7 @@ public class HomeController extends GenericController {
             user.getRecetteList().remove(recipe);
             classToAdd = homeModel.getHeartClass();
             classToRemove = homeModel.getRedHeartClass();
-            message = "La recette a été supprimée de vos favoris.";
+            message = "La recette a été retirée de vos favoris.";
         } else {
             user.getRecetteList().add(recipe);
             classToAdd = homeModel.getRedHeartClass();
@@ -103,8 +103,7 @@ public class HomeController extends GenericController {
 
         PrimeFaces.current().executeScript("setPreferer('" + iconId + "', '" + classToAdd + "', '" + classToRemove + "');");
 
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(message));
+        FacesContext.getCurrentInstance().addMessage("homeForm", new FacesMessage(FacesMessage.SEVERITY_INFO, message, ""));
     }
 
     /**

@@ -15,14 +15,11 @@
         <h:outputScript name="js/home.js"/>
 
         <h:form id="homeForm">
-
             <p:panelGrid rendered="#{not templateModel.logged}">
                 <p> Identifiez-vous pour voir le contenu de la page. </p>
             </p:panelGrid>
 
             <p:panelGrid rendered="#{templateModel.logged}">
-                <p:growl id="growl" showDetail="true"/>
-
                 <div class="ui-g">
                     <p:repeat value="#{homeModel.recettes}" var="rec">
                         <div class="ui-g-12 ui-md-6 ui-lg-4">
@@ -37,8 +34,9 @@
                                     <f:param name="num" value="#{rec.numRecette}" />
                                 </p:link>
 
-                                <p:commandLink ajax="true" update="@form"
+                                <p:commandLink ajax="true" update="heartGrowl"
                                                action="#{homeView.addToFavorite(rec.numRecette, 'heart_'.concat(rec.numRecette))}">
+                                    <p:growl for="homeForm" id="heartGrowl"/>
                                     <i id="heart_#{rec.numRecette}" class="fa fa-fw fa-heart #{homeView.heartClass(rec.numRecette)}"></i>
                                 </p:commandLink>
 
@@ -51,10 +49,6 @@
                 </div>
             </p:panelGrid>
 
-            <p:panelGrid>
-
-
-            </p:panelGrid>
 
         </h:form>
 
