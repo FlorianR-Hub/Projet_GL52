@@ -19,8 +19,6 @@
             </p:panelGrid>
 
             <h:panelGrid rendered="#{templateModel.logged and templateView.isAdminOrNutritionist()}" styleClass="panelGridNewRecipe">
-                <p:growl id="growl" life="1500" showDetail="true"/>
-
                 <p:wizard flowListener="#{recipeCreationView.onFlowProcess}" nextLabel="Suivant" backLabel="Précédent">
                     <p:tab id="description" title="Description">
                         <p:panel header="Description de la recette">
@@ -111,8 +109,10 @@
                             </p:panelGrid>
 
                             <p:panelGrid columns="2" styleClass="panelGrid panelGridButtons">
-                                <p:commandButton value="Ajouter" styleClass="ui-priority-primary" update="growl ingredientsInfosDT"
-                                                 action="#{recipeCreationView.onAddNewIngredientInfos()}" />
+                                <p:commandButton value="Ajouter" styleClass="ui-priority-primary" update="addIngredientGrowl ingredientsInfosDT"
+                                                 action="#{recipeCreationView.onAddNewIngredientInfos()}">
+                                    <p:growl for="recipeCreationForm" id="addIngredientGrowl" life="1500" showDetail="true"/>
+                                </p:commandButton>
                                 <p:commandButton value="Réinitialiser" type="reset"/>
                             </p:panelGrid>
 
@@ -156,7 +156,7 @@
                         </p:panel>
                     </p:tab>
 
-                    <p:tab id="steps" title="Etapes">
+                    <p:tab id="steps" title="Étapes">
                         <p:panel header="Étapes de préparation">
                             <p:messages />
                             <b:panelGrid colSpans="12" styleClass="panelGridInstructions">
@@ -167,8 +167,10 @@
                             </b:panelGrid>
 
                             <p:panelGrid columns="2" styleClass="panelGrid">
-                                <p:commandButton value="Ajouter" styleClass="ui-priority-primary" update="growl stepsDT"
-                                                 action="#{recipeCreationView.onAddNewStep()}" />
+                                <p:commandButton value="Ajouter" styleClass="ui-priority-primary" update="addStepGrowl stepsDT"
+                                                 action="#{recipeCreationView.onAddNewStep()}">
+                                    <p:growl for="recipeCreationForm" id="addStepGrowl" life="1500" showDetail="true"/>
+                                </p:commandButton>
                                 <p:commandButton value="Réinitialiser" type="reset"/>
                             </p:panelGrid>
 
@@ -197,7 +199,9 @@
                             </p:dataTable>
 
                             <h:panelGrid columns="1" styleClass="panelGridButton">
-                                <p:commandButton styleClass="createButton" value="Publier la recette" action="#{recipeCreationView.onSave}" update="growl"/>
+                                <p:commandButton styleClass="createButton" value="Publier la recette" action="#{recipeCreationView.onSave}" update="createGrowl">
+                                    <p:growl for="recipeCreationForm" id="createGrowl" life="1500" showDetail="true"/>
+                                </p:commandButton>
                             </h:panelGrid>
                         </p:panel>
                     </p:tab>

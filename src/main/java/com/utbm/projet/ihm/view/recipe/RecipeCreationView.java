@@ -54,16 +54,8 @@ public class RecipeCreationView extends GenericView {
         recipeCreationController.addStep();
     }
 
-    public void onDeleteStep() {
-        recipeCreationController.deleteStep();
-    }
-
     public void onAddNewIngredientInfos() {
         recipeCreationController.addIngredientInfos();
-    }
-
-    public void onDeleteIngredientInfos() {
-        recipeCreationController.deleteIngredientInfos();
     }
 
     public String getNextStepNum() {

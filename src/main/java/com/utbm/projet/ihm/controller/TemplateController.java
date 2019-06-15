@@ -61,7 +61,7 @@ public class TemplateController extends GenericController {
             templateModel.setLogged(false);
             message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur d'authentification", "Informations d'authentification invalides");
         } finally {
-            FacesContext.getCurrentInstance().addMessage(null, message);
+            FacesContext.getCurrentInstance().addMessage("loginForm", message);
             PrimeFaces.current().ajax().addCallbackParam("loggedIn", templateModel.isLogged());
         }
     }
@@ -83,7 +83,7 @@ public class TemplateController extends GenericController {
         } catch (Exception e) {
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Erreur d'inscription", e.getCause().getMessage());
         } finally {
-            FacesContext.getCurrentInstance().addMessage(null, message);
+            FacesContext.getCurrentInstance().addMessage("registerForm", message);
             PrimeFaces.current().ajax().addCallbackParam("loggedIn", templateModel.isLogged());
         }
     }

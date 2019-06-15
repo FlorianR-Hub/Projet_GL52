@@ -136,7 +136,7 @@ public class RecipeCreationController extends GenericController {
             context.getExternalContext().redirect("recipe.xhtml?num=" + recipeSaved.getNumRecette());
         } catch (Exception e) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur !", "La recette n'a pas pu être ajoutée");
-            context.addMessage(null, message);
+            context.addMessage("recipeCreationForm", message);
         }
     }
 
@@ -150,13 +150,8 @@ public class RecipeCreationController extends GenericController {
         steps.add(newStep);
 
         recipeCreationModel.setNewStep(new Etape());
-        FacesMessage msg = new FacesMessage("Succès !", "Nouvelle étape ajoutée");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
-    public void deleteStep() {
-        recipeCreationModel.getSteps().remove(recipeCreationModel.getSelectedStep());
-        recipeCreationModel.setSelectedStep(null);
+        FacesMessage message = new FacesMessage("Succès !", "Nouvelle étape ajoutée");
+        FacesContext.getCurrentInstance().addMessage("recipeCreationForm", message);
     }
 
     public void addIngredientInfos() {
@@ -180,12 +175,8 @@ public class RecipeCreationController extends GenericController {
 
         recipeCreationModel.setNewIngredient(new Ingredients());
         recipeCreationModel.setNewIngredientInfos(new Contenir());
-        FacesMessage msg = new FacesMessage("Succès !", "Nouvel ingrédient ajouté");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        FacesMessage message = new FacesMessage("Succès !", "Nouvel ingrédient ajouté");
+        FacesContext.getCurrentInstance().addMessage("recipeCreationForm", message);
     }
 
-    public void deleteIngredientInfos() {
-        recipeCreationModel.getIngredientsInfos().remove(recipeCreationModel.getSelectedIngredientInfos());
-        recipeCreationModel.setSelectedIngredientInfos(null);
-    }
 }

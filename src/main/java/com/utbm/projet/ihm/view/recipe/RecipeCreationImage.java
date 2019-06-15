@@ -41,17 +41,16 @@ public class RecipeCreationImage {
         } else if (recipeCreationModel.getRecipe().getImageRecette() != null) {
             return new DefaultStreamedContent(new ByteArrayInputStream(recipeCreationModel.getRecipe().getImageRecette()), "image/jpg");
         } else {
-            InputStream inputStream;
+            InputStream inputStream = null;
             try {
                 inputStream = new URL("https://i.imgur.com/voGu0IC.png").openStream();
-                return new DefaultStreamedContent(inputStream, "image/png");
             } catch (MalformedURLException ex) {
                 Logger.getLogger(RecipeCreationImage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(RecipeCreationImage.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            return null;
+            return new DefaultStreamedContent(inputStream, "image/png");
         }
     }
 }

@@ -37,8 +37,8 @@
     </h:head>
 
     <h:body>
-        <h:form>
-            <p:growl id="growl" showDetail="true" life="2000" />
+        <h:form id="loginForm">
+            <p:growl for="loginForm" id="loginGrowl" showDetail="true" life="2000" />
 
             <p:dialog header="Se connecter" widgetVar="dlgLogin" resizable="false" draggable="false" modal="true" appendTo="@(view)" showEffect="fade" hideEffect="fade">
                 <p:panelGrid columns="2" styleClass="panelGrid">
@@ -49,14 +49,14 @@
                     <p:password id="passwordLogin" value="#{templateModel.userAuth.mdp}" required="true" label="password" requiredMessage="Mot de passe non renseigné"/>
 
                     <f:facet name="footer">
-                        <p:commandButton value="Connexion" update="growl menuForm headerForm #{pageForm}" action="#{templateView.onLogin()}" oncomplete="handleLoginRequest(xhr, status, args)" styleClass="commandButton"/>
+                        <p:commandButton value="Connexion" update="loginGrowl menuForm headerForm #{pageForm}" action="#{templateView.onLogin()}" oncomplete="handleLoginRequest(xhr, status, args)" styleClass="commandButton"/>
                     </f:facet>
                 </p:panelGrid>
             </p:dialog>
         </h:form>
 
-        <h:form>
-            <p:growl id="growl" showDetail="true" life="2000" />
+        <h:form id="registerForm">
+            <p:growl id="registerGrowl" showDetail="true" life="2000" />
 
             <p:dialog header="S'inscrire" widgetVar="dlgRegister" resizable="false" draggable="false" modal="true" appendTo="@(view)" showEffect="fade" hideEffect="fade">
                 <p:panelGrid columns="2" styleClass="panelGrid">
@@ -67,7 +67,7 @@
                     <p:password id="passwordRegister" value="#{templateModel.userAuth.mdp}" required="true" label="password" requiredMessage="Mot de passe non renseigné"/>
 
                     <f:facet name="footer">
-                        <p:commandButton value="S'inscrire" update="growl menuForm headerForm #{pageForm}" action="#{templateView.onRegister()}" oncomplete="handleRegisterRequest(xhr, status, args)" styleClass="commandButton"/>
+                        <p:commandButton value="S'inscrire" update="registerGrowl menuForm headerForm #{pageForm}" action="#{templateView.onRegister()}" oncomplete="handleRegisterRequest(xhr, status, args)" styleClass="commandButton"/>
                     </f:facet>
                 </p:panelGrid>
             </p:dialog>
