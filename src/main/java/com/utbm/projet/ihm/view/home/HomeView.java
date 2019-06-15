@@ -39,12 +39,15 @@ public class HomeView extends GenericView {
         homeController.initModel();
     }
 
-    public void fakeLink() {
-        System.out.println("com.utbm.projet.ihm.view.HomeView.fakeLink()");
+    public String formatTempsDePreparation(int temps) {
+        return homeController.formatTempsDePreparation(temps);
     }
 
-    public void addToFavorite() {
-        homeController.addToFavorite();
+    public void addToFavorite(String recipeId, String iconId) {
+        homeController.setFavorite(recipeId, iconId);
     }
 
+    public String heartClass(String recipeId) {
+        return homeController.heartClass(recipeId);
+    }
 }

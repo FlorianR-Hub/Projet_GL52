@@ -12,13 +12,17 @@
     <ui:define name="content">
         <f:event type="preRenderView" listener="#{homeView.initView()}"/>
         <h:outputStylesheet library="css" name="home.css" />
+        <h:outputScript name="js/home.js"/>
 
         <h:form id="homeForm">
+
             <p:panelGrid rendered="#{not templateModel.logged}">
                 <p> Identifiez-vous pour voir le contenu de la page. </p>
             </p:panelGrid>
 
             <p:panelGrid rendered="#{templateModel.logged}">
+                <p:growl id="growl" showDetail="true"/>
+
                 <div class="ui-g">
                     <p:repeat value="#{homeModel.recettes}" var="rec">
                         <div class="ui-g-12 ui-md-6 ui-lg-4">
@@ -33,11 +37,13 @@
                                     <f:param name="num" value="#{rec.numRecette}" />
                                 </p:link>
 
-                                <p:commandLink ajax="true" update="@(homeForm:heart_#{rec.numRecette})" action="#{homeView.addToFavorite}">
-                                    <i id="heart_#{rec.numRecette}" class="fa fa-fw fa-heart #{homeModel.heartClass}"></i>
+                                <p:commandLink ajax="true" update="@form"
+                                               action="#{homeView.addToFavorite(rec.numRecette, 'heart_'.concat(rec.numRecette))}">
+                                    <i id="heart_#{rec.numRecette}" class="fa fa-fw fa-heart #{homeView.heartClass(rec.numRecette)}"></i>
                                 </p:commandLink>
 
-                                <h:outputText value="Durée : #{rec.tempsPreparationRecette} min" />
+
+                                <h:outputText value="Durée : #{homeView.formatTempsDePreparation(rec.tempsPreparationRecette)}" />
                                 <h:outputText value="Difficulté : #{rec.difficulteRecette} " class="difficulty"/>
                             </p:panelGrid>
                         </div>

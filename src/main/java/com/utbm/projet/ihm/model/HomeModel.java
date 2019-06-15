@@ -19,7 +19,9 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class HomeModel {
 
-    String heartClass;
+    final String heartClass = "heart";
+    final String redHeartClass = "red-heart";
+
     List<Recette> recettes;
 
     public List<Recette> getRecettes() {
@@ -34,8 +36,8 @@ public class HomeModel {
         return heartClass;
     }
 
-    public void setHeartClass(String heartClass) {
-        this.heartClass = heartClass;
+    public String getRedHeartClass() {
+        return redHeartClass;
     }
 
 }
