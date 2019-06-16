@@ -1,0 +1,50 @@
+@media (min-width: 992px) {
+    #favoritesForm {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .recipe-card .ui-panelgrid-header {
+        overflow: hidden;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .recipe-img {
+        background-position: center center;
+        width: 50%;
+    }
+}
+
+.recipe-card {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 1%;
+}
+
+.recipe-card:hover {
+    box-shadow: 5px 5px 10px #3c8dbc;
+}
+
+.recipe-link {
+    color: #3c8dbc !important;
+    font-size: large !important;
+    /*margin-left: 10px;*/
+}
+
+.recipe-link:hover {
+    text-decoration: underline
+}
+
+#msgPasDeFavoris{
+    font-size: medium;
+    margin-top: 30px;
+}
+
+.red-heart{
+    color: red;
+    font-size: x-large;
+}
+.favoritesLink {
+    color: red !important;
+}

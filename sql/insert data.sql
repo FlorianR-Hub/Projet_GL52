@@ -78,7 +78,7 @@ INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (6, 'Sachet
 INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (7, 'Sachet de sucre vahiné');
 
 -- Contenir :
-INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (1, 1, 150, 'g'); 
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (1, 1, 150, 'g');
 INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (1, 2, 1, '');
 INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (1, 3, 150, 'g');
 INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (1, 4, 85, 'g');
@@ -135,6 +135,81 @@ INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('9', '2');
 
 -- Associer :
 INSERT INTO gl52.associer (NUM_RECETTE, NUM_ALLERGENE) VALUES (2, 9);
+
+-- Tarte aux fraises :
+INSERT INTO gl52.recette (NUM_RECETTE, NOM_RECETTE, TYPE_RECETTE, DIFFICULTE_RECETTE, DESC_RECETTE, TEMPS_PREPARATION_RECETTE, NB_PERSONNES_RECETTE, IMAGE_RECETTE, ENERGIE) VALUES ('3', 'Tarte aux fraises', 'Dessert', 'Facile', 'Une bonne tarte aux fraises', '35', '6', LOAD_FILE('/tmp/tarte.jpg'), 1500);
+
+-- Etapes :
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (1, 3,'Blanchir les jaunes et le sucre au fouet et détendre le mélange avec un peu d''eau.');
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (2, 3, 'Mélanger au doigt la farine et le beurre coupé en petites parcelles pour obtenir une consistance sableuse et que tout le beurre soit absorbé (!!! Il faut faire vite pour que le mélange ne ramollisse pas trop!).');
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (3, 3, 'Verser au milieu de ce "sable" le mélange liquide. Incorporer au couteau les éléments rapidement sans leur donner de corps.');
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (4, 3, 'Former une boule avec les paumes et fraiser 1 ou 2 fois pour rendre la boule + homogène');
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (5, 3, 'Foncer un moule de 25 cm de diamètre avec la pâte, garnissez la de papier sulfurisé et de haricots secs.');
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (6, 3, 'Faire cuire à blanc 20 à 25 min, à 180°C (thermostat 6).');
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (7, 3, 'Verser la crème sur le fond de tarte et disposer joliment les fraises coupées en 2.');
+
+-- Ingrédients :
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (13, 'Jaune d''oeuf');
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (14, 'Eau');
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (15, 'Fraise');
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (16, 'Crème pâtissière');
+
+-- Contenir :
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (3, 2, 250, 'g');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (3, 4, 70, 'g');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (3, 3, 125, 'g');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (3, 13, 2, '');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (3, 14, 5, 'cl');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (3, 15, 500, 'g');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (3, 16, 100, 'g');
+
+-- Posséder :
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('1', '3');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('2', '3');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('3', '3');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('4', '3');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('5', '3');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('6', '3');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('7', '3');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('8', '3');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('9', '3');
+
+-- Associer :
+INSERT INTO gl52.associer (NUM_RECETTE, NUM_ALLERGENE) VALUES (3, 5);
+INSERT INTO gl52.associer (NUM_RECETTE, NUM_ALLERGENE) VALUES (3, 9);
+
+-- Riz au lait cuit au four :
+INSERT INTO gl52.recette (NUM_RECETTE, NOM_RECETTE, TYPE_RECETTE, DIFFICULTE_RECETTE, DESC_RECETTE, TEMPS_PREPARATION_RECETTE, NB_PERSONNES_RECETTE, IMAGE_RECETTE, ENERGIE) VALUES ('4', 'Riz au lait cuit au four', 'Dessert', 'Facile', 'Un bon riz au lait comme vous en mangez rarement', '125', '8', LOAD_FILE('/tmp/riz.jpg'), 500);
+
+-- Etapes :
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (1, 4,'Dans un plat rectangulaire, versez tous les ingrédients. Mélangez puis faites cuire environ 2 heures à 180°C (thermostat 6).');
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (2, 4, 'Faites attention en début de cuisson, remuez de nouveau si un peu de riz remonte à la surface, car sinon le riz s''assèche.');
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (3, 4, 'Le riz est cuit lorsqu''il est onctueux et qu''il reste encore un peu de liquide.');
+
+-- Ingrédients :
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (17, 'Riz rond');
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (18, 'Vanille');
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (19, 'Lait');
+
+-- Contenir :
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (4, 4, 100, 'g');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (4, 19, 1, 'l');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (3, 17, 100, 'g');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (3, 18, 2, 'g');
+
+-- Posséder :
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('1', '4');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('2', '4');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('3', '4');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('4', '4');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('5', '4');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('6', '4');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('7', '4');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('8', '4');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('9', '4');
+
+-- Associer :
+INSERT INTO gl52.associer (NUM_RECETTE, NUM_ALLERGENE) VALUES (4, 5);
 
 -- FIN RECETTES
 
