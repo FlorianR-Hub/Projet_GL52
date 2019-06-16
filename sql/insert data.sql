@@ -1,17 +1,65 @@
+DELETE FROM gl52.etre_sujet;
+DELETE FROM gl52.etre_allergique;
+DELETE FROM gl52.preferer;
+DELETE FROM gl52.administrateur;
+DELETE FROM gl52.nutritionniste;
+DELETE FROM gl52.utilisateur;
 DELETE FROM gl52.user_auth;
-INSERT INTO gl52.user_auth (ID, PSEUDO, MDP, ACCOUNT_TYPE) VALUES (1, 'user', 'user', 0);
-INSERT INTO gl52.user_auth (ID, PSEUDO, MDP, ACCOUNT_TYPE) VALUES (2, 'admin', 'admin', 1);
-INSERT INTO gl52.user_auth (ID, PSEUDO, MDP, ACCOUNT_TYPE) VALUES (3, 'nutritionist', 'nutritionist', 2);
-
+DELETE FROM gl52.associer;
 DELETE FROM gl52.allergenes;
 DELETE FROM gl52.carences;
+DELETE FROM gl52.posseder;
 DELETE FROM gl52.anc;
 DELETE FROM gl52.contenir;
 DELETE FROM gl52.ingredients;
 DELETE FROM gl52.etape;
 DELETE FROM gl52.recette;
 
--- Recettes :
+INSERT INTO gl52.user_auth (ID, PSEUDO, MDP, ACCOUNT_TYPE) VALUES (1, 'user', 'user', 0);
+INSERT INTO gl52.user_auth (ID, PSEUDO, MDP, ACCOUNT_TYPE) VALUES (2, 'admin', 'admin', 1);
+INSERT INTO gl52.user_auth (ID, PSEUDO, MDP, ACCOUNT_TYPE) VALUES (3, 'nutritionist', 'nutritionist', 2);
+
+-- Carences :
+INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (1, 'Calcium');
+INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (2, 'Fer');
+INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (3, 'Magnésium');
+INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (4, 'Protéines');
+INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (5, 'Vitamine A');
+INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (6, 'Vitamine B1');
+INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (7, 'Vitamine B3');
+INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (8, 'Vitamine B9');
+INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (9, 'Vitamine D');
+
+-- Allergènes :
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (1 , 'Arachides');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (2 , 'Céleri');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (3 , 'Gluten');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (4 , 'Fruits à coque');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (5 , 'Lait');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (6 , 'Lupin');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (7 , 'Mollusques');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (8 , 'Moutarde');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (9 , 'Œufs');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (10, 'Poisson');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (11, 'Sésame');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (12, 'Sulfites');
+INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (13, 'Soja');
+
+-- ANC :
+INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(1, 'Vitamine A', 'Vitamines');
+INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(2, 'Vitamine B1', 'Vitamines');
+INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(3, 'Vitamine B9', 'Vitamines');
+INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(4, 'Vitamine D', 'Vitamines');
+INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(5, 'Protéines', 'Nutriments');
+INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(6, 'Lipides', 'Nutriments');
+INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(7, 'Glucides', 'Nutriments');
+INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(8, 'Fer', 'Minéraux');
+INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(9, 'Calcium', 'Nutriments');
+
+
+-- DEBUT RECETTES
+
+-- Cookies facile :
 INSERT INTO gl52.recette (NUM_RECETTE, NOM_RECETTE, TYPE_RECETTE, DIFFICULTE_RECETTE, DESC_RECETTE, TEMPS_PREPARATION_RECETTE, NB_PERSONNES_RECETTE, IMAGE_RECETTE, ENERGIE) VALUES ('1', 'Cookies facile', 'Dessert', 'Facile', 'Trouvaille parfaite pour le dimanche après-midi, cette recette de cookies au chocolat est aussi vite prête que vite dévorée. À la fois croustillants et moelleux, ces cookies maison permettront de croquer à pleines dents dans une soirée télé en famille ou une après-midi farniente avec des amis. Alors on dévalise son placard, on retrousse ses manches, et on s\'y met !', '10', '4', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\cookies.jpg'), 1500);
 
 -- Etapes :
@@ -38,42 +86,56 @@ INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES 
 INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (1, 6, 1, '');
 INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES (1, 7, 1, '');
 
--- Allergènes :
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (1 , 'Arachides');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (2 , 'Céleri');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (3 , 'Gluten');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (4 , 'Fruits à coque');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (5 , 'Lait');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (6 , 'Lupin');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (7 , 'Mollusques');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (8 , 'Moutarde');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (9 , 'Oeufs');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (10, 'Poisson');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (11, 'Sésame');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (12, 'Sulfites');
-INSERT INTO gl52.allergenes (NUM_ALLERGENE, NOM_ALLERGENE) VALUES (13, 'Soja');
+-- Posséder :
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('1', '1');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('2', '1');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('3', '1');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('4', '1');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('5', '1');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('6', '1');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('7', '1');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('8', '1');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('9', '1');
 
--- Carences :
-INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (1, 'Calcium');
-INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (2, 'Fer');
-INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (3, 'Magnésium');
-INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (4, 'Protéines');
-INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (5, 'Vitamine A');
-INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (6, 'Vitamine B1');
-INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (7, 'Vitamine B3');
-INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (8, 'Vitamine B9');
-INSERT INTO gl52.carences (NUM_CARENCE, NOM_CARENCE) VALUES (9, 'Vitamine D');
+-- Associer :
+INSERT INTO gl52.associer (NUM_RECETTE, NUM_ALLERGENE) VALUES (1, 9);
 
--- ANC :
-INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(1, 'Vitamine A', 'Vitamines');
-INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(2, 'Vitamine B1', 'Vitamines');
-INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(3, 'Vitamine B9', 'Vitamines');
-INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(4, 'Vitamine D', 'Vitamines');
-INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(5, 'Protéines', 'Nutriments');
-INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(6, 'Lipides', 'Nutriments');
-INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(7, 'Glucides', 'Nutriments');
-INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(8, 'Fer', 'Minéraux');
-INSERT INTO gl52.anc (NUM_ANC, NOM_ANC, TYPE_ANC) VALUES(9, 'Calcium', 'Nutriments');
+-- Omelette simple :
+INSERT INTO gl52.recette (NUM_RECETTE, NOM_RECETTE, TYPE_RECETTE, DIFFICULTE_RECETTE, DESC_RECETTE, TEMPS_PREPARATION_RECETTE, NB_PERSONNES_RECETTE, IMAGE_RECETTE, ENERGIE) VALUES ('2', 'Omelette simple', 'Plat', 'Facile', 'Le dimanche soir, qui dit dîner en solo et oeufs dans la réfrigérateur dit omelette ! Recette simple et culte pour souper en célibataire, elle se cuisine simplement avec des oeufs, des herbes, voire du fromage. Mais elle peut aussi s\'enrichir d\'un tas de restes qui ne demandent qu\'à servir dans le fond du réfrigérateur... Alors, ce soir, vous serez plutôt omelette nature, omelette aux champignons ou omelette au bacon ? ', '10', '1', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\omelette-simple.jpg'), '200');
 
+-- Etapes :
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES ('1', '2', 'Battez les œufs entiers dans un bol. Ajoutez sel et poivre à votre goût puis mélangez bien au fouet ou à la fourchette.');
+INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES ('2', '2', 'Faites chauffer l\'huile d\'olive dans une poêle et lorsqu\'elle est bien chaude, versez les oeufs battus dans la poêle et laissez cuire 1 minute tout en remuant constamment, jusqu\'à obtenir une omelette baveuse ou bien ferme selon vos goûts. Quand l’omelette est cuite à votre goût, ajoutez le fromage râpé et roulez-la. Dressez-la dans une assiette de service, et dégustez avec une salade verte assaisonnée et des mouillettes de pain beurrées ou tartinées de fromage.');
+
+-- Ingrédients :
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (8 , 'Sel');
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (9 , 'Huile d''olive');
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (10, 'Poivre');
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (11, 'Gruyère râpé');
+INSERT INTO gl52.ingredients (NUM_INGREDIENT, NOM_INGREDIENT) VALUES (12, 'Branches de ciboulette ciselée');
+
+-- Contenir :
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES ('2', '2', '3', '');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES ('2', '8', '3', 'g');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES ('2', '9', '2', 'c. à soupe');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES ('2', '10', '1', 'g');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES ('2', '11', '30', 'g');
+INSERT INTO gl52.contenir (NUM_RECETTE, NUM_INGREDIENT, QUANTITE, UNITE) VALUES ('2', '12', '6', '');
+
+-- Posséder :
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('1', '2');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('2', '2');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('3', '2');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('4', '2');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('5', '2');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('6', '2');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('7', '2');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('8', '2');
+INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('9', '2');
+
+-- Associer :
+INSERT INTO gl52.associer (NUM_RECETTE, NUM_ALLERGENE) VALUES (2, 9);
+
+-- FIN RECETTES
 
 COMMIT;
