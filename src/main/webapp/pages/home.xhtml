@@ -4,14 +4,13 @@
                 template="/WEB-INF/templates/template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:b="http://bootsfaces.net/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:param name="pageForm" value="homeForm"/>
 
     <ui:define name="content">
         <f:event type="preRenderView" listener="#{homeView.initView()}"/>
-        <h:outputStylesheet library="css" name="home.css" />
+        <h:outputStylesheet library="css" name="home.css"/>
         <h:outputScript name="js/home.js"/>
 
         <h:form id="homeForm">
@@ -26,22 +25,23 @@
                             <p:panelGrid columns="2" layout="grid" styleClass="recipe-card">
                                 <f:facet name="header">
                                     <p:graphicImage value="#{homeImage.image}" styleClass="recipe-img" cache="false">
-                                        <f:param name="num" value="#{rec.numRecette}" />
+                                        <f:param name="num" value="#{rec.numRecette}"/>
                                     </p:graphicImage>
                                 </f:facet>
 
                                 <p:link outcome="recipe" value="#{rec.nomRecette}" styleClass="recipe-link">
-                                    <f:param name="num" value="#{rec.numRecette}" />
+                                    <f:param name="num" value="#{rec.numRecette}"/>
                                 </p:link>
 
                                 <p:commandLink ajax="true" update="heartGrowl"
                                                action="#{homeView.addToFavorite(rec.numRecette, 'heart_'.concat(rec.numRecette))}">
                                     <p:growl for="homeForm" id="heartGrowl"/>
-                                    <i id="heart_#{rec.numRecette}" class="fa fa-fw fa-heart #{homeView.heartClass(rec.numRecette)}"></i>
+                                    <i id="heart_#{rec.numRecette}"
+                                       class="fa fa-fw fa-heart #{homeView.heartClass(rec.numRecette)}"></i>
                                 </p:commandLink>
 
-
-                                <h:outputText value="Durée : #{homeView.formatTempsDePreparation(rec.tempsPreparationRecette)}" />
+                                <h:outputText
+                                        value="Durée : #{homeView.formatTempsDePreparation(rec.tempsPreparationRecette)}"/>
                                 <h:outputText value="Difficulté : #{rec.difficulteRecette} " class="difficulty"/>
                             </p:panelGrid>
                         </div>
