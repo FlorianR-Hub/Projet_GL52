@@ -1,25 +1,46 @@
 @media (min-width: 992px) {
     #favoritesForm {
-        width: 80%;
+        width: 60%;
         margin: 0 auto;
     }
 
-    .recipe-card .ui-panelgrid-header {
+    .recipe-card {
+        padding: 20px;
+    }
+
+    .recipe-card .ui-md-4 {
         overflow: hidden;
         padding-left: 0;
         padding-right: 0;
+        height: 250px;
+        position:relative;
     }
 
     .recipe-img {
-        background-position: center center;
-        width: 50%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: auto;
+        width: 100%;
+        -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    }
+}
+
+@media (max-width: 991px) {
+    .recipe-card {
+        padding: 10px;
+    }
+
+    .recipe-img {
+        width: 100%;
     }
 }
 
 .recipe-card {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    margin: 1%;
+    margin: 3%;
 }
 
 .recipe-card:hover {
@@ -36,15 +57,16 @@
     text-decoration: underline
 }
 
-#msgPasDeFavoris{
+#msgPasDeFavoris {
     font-size: medium;
     margin-top: 30px;
 }
 
-.red-heart{
+.red-heart {
     color: red;
     font-size: x-large;
 }
+
 .favoritesLink {
     color: red !important;
 }

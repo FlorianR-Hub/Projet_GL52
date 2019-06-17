@@ -19,38 +19,31 @@
             </p:panelGrid>
 
             <p:panelGrid rendered="#{templateModel.logged}">
-
                 <p:panelGrid rendered="#{favoritesModel.recettesFavorites.size()==0}"
                              columns="1" id="msgPasDeFavoris" layout="grid" styleClass="recipe-card">
                     <h:outputText  value="Vous n'avez aucune recette favorite pour le moment." />
                 </p:panelGrid>
 
                 <p:repeat value="#{favoritesModel.recettesFavorites}" var="rec">
+                    <p:panelGrid columns="2" layout="grid" styleClass="recipe-card" columnClasses="ui-g-12 ui-md-4, ui-g-12 ui-md-8">
+                        <p:graphicImage value="#{favoritesImage.image}" styleClass="recipe-img" cache="false">
+                            <f:param name="num" value="#{rec.numRecette}" />
+                        </p:graphicImage>
 
-                    <p:panelGrid columns="1" layout="grid" styleClass="recipe-card">
-                        <p:panelGrid columns="2" layout="grid" columnClasses="ui-g-4, ui-g-8">
-                            <p:graphicImage value="#{favoritesImage.image}" styleClass="recipe-img" cache="false">
+                        <p:panelGrid columns="1" layout="grid" >
+
+                            <p:link outcome="recipe" value="#{rec.nomRecette}" styleClass="recipe-link">
                                 <f:param name="num" value="#{rec.numRecette}" />
-                            </p:graphicImage>
+                            </p:link>
 
-                            <p:panelGrid columns="1" layout="grid" >
-
-                                <p:link outcome="recipe" value="#{rec.nomRecette}" styleClass="recipe-link">
-                                    <f:param name="num" value="#{rec.numRecette}" />
-                                </p:link>
-
-                                <p:commandLink ajax="true" update="favoritesForm" styleClass="favoritesLink"
-                                               action="#{favoritesView.removeFromFavorite(rec.numRecette)}">
-                                    <p:growl for="favoritesForm" id="favoritesGrowl"/>
-                                    Retirer des favoris
-                                </p:commandLink>
-                            </p:panelGrid>
-
+                            <p:commandLink ajax="true" update="favoritesForm" styleClass="favoritesLink"
+                                           action="#{favoritesView.removeFromFavorite(rec.numRecette)}">
+                                <p:growl for="favoritesForm" id="favoritesGrowl"/>
+                                Retirer des favoris
+                            </p:commandLink>
                         </p:panelGrid>
-
                     </p:panelGrid>
                 </p:repeat>
-
             </p:panelGrid>
         </h:form>
 

@@ -36,13 +36,13 @@
     text-decoration: underline
 }
 
-.heart{
+.heart {
     float: right;
     color: gray;
     font-size: x-large;
 }
 
-.red-heart{
+.red-heart {
     float: right;
     color: red;
     font-size: x-large;
@@ -55,6 +55,8 @@
 @media (max-width: 991px) {
     .recipe-card {
         padding: 10px;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     .heart{
