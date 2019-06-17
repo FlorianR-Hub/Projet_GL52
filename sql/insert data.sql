@@ -137,7 +137,7 @@ INSERT INTO gl52.posseder (NUM_ANC, NUM_RECETTE) VALUES ('9', '2');
 INSERT INTO gl52.associer (NUM_RECETTE, NUM_ALLERGENE) VALUES (2, 9);
 
 -- Tarte aux fraises :
-INSERT INTO gl52.recette (NUM_RECETTE, NOM_RECETTE, TYPE_RECETTE, DIFFICULTE_RECETTE, DESC_RECETTE, TEMPS_PREPARATION_RECETTE, NB_PERSONNES_RECETTE, IMAGE_RECETTE, ENERGIE) VALUES ('3', 'Tarte aux fraises', 'Dessert', 'Facile', 'Une bonne tarte aux fraises', '35', '6', LOAD_FILE('/tmp/tarte.jpg'), 1500);
+INSERT INTO gl52.recette (NUM_RECETTE, NOM_RECETTE, TYPE_RECETTE, DIFFICULTE_RECETTE, DESC_RECETTE, TEMPS_PREPARATION_RECETTE, NB_PERSONNES_RECETTE, IMAGE_RECETTE, ENERGIE) VALUES ('3', 'Tarte aux fraises', 'Dessert', 'Facile', 'Une bonne tarte aux fraises', '35', '6', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\tarte.jpg'), 1500);
 
 -- Etapes :
 INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (1, 3,'Blanchir les jaunes et le sucre au fouet et détendre le mélange avec un peu d''eau.');
@@ -179,7 +179,7 @@ INSERT INTO gl52.associer (NUM_RECETTE, NUM_ALLERGENE) VALUES (3, 5);
 INSERT INTO gl52.associer (NUM_RECETTE, NUM_ALLERGENE) VALUES (3, 9);
 
 -- Riz au lait cuit au four :
-INSERT INTO gl52.recette (NUM_RECETTE, NOM_RECETTE, TYPE_RECETTE, DIFFICULTE_RECETTE, DESC_RECETTE, TEMPS_PREPARATION_RECETTE, NB_PERSONNES_RECETTE, IMAGE_RECETTE, ENERGIE) VALUES ('4', 'Riz au lait cuit au four', 'Dessert', 'Facile', 'Un bon riz au lait comme vous en mangez rarement', '125', '8', LOAD_FILE('/tmp/riz.jpg'), 500);
+INSERT INTO gl52.recette (NUM_RECETTE, NOM_RECETTE, TYPE_RECETTE, DIFFICULTE_RECETTE, DESC_RECETTE, TEMPS_PREPARATION_RECETTE, NB_PERSONNES_RECETTE, IMAGE_RECETTE, ENERGIE) VALUES ('4', 'Riz au lait cuit au four', 'Dessert', 'Facile', 'Un bon riz au lait comme vous en mangez rarement', '125', '8', LOAD_FILE('C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\riz.jpg'), 500);
 
 -- Etapes :
 INSERT INTO gl52.etape (NUM_ETAPE, NUM_RECETTE, INSTRUCTION_ETAPE) VALUES (1, 4,'Dans un plat rectangulaire, versez tous les ingrédients. Mélangez puis faites cuire environ 2 heures à 180°C (thermostat 6).');

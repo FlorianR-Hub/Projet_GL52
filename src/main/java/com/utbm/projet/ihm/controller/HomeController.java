@@ -99,11 +99,14 @@ public class HomeController extends GenericController {
             message = "La recette a été ajoutée à vos favoris.";
         }
 
-        userDao.update(user);
-
-        PrimeFaces.current().executeScript("setPreferer('" + iconId + "', '" + classToAdd + "', '" + classToRemove + "');");
-
-        FacesContext.getCurrentInstance().addMessage("homeForm", new FacesMessage(FacesMessage.SEVERITY_INFO, message, ""));
+        try {
+            userDao.update(user);
+            PrimeFaces.current().executeScript("setPreferer('" + iconId + "', '" + classToAdd + "', '" + classToRemove + "');");
+            FacesContext.getCurrentInstance().addMessage("homeForm", new FacesMessage(FacesMessage.SEVERITY_INFO, message, ""));
+        } catch (Exception e) {
+            message = "Vous devez renseigner vos informations de profil pour pouvoir ajouter des recettes favorites";
+            FacesContext.getCurrentInstance().addMessage("homeForm", new FacesMessage(FacesMessage.SEVERITY_WARN, message, ""));
+        }
     }
 
     /**
