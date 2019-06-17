@@ -9,16 +9,14 @@ package com.utbm.projet.ihm.view.favorites;
 
 import com.utbm.projet.ihm.controller.FavoritesController;
 import com.utbm.projet.ihm.view.GenericView;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-
 import javax.annotation.ManagedBean;
 import javax.faces.context.FacesContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 /**
  * @author neid
  */
-
 /**
  * View class of the Home page.
  */
@@ -45,6 +43,7 @@ public class FavoritesView extends GenericView {
     }
 
     public String reduceText(String text) {
-        return favoritesController.reduceText(text);
+        return text.substring(0, text.length() > 100 ? 100 : text.length()) + "...";
     }
+
 }

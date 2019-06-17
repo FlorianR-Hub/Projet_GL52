@@ -13,8 +13,7 @@ import javax.annotation.ManagedBean;
 import org.springframework.context.annotation.Scope;
 
 /**
- *
- * @author neid
+ * Model class of the Favorites page.
  */
 @ManagedBean
 @Scope("session")

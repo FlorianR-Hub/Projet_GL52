@@ -14,17 +14,16 @@ import com.utbm.projet.ihm.model.FavoritesModel;
 import com.utbm.projet.ihm.model.TemplateModel;
 import com.utbm.projet.service.interf.RecipeService;
 import com.utbm.projet.util.AccountTypes;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-
+import java.util.ArrayList;
+import java.util.Objects;
 import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import java.util.ArrayList;
-import java.util.Objects;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 /**
- * @author neid
+ * Controller class of the Favorites page.
  */
 @ManagedBean
 @Scope("session")
@@ -48,10 +47,6 @@ public class FavoritesController extends GenericController {
         Utilisateur user = userDao.getByUserAuthId(userAuthId);
 
         this.favoritesModel.setRecettesFavorites(user.getRecetteList());
-    }
-
-    public String reduceText(String text) {
-        return text.substring(0, 100) + "...";
     }
 
     public void removeFromFavorite(Long recipeId) {
