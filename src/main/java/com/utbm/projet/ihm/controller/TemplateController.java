@@ -32,6 +32,9 @@ public class TemplateController extends GenericController {
     private ProfileController profileController;
 
     @Autowired
+    private HomeController homeController;
+
+    @Autowired
     private LoginService loginService;
 
     @Override
@@ -49,12 +52,13 @@ public class TemplateController extends GenericController {
         String password = templateModel.getUserAuth().getMdp();
 
         try {
-            UserAuth user = loginService.login(pseudo, password);
+            UserAuth userAuth = loginService.login(pseudo, password);
 
             templateModel.setLogged(true);
-            templateModel.getUserAuth().setId(user.getId());
-            templateModel.getUserAuth().setAccountType(user.getAccountType());
+            templateModel.setUserAuth(userAuth);
+
             profileController.initModel();
+            homeController.initModel();
 
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenue", pseudo);
         } catch (Exception e) {
