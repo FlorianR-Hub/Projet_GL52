@@ -7,16 +7,15 @@
  */
 package com.utbm.projet.service.impl;
 
-import com.utbm.projet.dao.data.Allergenes;
-import com.utbm.projet.dao.data.Carences;
-import com.utbm.projet.dao.data.Recette;
-import com.utbm.projet.dao.data.Utilisateur;
+import com.utbm.projet.dao.data.*;
 import com.utbm.projet.dao.interf.RecipeDao;
 import com.utbm.projet.service.interf.RecipeService;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  *
@@ -55,6 +54,38 @@ public class RecipeServiceImpl implements RecipeService {
         }
         dailyRecipes.removeAll(recipesToRemove);
 
+        List<RecetteScore> recetteScores = new ArrayList<>();
+
+        for (Recette r : dailyRecipes) {
+            int score = 0;
+
+            for (Anc anc : r.getAncList()) {
+                if (userDeficienciesName.contains(anc.getNomAnc())) {
+                    score += 1;
+                }
+            }
+            recetteScores.add(new RecetteScore(r.getNumRecette(), score));
+        }
+
+        Comparator<Recette> compare = (Recette r1, Recette r2) -> {
+            Integer score1 = 0;
+            Integer score2 = 0;
+            for (RecetteScore t : recetteScores) {
+                if (t.recetteId == r1.getNumRecette()) {
+                    score1 = t.score;
+                    break;
+                }
+            }
+            for (RecetteScore t : recetteScores) {
+                if (t.recetteId == r2.getNumRecette()) {
+                    score2 = t.score;
+                    break;
+                }
+            }
+            return score2.compareTo(score1);
+        };
+
+        dailyRecipes.sort(compare);
         return dailyRecipes;
     }
 
@@ -78,4 +109,18 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeDao.insert(recipe);
     }
 
+    private class RecetteScore {
+        Long recetteId;
+        int score;
+
+        RecetteScore(Long id, int sc) {
+            this.recetteId = id;
+            this.score = sc;
+        }
+
+        @Override
+        public String toString() {
+            return "RecetteScore recetteId= [" + recetteId + " , score= " + score + "]";
+        }
+    }
 }
